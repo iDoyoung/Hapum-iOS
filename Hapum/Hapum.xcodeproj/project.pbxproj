@@ -17,6 +17,7 @@
 		7FA3192527F087F9003CAF9E /* HapumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3192427F087F9003CAF9E /* HapumUITests.swift */; };
 		7FA3192727F087F9003CAF9E /* HapumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3192627F087F9003CAF9E /* HapumUITestsLaunchTests.swift */; };
 		7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193327F142DC003CAF9E /* PhotosService.swift */; };
+		7FA3193827F3F55F003CAF9E /* NameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193727F3F55F003CAF9E /* NameSpace.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		7FA3192427F087F9003CAF9E /* HapumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapumUITests.swift; sourceTree = "<group>"; };
 		7FA3192627F087F9003CAF9E /* HapumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7FA3193327F142DC003CAF9E /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
+		7FA3193727F3F55F003CAF9E /* NameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpace.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				7FA3190E27F087F9003CAF9E /* LaunchScreen.storyboard */,
 				7FA3191127F087F9003CAF9E /* Info.plist */,
 				7FA3193327F142DC003CAF9E /* PhotosService.swift */,
+				7FA3193727F3F55F003CAF9E /* NameSpace.swift */,
 			);
 			path = Hapum;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */,
 				7FA3190827F087F9003CAF9E /* ViewController.swift in Sources */,
 				7FA3190427F087F9003CAF9E /* AppDelegate.swift in Sources */,
+				7FA3193827F3F55F003CAF9E /* NameSpace.swift in Sources */,
 				7FA3190627F087F9003CAF9E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
