@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7F42EB0327F52E9100FF8FE1 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0227F52E9100FF8FE1 /* Photo.swift */; };
+		7F42EB0527F5320600FF8FE1 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0427F5320600FF8FE1 /* MainViewModel.swift */; };
 		7FA3190427F087F9003CAF9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3190327F087F9003CAF9E /* AppDelegate.swift */; };
 		7FA3190627F087F9003CAF9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3190527F087F9003CAF9E /* SceneDelegate.swift */; };
 		7FA3190827F087F9003CAF9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3190727F087F9003CAF9E /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		7F42EB0227F52E9100FF8FE1 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		7F42EB0427F5320600FF8FE1 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		7FA3190027F087F9003CAF9E /* Hapum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hapum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA3190327F087F9003CAF9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FA3190527F087F9003CAF9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				7FA3191127F087F9003CAF9E /* Info.plist */,
 				7FA3193327F142DC003CAF9E /* PhotosService.swift */,
 				7FA3193727F3F55F003CAF9E /* NameSpace.swift */,
+				7F42EB0427F5320600FF8FE1 /* MainViewModel.swift */,
 				7F42EB0227F52E9100FF8FE1 /* Photo.swift */,
 			);
 			path = Hapum;
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F42EB0527F5320600FF8FE1 /* MainViewModel.swift in Sources */,
 				7F42EB0327F52E9100FF8FE1 /* Photo.swift in Sources */,
 				7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */,
 				7FA3190827F087F9003CAF9E /* ViewController.swift in Sources */,

@@ -10,7 +10,6 @@ import Photos
 
 class PhotosService {
      
-    private let imageManager: PHImageManager!
     private let readWriteStatus = PHPhotoLibrary.authorizationStatus(for: .readWrite)
     private var allPhotos: PHFetchResult<PHAsset>!
     private var userCollection: PHFetchResult<PHAssetCollection>!
@@ -21,8 +20,8 @@ class PhotosService {
         return options
     }()
     
-    init(imageManager: PHImageManager) {
-        self.imageManager = imageManager
+    init() {
+        fetchPHAssets()
     }
     
     func fetchPHAssets() {
