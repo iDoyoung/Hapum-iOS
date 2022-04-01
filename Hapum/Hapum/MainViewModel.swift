@@ -11,6 +11,7 @@ class MainViewModel {
     
     private let service: PhotoFetchable
     var allPhotos: [Photo]?
+    var photosInAlbum: [Photo]?
     lazy var filteredPhotos = allPhotos
     lazy var photosAccessStatus = service.requestAccessStatus()
     lazy var todayPhotos = allPhotos?.filter {
@@ -20,10 +21,12 @@ class MainViewModel {
     init(service: PhotoFetchable) {
         self.service = service
         self.allPhotos = service.fetchPhotos()
+        self.photosInAlbum = service.fetchPhotosFromAlbums()
     }
     
     func updatePhotos() {
         allPhotos = service.fetchPhotos()
+        photosInAlbum = service.fetchPhotosFromAlbums()
     }
     
     enum filtering {
@@ -42,7 +45,5 @@ class MainViewModel {
             break
         }
     }
-    //TODO: Add observed property
-    ///tag - photos from hapum album
-    
+
 }

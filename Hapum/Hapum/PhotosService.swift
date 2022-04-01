@@ -9,34 +9,36 @@
 import Photos
 
 protocol PhotoFetchable {
-    func fetchPhotos() -> [Photo]
     func requestAccessStatus() -> PHAuthorizationStatus?
+    func fetchPhotos() -> [Photo]
+    func fetchPhotosFromAlbums() -> [Photo]
 }
 
 class PhotosService: PhotoFetchable {
     
     private let imageManager: PHImageManager = PHImageManager.default()
     
-    private var allPhotosOptions: PHFetchOptions = {
+    private var photosOptions: PHFetchOptions = {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         return options
     }()
     
     func fetchPhotos() -> [Photo] {
-        let asset = PHAsset.fetchAssets(with: self.allPhotosOptions)
-        return requestPhotos(for: asset)
+        let assets = PHAsset.fetchAssets(with: self.photosOptions)
+        return requestPhotos(for: assets)
     }
    
-    func fetchPHAssetCollection() -> PHFetchResult<PHAssetCollection> {
+    func fetchPhotosFromAlbums() -> [Photo] {
         let options = PHFetchOptions()
         options.predicate = NSPredicate(format: "title = %@", NameSpace.albumName)
         let userCollection = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: options)
-        if userCollection.firstObject == nil {
+        guard let album = userCollection.firstObject else {
             createAlbum()
+            return []
         }
-        
-        return userCollection
+        let assets = PHAsset.fetchAssets(in: album, options: photosOptions)
+        return requestPhotos(for: assets)
     }
     
     private func requestPhotos(for assets: PHFetchResult<PHAsset>) -> [Photo] {
