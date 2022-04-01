@@ -11,6 +11,10 @@ import Photos
 @testable import Hapum
 
 class MockPhotosServic: PhotoFetchable {
+    func requestAccessStatus() -> PHAuthorizationStatus? {
+        return .denied
+    }
+    
     func fetchPhotos() -> [Photo] {
         return [Photo(identifier: "1", image: nil, creationDate: nil, location: nil),
                 Photo(identifier: "2", image: nil, creationDate: Date(), location: nil),
@@ -68,6 +72,11 @@ class MainVMTests: XCTestCase {
             Photo(identifier: "3", image: nil, creationDate: nil, location: nil)]
         sut.filterPhotos(by: .all)
         XCTAssertEqual(guess, sut.filteredPhotos)
+    }
+    
+    func test_checkAccessPhotosStatus() {
+        let guess: PHAuthorizationStatus = .denied
+        XCTAssertEqual(guess, sut.photosAccessStatus)
     }
     
 }

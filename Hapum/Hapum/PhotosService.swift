@@ -10,6 +10,7 @@ import Photos
 
 protocol PhotoFetchable {
     func fetchPhotos() -> [Photo]
+    func requestAccessStatus() -> PHAuthorizationStatus?
 }
 
 class PhotosService: PhotoFetchable {
@@ -53,10 +54,12 @@ class PhotosService: PhotoFetchable {
         return photos
     }
     
-    func checkPhotosAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
+    func requestAccessStatus() -> PHAuthorizationStatus? {
+        var accessStatus: PHAuthorizationStatus?
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-            completion(status)
+            accessStatus = status
         }
+        return accessStatus
     }
     
     private func createAlbum() {

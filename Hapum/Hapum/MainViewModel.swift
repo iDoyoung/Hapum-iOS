@@ -12,7 +12,7 @@ class MainViewModel {
     private let service: PhotoFetchable
     var allPhotos: [Photo]?
     lazy var filteredPhotos = allPhotos
-    
+    lazy var photosAccessStatus = service.requestAccessStatus()
     lazy var todayPhotos = allPhotos?.filter {
         $0.creationDate == Date()
     }
@@ -43,7 +43,6 @@ class MainViewModel {
         }
     }
     //TODO: Add observed property
-    ///tag - status
     ///tag - photos from hapum album
     
 }
