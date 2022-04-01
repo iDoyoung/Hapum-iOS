@@ -13,7 +13,7 @@ import Photos
 class MockPhotosServic: PhotoFetchable {
     func fetchPhotos() -> [Photo] {
         return [Photo(identifier: "1", image: nil, creationDate: nil, location: nil),
-                Photo(identifier: "2", image: nil, creationDate: nil, location: nil),
+                Photo(identifier: "2", image: nil, creationDate: Date(), location: nil),
                 Photo(identifier: "3", image: nil, creationDate: nil, location: nil)]
     }
 }
@@ -42,4 +42,32 @@ class MainVMTests: XCTestCase {
         //then
         XCTAssertEqual(guess, sut.allPhotos)
     }
+    
+    func test_existWhenFilterByToday() {
+        let guess = [
+            Photo(identifier: "2", image: nil, creationDate: Date(), location: nil)
+        ].map {
+                $0.identifier
+            }
+        sut.filterPhotos(by: .today)
+        let result = sut.filteredPhotos!.map {
+            $0.identifier
+        }
+        XCTAssertEqual(guess, result)
+    }
+    
+    func test_WhenFilterByToday() {
+        let guess = [Photo]()
+        sut.filterPhotos(by: .today)
+        XCTAssertEqual(guess, sut.filteredPhotos)
+    }
+    
+    func test_whenFilterByAll() {
+        let guess = [Photo(identifier: "1", image: nil, creationDate: nil, location: nil),
+            Photo(identifier: "2", image: nil, creationDate: nil, location: nil),
+            Photo(identifier: "3", image: nil, creationDate: nil, location: nil)]
+        sut.filterPhotos(by: .all)
+        XCTAssertEqual(guess, sut.filteredPhotos)
+    }
+    
 }
