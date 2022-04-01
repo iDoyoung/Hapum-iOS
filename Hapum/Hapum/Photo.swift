@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import CoreLocation
 
-struct Photo {
+struct Photo: Equatable {
     
     let identifier: String
-    let image: UIImage
+    let image: UIImage?
+    let creationDate: Date?
+    let location: CLLocation?
     
 }
