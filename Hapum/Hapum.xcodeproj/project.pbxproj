@@ -86,6 +86,87 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F42EB0827F72E8500FF8FE1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7F42EB0427F5320600FF8FE1 /* MainViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7F42EB0A27F72EBF00FF8FE1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7FA3190E27F087F9003CAF9E /* LaunchScreen.storyboard */,
+				7FA3190927F087F9003CAF9E /* Main.storyboard */,
+				7FA3190727F087F9003CAF9E /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7F42EB0B27F7F16800FF8FE1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7FA3190C27F087F9003CAF9E /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7F42EB0C27F7F19E00FF8FE1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7FA3191127F087F9003CAF9E /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7F42EB0D27F7F1BE00FF8FE1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				7F42EB0E27F7F1CD00FF8FE1 /* Entry */,
+				7F42EB1227F8233500FF8FE1 /* Model */,
+				7F42EB0A27F72EBF00FF8FE1 /* View */,
+				7F42EB0827F72E8500FF8FE1 /* ViewModel */,
+				7F42EB1027F8231300FF8FE1 /* Util */,
+				7FA3193327F142DC003CAF9E /* PhotosService.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		7F42EB0E27F7F1CD00FF8FE1 /* Entry */ = {
+			isa = PBXGroup;
+			children = (
+				7FA3190327F087F9003CAF9E /* AppDelegate.swift */,
+				7FA3190527F087F9003CAF9E /* SceneDelegate.swift */,
+			);
+			path = Entry;
+			sourceTree = "<group>";
+		};
+		7F42EB1027F8231300FF8FE1 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				7FA3193727F3F55F003CAF9E /* NameSpace.swift */,
+				7F42EB1127F8232300FF8FE1 /* Extension */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		7F42EB1127F8232300FF8FE1 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		7F42EB1227F8233500FF8FE1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7F42EB0227F52E9100FF8FE1 /* Photo.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7FA318F727F087F9003CAF9E = {
 			isa = PBXGroup;
 			children = (
@@ -109,18 +190,9 @@
 		7FA3190227F087F9003CAF9E /* Hapum */ = {
 			isa = PBXGroup;
 			children = (
-				7FA3190327F087F9003CAF9E /* AppDelegate.swift */,
-				7FA3190527F087F9003CAF9E /* SceneDelegate.swift */,
-				7FA3190727F087F9003CAF9E /* ViewController.swift */,
-				7FA3190927F087F9003CAF9E /* Main.storyboard */,
-				7FA3190C27F087F9003CAF9E /* Assets.xcassets */,
-				7FA3190E27F087F9003CAF9E /* LaunchScreen.storyboard */,
-				7FA3191127F087F9003CAF9E /* Info.plist */,
-				7FA3193327F142DC003CAF9E /* PhotosService.swift */,
-				7FA3193727F3F55F003CAF9E /* NameSpace.swift */,
-				7F42EB0427F5320600FF8FE1 /* MainViewModel.swift */,
-				7F42EB0227F52E9100FF8FE1 /* Photo.swift */,
-				7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */,
+				7F42EB0D27F7F1BE00FF8FE1 /* Sources */,
+				7F42EB0C27F7F19E00FF8FE1 /* Supporting Files */,
+				7F42EB0B27F7F16800FF8FE1 /* Resources */,
 			);
 			path = Hapum;
 			sourceTree = "<group>";
