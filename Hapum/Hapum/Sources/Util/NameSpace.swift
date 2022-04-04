@@ -10,4 +10,5 @@ import Foundation
 enum NameSpace {
     static let albumName = "Hapum"
     static let photosViewCellNibName = "PhotosViewCell"
+    static let frameViewCellNibName = "FrameViewCell"
 }

@@ -16,6 +16,9 @@
 		7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */; };
 		7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190927F087F9003CAF9E /* Main.storyboard */; };
 		7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190C27F087F9003CAF9E /* Assets.xcassets */; };
+		7F739AB927FA914600253C55 /* FrameSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F739AB827FA914600253C55 /* FrameSelectionViewController.swift */; };
+		7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */; };
+		7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */; };
 		7FA3190427F087F9003CAF9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3190327F087F9003CAF9E /* AppDelegate.swift */; };
 		7FA3190627F087F9003CAF9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3190527F087F9003CAF9E /* SceneDelegate.swift */; };
 		7FA3190827F087F9003CAF9E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3190727F087F9003CAF9E /* MainViewController.swift */; };
@@ -49,6 +52,9 @@
 		7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewCell.swift; sourceTree = "<group>"; };
 		7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosViewCell.xib; sourceTree = "<group>"; };
+		7F739AB827FA914600253C55 /* FrameSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSelectionViewController.swift; sourceTree = "<group>"; };
+		7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameViewCell.swift; sourceTree = "<group>"; };
+		7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrameViewCell.xib; sourceTree = "<group>"; };
 		7FA3190027F087F9003CAF9E /* Hapum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hapum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FA3190327F087F9003CAF9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7FA3190527F087F9003CAF9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +183,7 @@
 			children = (
 				7FA3190927F087F9003CAF9E /* Main.storyboard */,
 				7FA3190727F087F9003CAF9E /* MainViewController.swift */,
+				7F739AB827FA914600253C55 /* FrameSelectionViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -186,6 +193,8 @@
 			children = (
 				7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */,
 				7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */,
+				7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */,
+				7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -341,6 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */,
 				7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */,
 				7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */,
 				7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */,
@@ -372,9 +382,11 @@
 			files = (
 				7F42EB0527F5320600FF8FE1 /* MainViewModel.swift in Sources */,
 				7F42EB0327F52E9100FF8FE1 /* Photo.swift in Sources */,
+				7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */,
 				7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */,
 				7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */,
 				7FA3190827F087F9003CAF9E /* MainViewController.swift in Sources */,
+				7F739AB927FA914600253C55 /* FrameSelectionViewController.swift in Sources */,
 				7FA3190427F087F9003CAF9E /* AppDelegate.swift in Sources */,
 				7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */,
 				7FA3193827F3F55F003CAF9E /* NameSpace.swift in Sources */,
