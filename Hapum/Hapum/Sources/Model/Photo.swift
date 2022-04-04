@@ -8,7 +8,7 @@
 import UIKit
 import CoreLocation
 
-struct Photo: Equatable {
+struct Photo: Hashable {
     
     let identifier: String
     let image: UIImage?

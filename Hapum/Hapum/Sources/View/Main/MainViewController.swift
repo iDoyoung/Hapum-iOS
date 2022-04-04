@@ -10,15 +10,62 @@ import UIKit
 class MainViewController: UIViewController {
 
     @IBOutlet var todayPhotosView: UIView!
-    @IBOutlet var photosInAlbumCollectionView: UICollectionView!
     @IBOutlet var statusMessageLabel: UILabel!
+    @IBOutlet var photosCollectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Photo>! = nil
+    
     @IBAction func presentFrameSelection(_ sender: UIButton) {
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        photosCollectionView.register(UINib(nibName: NameSpace.photosViewCellNibName, bundle: nil), forCellWithReuseIdentifier: PhotosViewCell.reuseIdentifier)
+        photosCollectionView.collectionViewLayout = createLayout()
+        photosCollectionView.alwaysBounceVertical = false
+        configureDataSource()
     }
 
 }
 
+extension MainViewController {
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+            
+            let item = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalHeight(3/5),
+                                                   heightDimension: .fractionalHeight(4/5)))
+            let group = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                   heightDimension: .fractionalHeight(1)),
+                subitems: [item])
+            group.interItemSpacing = .fixed(4)
+            
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0,
+                                                            leading: 0,
+                                                            bottom: 0,
+                                                            trailing: 0)
+            return section
+        }
+        return layout
+    }
+    
+    private func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Int, Photo>(collectionView: photosCollectionView) { collectionView, indexPath, itemIdentifier in
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosViewCell.reuseIdentifier, for: indexPath) as? PhotosViewCell else {
+                return UICollectionViewCell()
+            }
+            cell.backgroundColor = .blue
+            return cell
+        }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Photo>()
+        snapshot.appendSections([0])
+        snapshot.appendItems([Photo(identifier: "1", image: nil, creationDate: nil, location: nil),
+                              Photo(identifier: "2", image: nil, creationDate: Date(), location: nil),
+                              Photo(identifier: "3", image: nil, creationDate: nil, location: nil)])
+        dataSource.apply(snapshot, animatingDifferences: false)
+    }
+    
+}

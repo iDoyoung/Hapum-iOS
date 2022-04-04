@@ -65,7 +65,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="photosInAlbumCollectionView" destination="dXr-bL-VlX" id="vCO-J6-t3N"/>
+                        <outlet property="photosCollectionView" destination="dXr-bL-VlX" id="vCO-J6-t3N"/>
                         <outlet property="statusMessageLabel" destination="K3u-A0-wBJ" id="fIq-jx-GTM"/>
                         <outlet property="todayPhotosView" destination="2nm-V5-xsv" id="pMB-KQ-FWt"/>
                     </connections>
