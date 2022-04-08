@@ -26,6 +26,7 @@ final class MainInteractor: MainBusinessLogic, MainDataStore {
     func fetchPhotos() {
         photosWorker?.fetchAllPhotos(completion: { [weak self] photos in
             self?.photos = photos
+            self?.presenter?.presentFetchedAllPhotos(resource: photos)
         })
     }
     
