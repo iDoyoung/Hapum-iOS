@@ -7,14 +7,30 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+protocol MainDisplayLogic: AnyObject {
+    func displayFetchedPhotos(viewModel: [Photos.Photo]?)
+    func displayFetchedAlbum(viewModel: [Photos.Photo]?)
+}
 
+final class MainViewController: UIViewController, MainDisplayLogic {
+    
+    var interactor: MainBusinessLogic?
+    var router: MainRoutingLogic?
+    
     @IBOutlet var todayPhotosView: UIView!
     @IBOutlet var statusMessageLabel: UILabel!
     @IBOutlet var photosCollectionView: UICollectionView!
-    private var dataSource: UICollectionViewDiffableDataSource<Int, Photo>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Photo>! = nil
     
     @IBAction func presentFrameSelection(_ sender: UIButton) {
+    }
+    
+    // MARK: Setup
+    private func setup() {
+    }
+    
+    // MARK: Routing
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
     
     override func viewDidLoad() {
@@ -24,7 +40,24 @@ class MainViewController: UIViewController {
         photosCollectionView.alwaysBounceVertical = false
         configureDataSource()
     }
+    
+    var displayedPhotos: [Photos.Photo] = []
+    var displayedAlbumsPhotos: [Photos.Photo] = []
 
+    func displayFetchedAlbum(viewModel: [Photos.Photo]?) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        displayedAlbumsPhotos = viewModel
+    }
+    
+    func displayFetchedPhotos(viewModel: [Photos.Photo]?) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        displayedPhotos = viewModel
+    }
+    
 }
 
 extension MainViewController {
@@ -52,7 +85,7 @@ extension MainViewController {
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, Photo>(collectionView: photosCollectionView) { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Int, Photos.Photo>(collectionView: photosCollectionView) { collectionView, indexPath, itemIdentifier in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosViewCell.reuseIdentifier, for: indexPath) as? PhotosViewCell else {
                 return UICollectionViewCell()
             }
@@ -60,11 +93,11 @@ extension MainViewController {
             return cell
         }
         
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Photo>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Photos.Photo>()
         snapshot.appendSections([0])
-        snapshot.appendItems([Photo(identifier: "1", image: nil, creationDate: nil, location: nil),
-                              Photo(identifier: "2", image: nil, creationDate: Date(), location: nil),
-                              Photo(identifier: "3", image: nil, creationDate: nil, location: nil)])
+        snapshot.appendItems([Photos.Photo(identifier: "1", image: nil, creationDate: nil, location: nil),
+                              Photos.Photo(identifier: "2", image: nil, creationDate: Date(), location: nil),
+                              Photos.Photo(identifier: "3", image: nil, creationDate: nil, location: nil)])
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     

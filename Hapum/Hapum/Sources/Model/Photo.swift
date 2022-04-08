@@ -8,11 +8,19 @@
 import UIKit
 import CoreLocation
 
-struct Photo: Hashable {
+enum Photos {
     
-    let identifier: String
-    let image: UIImage?
-    let creationDate: Date?
-    let location: CLLocation?
+    struct Photo: Hashable {
+        let identifier: String
+        let image: UIImage?
+        let creationDate: Date?
+        let location: CLLocation?
+    }
+    
+    enum Filtering {
+        case all, today, location
+    }
+    
+    enum Status {  case notDetermined, restricted, denied, authorized, limited }
     
 }
