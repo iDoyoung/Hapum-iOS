@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FrameViewCell" id="Kzl-QZ-1wu" customClass="FrameViewCell" customModule="Hapum" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FrameViewCellReuseIdentifier" id="Kzl-QZ-1wu" customClass="FrameViewCell" customModule="Hapum" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="axb-a9-q5T">
@@ -32,7 +32,7 @@
             <connections>
                 <outlet property="frameView" destination="bIK-WY-yND" id="Bp5-E7-men"/>
             </connections>
-            <point key="canvasLocation" x="-277" y="154"/>
+            <point key="canvasLocation" x="-278.26086956521743" y="153.34821428571428"/>
         </collectionViewCell>
     </objects>
     <resources>

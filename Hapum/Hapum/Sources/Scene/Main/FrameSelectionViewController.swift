@@ -14,7 +14,7 @@ class FrameSelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        framesCollectionView.register(UINib(nibName: NameSpace.photosViewCellNibName, bundle: nil), forCellWithReuseIdentifier: PhotosViewCell.reuseIdentifier)
+        framesCollectionView.register(UINib(nibName: NameSpace.frameViewCellNibName, bundle: nil), forCellWithReuseIdentifier: FrameViewCell.reuseIdentifier)
         framesCollectionView.collectionViewLayout = createLayout()
         configureDataSource()
     }

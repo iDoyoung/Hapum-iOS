@@ -24,7 +24,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <action selector="showSelectFrameView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ben-zv-V53"/>
+                                    <action selector="presentFrameSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fgk-PT-Dll"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
@@ -69,7 +69,7 @@
                         <outlet property="photosCollectionView" destination="dXr-bL-VlX" id="vCO-J6-t3N"/>
                         <outlet property="statusMessageLabel" destination="K3u-A0-wBJ" id="fIq-jx-GTM"/>
                         <outlet property="todayPhotosView" destination="2nm-V5-xsv" id="pMB-KQ-FWt"/>
-                        <segue destination="pgD-mI-eAq" kind="show" id="1dU-Ow-QVp"/>
+                        <segue destination="pgD-mI-eAq" kind="show" identifier="FrameSelection" id="91T-kh-Cld"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

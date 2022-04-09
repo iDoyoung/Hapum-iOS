@@ -15,7 +15,28 @@ protocol MainDisplayLogic: AnyObject {
 final class MainViewController: UIViewController, MainDisplayLogic {
     
     var interactor: MainBusinessLogic?
-    var router: MainRoutingLogic?
+    var router: (NSObjectProtocol&MainRoutingLogic)?
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    private func setup() {
+        let interactor = MainInteractor()
+        let presenter = MainPresenter()
+        let router = MainRouter()
+        self.interactor = interactor
+        self.router = router
+        interactor.presenter = presenter
+        presenter.viewController = self
+        router.viewController = self
+    }
     
     @IBOutlet var todayPhotosView: UIView!
     @IBOutlet var statusMessageLabel: UILabel!
@@ -23,14 +44,7 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Photo>! = nil
     
     @IBAction func presentFrameSelection(_ sender: UIButton) {
-    }
-    
-    // MARK: Setup
-    private func setup() {
-    }
-    
-    // MARK: Routing
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        performSegue(withIdentifier: NameSpace.MainSegue.frameSelectionIdentifier, sender: self)
     }
     
     override func viewDidLoad() {
@@ -41,6 +55,17 @@ final class MainViewController: UIViewController, MainDisplayLogic {
         configureDataSource()
     }
     
+    //MARK: - Routing
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let scene = segue.identifier else { return }
+        print("segue id: \(scene)")
+        let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+        if let router = router, router.responds(to: selector) {
+            router.perform(selector, with: segue)
+        }
+    }
+    
+    //MARK: - Fetch Photos
     var displayedPhotos: [Photos.Photo] = []
     var displayedAlbumsPhotos: [Photos.Photo] = []
 

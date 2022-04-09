@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol MainRoutingLogic {
+@objc protocol MainRoutingLogic {
     func routeToFrameSelection(segue: UIStoryboardSegue?)
 }
 
 protocol MainDataPassing { }
 
-final class MainRouter: MainRoutingLogic, MainDataPassing {
+final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     
     // MARK: Navigation
     func navigateToFrameSelection(source: MainViewController, destination: FrameSelectionViewController)
@@ -24,6 +24,7 @@ final class MainRouter: MainRoutingLogic, MainDataPassing {
     weak var viewController: MainViewController?
     
     func routeToFrameSelection(segue: UIStoryboardSegue?) {
+        print("route to frame selection")
     }
     
 //    weak var source: UIViewController?
