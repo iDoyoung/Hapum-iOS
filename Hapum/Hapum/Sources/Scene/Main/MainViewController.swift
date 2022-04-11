@@ -38,7 +38,6 @@ final class MainViewController: UIViewController, MainDisplayLogic {
         router.viewController = self
     }
     
-    @IBOutlet var todayPhotosView: UIView!
     @IBOutlet var statusMessageLabel: UILabel!
     @IBOutlet var photosCollectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Photo>! = nil

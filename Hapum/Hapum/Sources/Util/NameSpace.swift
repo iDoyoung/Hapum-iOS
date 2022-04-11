@@ -13,7 +13,7 @@ enum NameSpace {
     //MARK: - Nib Name
     static let photosViewCellNibName = "PhotosViewCell"
     static let frameViewCellNibName = "FrameViewCell"
-    
+    static let photosWallViewNibName = "PhotosWallView"
     //MARK: - Segue identifier
     enum MainSegue {
         static let frameSelectionIdentifier = "FrameSelection"

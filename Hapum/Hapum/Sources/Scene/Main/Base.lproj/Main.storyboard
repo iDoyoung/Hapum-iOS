@@ -17,19 +17,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-9E-xTo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-9E-xTo">
                                 <rect key="frame" x="0.0" y="779" width="390" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="iqt-Kg-h3z"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
                                     <action selector="presentFrameSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fgk-PT-Dll"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
-                                <rect key="frame" x="0.0" y="637" width="390" height="134"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
+                                <rect key="frame" x="0.0" y="521.66666666666663" width="390" height="257.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ps-c9-HNh">
                                     <size key="itemSize" width="128" height="128"/>
@@ -37,44 +38,50 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="bKX-qR-9w1">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="IP4-ts-ADM">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Access status message" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3u-A0-wBJ">
-                                <rect key="frame" x="22" y="506" width="348" height="85"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access status message" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3u-A0-wBJ">
+                                <rect key="frame" x="20" y="506.00000000000006" width="350" height="15.666666666666686"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-V5-xsv">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-V5-xsv" customClass="PhotosWallView" customModule="Hapum" customModuleProvider="target">
                                 <rect key="frame" x="20" y="74" width="350" height="424"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2nm-V5-xsv" secondAttribute="height" multiplier="175:212" id="J78-QF-Nmu"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dXr-bL-VlX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2XZ-T5-rsp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2nm-V5-xsv" secondAttribute="trailing" constant="20" id="4BC-oB-Co4"/>
+                            <constraint firstItem="dXr-bL-VlX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Jy-UK-7fc"/>
+                            <constraint firstItem="2nm-V5-xsv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="74" id="9NL-Ul-ymQ"/>
+                            <constraint firstAttribute="trailing" secondItem="MD9-9E-xTo" secondAttribute="trailing" id="B0n-vi-cQq"/>
+                            <constraint firstItem="dXr-bL-VlX" firstAttribute="top" secondItem="K3u-A0-wBJ" secondAttribute="bottom" id="U5d-jG-5t2"/>
+                            <constraint firstItem="2nm-V5-xsv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="YDT-Ad-o48"/>
+                            <constraint firstItem="K3u-A0-wBJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="erZ-s4-Gnu"/>
+                            <constraint firstItem="MD9-9E-xTo" firstAttribute="top" secondItem="dXr-bL-VlX" secondAttribute="bottom" id="hEy-jK-7mE"/>
+                            <constraint firstItem="K3u-A0-wBJ" firstAttribute="top" secondItem="2nm-V5-xsv" secondAttribute="bottom" constant="8" symbolic="YES" id="jqG-yq-ic5"/>
+                            <constraint firstItem="MD9-9E-xTo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mlN-JT-UkU"/>
+                            <constraint firstItem="MD9-9E-xTo" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qqI-6j-U3i"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="K3u-A0-wBJ" secondAttribute="trailing" constant="20" id="sXo-Gg-Mx0"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="grY-TH-wHi"/>
                     <connections>
                         <outlet property="photosCollectionView" destination="dXr-bL-VlX" id="vCO-J6-t3N"/>
                         <outlet property="statusMessageLabel" destination="K3u-A0-wBJ" id="fIq-jx-GTM"/>
-                        <outlet property="todayPhotosView" destination="2nm-V5-xsv" id="pMB-KQ-FWt"/>
                         <segue destination="pgD-mI-eAq" kind="show" identifier="FrameSelection" id="91T-kh-Cld"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1223" y="114"/>
+            <point key="canvasLocation" x="1221.5384615384614" y="113.74407582938387"/>
         </scene>
         <!--Frame Selection View Controller-->
         <scene sceneID="YtR-rC-XOK">
