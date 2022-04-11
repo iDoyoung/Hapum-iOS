@@ -84,10 +84,10 @@
             </objects>
             <point key="canvasLocation" x="1221.5384615384614" y="113.74407582938387"/>
         </scene>
-        <!--Frame Selection View Controller-->
+        <!--Style Selection View Controller-->
         <scene sceneID="YtR-rC-XOK">
             <objects>
-                <viewController id="pgD-mI-eAq" customClass="FrameSelectionViewController" customModule="Hapum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="pgD-mI-eAq" customClass="StyleSelectionViewController" customModule="Hapum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4GS-tn-t8h">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

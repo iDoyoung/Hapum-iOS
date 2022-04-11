@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FrameSelectionViewController: UIViewController {
+final class StyleSelectionViewController: UIViewController {
 
     @IBOutlet weak var framesCollectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, UIView>! = nil
@@ -20,7 +20,7 @@ final class FrameSelectionViewController: UIViewController {
     }
 }
 
-extension FrameSelectionViewController {
+extension StyleSelectionViewController {
     
     enum SectionLayoutKind: Int, CaseIterable {
         case square, fourToThree, sixteenToNine

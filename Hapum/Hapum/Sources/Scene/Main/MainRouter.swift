@@ -16,7 +16,7 @@ protocol MainDataPassing { }
 final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     
     // MARK: Navigation
-    func navigateToFrameSelection(source: MainViewController, destination: FrameSelectionViewController)
+    func navigateToFrameSelection(source: MainViewController, destination: StyleSelectionViewController)
     {
       source.show(destination, sender: nil)
     }

@@ -21,7 +21,7 @@
 		7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */; };
 		7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190927F087F9003CAF9E /* Main.storyboard */; };
 		7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190C27F087F9003CAF9E /* Assets.xcassets */; };
-		7F739AB927FA914600253C55 /* FrameSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F739AB827FA914600253C55 /* FrameSelectionViewController.swift */; };
+		7F739AB927FA914600253C55 /* StyleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F739AB827FA914600253C55 /* StyleSelectionViewController.swift */; };
 		7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */; };
 		7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */; };
 		7F739AC327FBDE4B00253C55 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F739AC227FBDE4B00253C55 /* MainInteractor.swift */; };
@@ -67,7 +67,7 @@
 		7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewCell.swift; sourceTree = "<group>"; };
 		7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosViewCell.xib; sourceTree = "<group>"; };
-		7F739AB827FA914600253C55 /* FrameSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameSelectionViewController.swift; sourceTree = "<group>"; };
+		7F739AB827FA914600253C55 /* StyleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleSelectionViewController.swift; sourceTree = "<group>"; };
 		7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameViewCell.swift; sourceTree = "<group>"; };
 		7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrameViewCell.xib; sourceTree = "<group>"; };
 		7F739AC227FBDE4B00253C55 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		7F375A44280421B000C6EE39 /* FrameSelection */ = {
 			isa = PBXGroup;
 			children = (
-				7F739AB827FA914600253C55 /* FrameSelectionViewController.swift */,
+				7F739AB827FA914600253C55 /* StyleSelectionViewController.swift */,
 			);
 			path = FrameSelection;
 			sourceTree = "<group>";
@@ -449,7 +449,7 @@
 				7F3759F62802E91100C6EE39 /* PhotosWallView.swift in Sources */,
 				7F739ACC27FC5E4D00253C55 /* PhotosWorker.swift in Sources */,
 				7FA3190827F087F9003CAF9E /* MainViewController.swift in Sources */,
-				7F739AB927FA914600253C55 /* FrameSelectionViewController.swift in Sources */,
+				7F739AB927FA914600253C55 /* StyleSelectionViewController.swift in Sources */,
 				7FA3190427F087F9003CAF9E /* AppDelegate.swift in Sources */,
 				7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */,
 				7FA3193827F3F55F003CAF9E /* NameSpace.swift in Sources */,
