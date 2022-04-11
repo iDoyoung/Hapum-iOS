@@ -54,4 +54,13 @@ class MainViewControllerTests: XCTestCase {
         XCTAssert(mockBusinessLogic.fetchPhotosCalled, "Should fetch photos right after the view did load")
     }
     
+    func test_sholdDisplayFetchedPhotos() {
+        ///given
+        
+        ///when
+        
+        ///then
+        
+    }
+    
 }

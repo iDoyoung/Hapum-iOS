@@ -40,6 +40,8 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     
     @IBOutlet var statusMessageLabel: UILabel!
     @IBOutlet var photosCollectionView: UICollectionView!
+    @IBOutlet weak var photosWallView: PhotosWallView!
+    
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Photo>! = nil
     
     @IBAction func presentFrameSelection(_ sender: UIButton) {
@@ -73,6 +75,16 @@ final class MainViewController: UIViewController, MainDisplayLogic {
         interactor?.fetchPhotos()
     }
     
+    func displayFetchedPhotos(viewModel: [Photos.Photo]?) {
+        guard let viewModel = viewModel else {
+            return
+        }
+        displayedPhotos = viewModel
+        DispatchQueue.main.async {
+            self.loadWallPhotosImages()
+        }
+    }
+    
     func displayFetchedAlbum(viewModel: [Photos.Photo]?) {
         guard let viewModel = viewModel else {
             return
@@ -80,11 +92,11 @@ final class MainViewController: UIViewController, MainDisplayLogic {
         displayedAlbumsPhotos = viewModel
     }
     
-    func displayFetchedPhotos(viewModel: [Photos.Photo]?) {
-        guard let viewModel = viewModel else {
-            return
+    func loadWallPhotosImages() {
+        for (index, photo) in displayedPhotos.enumerated() {
+            photosWallView.photosFrameView[index].photoImageView.image = photo.image
         }
-        displayedPhotos = viewModel
+        photosWallView.setFrameView()
     }
     
 }

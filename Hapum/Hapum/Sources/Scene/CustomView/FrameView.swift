@@ -45,9 +45,10 @@ class FrameView: UIView {
     
     private func setLayoutConstraint() {
         NSLayoutConstraint.activate([
-            photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            photoImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor)
+            photoImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
+            photoImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor),
+            photoImageView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     
