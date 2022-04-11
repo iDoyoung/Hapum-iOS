@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FrameSelectionViewController: UIViewController {
+final class FrameSelectionViewController: UIViewController {
 
     @IBOutlet weak var framesCollectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Int, UIView>! = nil

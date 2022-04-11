@@ -135,10 +135,19 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		7F375A44280421B000C6EE39 /* FrameSelection */ = {
+			isa = PBXGroup;
+			children = (
+				7F739AB827FA914600253C55 /* FrameSelectionViewController.swift */,
+			);
+			path = FrameSelection;
+			sourceTree = "<group>";
+		};
 		7F42EB0A27F72EBF00FF8FE1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				7F42EB1327F82CD500FF8FE1 /* Main */,
+				7F375A44280421B000C6EE39 /* FrameSelection */,
 				7F375A402803B99400C6EE39 /* CustomView */,
 				7F70C9EB27F9A1E5001DEB43 /* Cell */,
 				7FA3190E27F087F9003CAF9E /* LaunchScreen.storyboard */,
@@ -217,7 +226,6 @@
 				7F739AC227FBDE4B00253C55 /* MainInteractor.swift */,
 				7F739AC627FBED6E00253C55 /* MainPresenter.swift */,
 				7F739AC827FBED9200253C55 /* MainRouter.swift */,
-				7F739AB827FA914600253C55 /* FrameSelectionViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
