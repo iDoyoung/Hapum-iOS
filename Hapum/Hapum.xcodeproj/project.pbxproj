@@ -15,6 +15,8 @@
 		7F3759F62802E91100C6EE39 /* PhotosWallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759F52802E91100C6EE39 /* PhotosWallView.swift */; };
 		7F3759FF28030C4C00C6EE39 /* PhotosWallView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3759F72802E92E00C6EE39 /* PhotosWallView.xib */; };
 		7F375A422803C3C200C6EE39 /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A412803C3C200C6EE39 /* MainViewControllerTests.swift */; };
+		7F375A562804406800C6EE39 /* CreatePhotosWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */; };
+		7F375A582804407200C6EE39 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F375A572804407200C6EE39 /* Create.storyboard */; };
 		7F42EB0327F52E9100FF8FE1 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0227F52E9100FF8FE1 /* Photo.swift */; };
 		7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */; };
 		7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */; };
@@ -63,6 +65,8 @@
 		7F3759F52802E91100C6EE39 /* PhotosWallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosWallView.swift; sourceTree = "<group>"; };
 		7F3759F72802E92E00C6EE39 /* PhotosWallView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosWallView.xib; sourceTree = "<group>"; };
 		7F375A412803C3C200C6EE39 /* MainViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
+		7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallViewController.swift; sourceTree = "<group>"; };
+		7F375A572804407200C6EE39 /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		7F42EB0227F52E9100FF8FE1 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewCell.swift; sourceTree = "<group>"; };
@@ -135,10 +139,20 @@
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		7F375A5228043DA800C6EE39 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */,
+				7F375A572804407200C6EE39 /* Create.storyboard */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
 		7F42EB0A27F72EBF00FF8FE1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				7F42EB1327F82CD500FF8FE1 /* Main */,
+				7F375A5228043DA800C6EE39 /* Create */,
 				7F375A402803B99400C6EE39 /* CustomView */,
 				7F70C9EB27F9A1E5001DEB43 /* Cell */,
 				7FA3190E27F087F9003CAF9E /* LaunchScreen.storyboard */,
@@ -406,6 +420,7 @@
 				7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */,
 				7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */,
 				7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */,
+				7F375A582804407200C6EE39 /* Create.storyboard in Resources */,
 				7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +452,7 @@
 				7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */,
 				7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */,
 				7F739AC927FBED9200253C55 /* MainRouter.swift in Sources */,
+				7F375A562804406800C6EE39 /* CreatePhotosWallViewController.swift in Sources */,
 				7F739AC727FBED6E00253C55 /* MainPresenter.swift in Sources */,
 				7F3759F62802E91100C6EE39 /* PhotosWallView.swift in Sources */,
 				7F739ACC27FC5E4D00253C55 /* PhotosWorker.swift in Sources */,
