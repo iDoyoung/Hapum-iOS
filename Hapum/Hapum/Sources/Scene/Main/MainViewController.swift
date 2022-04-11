@@ -19,15 +19,15 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
+        setUpViewController()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        setUpViewController()
     }
     
-    private func setup() {
+    private func setUpViewController() {
         let interactor = MainInteractor()
         let presenter = MainPresenter()
         let router = MainRouter()
@@ -51,6 +51,7 @@ final class MainViewController: UIViewController, MainDisplayLogic {
         photosCollectionView.register(UINib(nibName: NameSpace.photosViewCellNibName, bundle: nil), forCellWithReuseIdentifier: PhotosViewCell.reuseIdentifier)
         photosCollectionView.collectionViewLayout = createLayout()
         photosCollectionView.alwaysBounceVertical = false
+        fetchPhotos()
         configureDataSource()
     }
     
@@ -68,6 +69,10 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     var displayedPhotos: [Photos.Photo] = []
     var displayedAlbumsPhotos: [Photos.Photo] = []
 
+    func fetchPhotos() {
+        interactor?.fetchPhotos()
+    }
+    
     func displayFetchedAlbum(viewModel: [Photos.Photo]?) {
         guard let viewModel = viewModel else {
             return

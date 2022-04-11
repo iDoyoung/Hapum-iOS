@@ -19,19 +19,19 @@ protocol MainDataStore {
 final class MainInteractor: MainBusinessLogic, MainDataStore {
 
     var presenter: MainPresentationLogic?
-    var photosWorker: PhotosWorker?
+    var photosWorker = PhotosWorker(service: PhotosService())
     var photos: [Photos.Photo]?
     var albumsPhotos: [Photos.Photo]?
     
     func fetchPhotos() {
-        photosWorker?.fetchAllPhotos(completion: { [weak self] photos in
+        photosWorker.fetchAllPhotos(completion: { [weak self] photos in
             self?.photos = photos
             self?.presenter?.presentFetchedAllPhotos(resource: photos)
         })
     }
     
     func fetchAlbumsPhotos() {
-        photosWorker?.fetchAlbumsPhotos(completion: { [weak self] albumsPhotos in
+        photosWorker.fetchAlbumsPhotos(completion: { [weak self] albumsPhotos in
             self?.albumsPhotos = albumsPhotos
             self?.presenter?.presentFetchedAlbums(resource: self?.albumsPhotos)
         })
