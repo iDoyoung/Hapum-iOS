@@ -17,6 +17,9 @@
 		7F375A422803C3C200C6EE39 /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A412803C3C200C6EE39 /* MainViewControllerTests.swift */; };
 		7F375A562804406800C6EE39 /* CreatePhotosWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */; };
 		7F375A582804407200C6EE39 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F375A572804407200C6EE39 /* Create.storyboard */; };
+		7F375A5A280472CA00C6EE39 /* CreatePhotosWallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A59280472CA00C6EE39 /* CreatePhotosWallInteractor.swift */; };
+		7F375A5C2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A5B2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift */; };
+		7F375A5F2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A5E2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift */; };
 		7F42EB0327F52E9100FF8FE1 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0227F52E9100FF8FE1 /* Photo.swift */; };
 		7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */; };
 		7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */; };
@@ -67,6 +70,9 @@
 		7F375A412803C3C200C6EE39 /* MainViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
 		7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallViewController.swift; sourceTree = "<group>"; };
 		7F375A572804407200C6EE39 /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
+		7F375A59280472CA00C6EE39 /* CreatePhotosWallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallInteractor.swift; sourceTree = "<group>"; };
+		7F375A5B2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallPresenter.swift; sourceTree = "<group>"; };
+		7F375A5E2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallInteractor.swift; sourceTree = "<group>"; };
 		7F42EB0227F52E9100FF8FE1 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewCell.swift; sourceTree = "<group>"; };
@@ -133,26 +139,36 @@
 			isa = PBXGroup;
 			children = (
 				7F3759F32802C90900C6EE39 /* FrameView.swift */,
-				7F3759F52802E91100C6EE39 /* PhotosWallView.swift */,
 				7F3759F72802E92E00C6EE39 /* PhotosWallView.xib */,
+				7F3759F52802E91100C6EE39 /* PhotosWallView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
 		};
-		7F375A5228043DA800C6EE39 /* Create */ = {
+		7F375A5228043DA800C6EE39 /* CreatePhotosWall */ = {
 			isa = PBXGroup;
 			children = (
-				7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */,
 				7F375A572804407200C6EE39 /* Create.storyboard */,
+				7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */,
+				7F375A59280472CA00C6EE39 /* CreatePhotosWallInteractor.swift */,
+				7F375A5B2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift */,
 			);
-			path = Create;
+			path = CreatePhotosWall;
+			sourceTree = "<group>";
+		};
+		7F375A5D2804FAEB00C6EE39 /* CreatePhotosWallTests */ = {
+			isa = PBXGroup;
+			children = (
+				7F375A5E2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift */,
+			);
+			path = CreatePhotosWallTests;
 			sourceTree = "<group>";
 		};
 		7F42EB0A27F72EBF00FF8FE1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				7F42EB1327F82CD500FF8FE1 /* Main */,
-				7F375A5228043DA800C6EE39 /* Create */,
+				7F375A5228043DA800C6EE39 /* CreatePhotosWall */,
 				7F375A402803B99400C6EE39 /* CustomView */,
 				7F70C9EB27F9A1E5001DEB43 /* Cell */,
 				7FA3190E27F087F9003CAF9E /* LaunchScreen.storyboard */,
@@ -296,9 +312,10 @@
 		7FA3191927F087F9003CAF9E /* HapumTests */ = {
 			isa = PBXGroup;
 			children = (
-				7F3759E627FFE78300C6EE39 /* MainTests */,
 				7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */,
 				7F3759E027FF016D00C6EE39 /* Seeds.swift */,
+				7F3759E627FFE78300C6EE39 /* MainTests */,
+				7F375A5D2804FAEB00C6EE39 /* CreatePhotosWallTests */,
 			);
 			path = HapumTests;
 			sourceTree = "<group>";
@@ -446,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F375A5C2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift in Sources */,
 				7F3759F42802C90900C6EE39 /* FrameView.swift in Sources */,
 				7F42EB0327F52E9100FF8FE1 /* Photo.swift in Sources */,
 				7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */,
@@ -454,6 +472,7 @@
 				7F739AC927FBED9200253C55 /* MainRouter.swift in Sources */,
 				7F375A562804406800C6EE39 /* CreatePhotosWallViewController.swift in Sources */,
 				7F739AC727FBED6E00253C55 /* MainPresenter.swift in Sources */,
+				7F375A5A280472CA00C6EE39 /* CreatePhotosWallInteractor.swift in Sources */,
 				7F3759F62802E91100C6EE39 /* PhotosWallView.swift in Sources */,
 				7F739ACC27FC5E4D00253C55 /* PhotosWorker.swift in Sources */,
 				7FA3190827F087F9003CAF9E /* MainViewController.swift in Sources */,
@@ -472,6 +491,7 @@
 			files = (
 				7F1A410327FE8CC9002BC9E0 /* PhotosWorkerTests.swift in Sources */,
 				7F3759E527FFE77B00C6EE39 /* MainInteractorTests.swift in Sources */,
+				7F375A5F2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift in Sources */,
 				7F3759E127FF016D00C6EE39 /* Seeds.swift in Sources */,
 				7F3759E9280044BA00C6EE39 /* MainPresenterTests.swift in Sources */,
 				7F375A422803C3C200C6EE39 /* MainViewControllerTests.swift in Sources */,
