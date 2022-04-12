@@ -21,7 +21,7 @@ final class CreatePhotosWallInteractor: CreatePhotosWallBusinessLogic, CreatePho
     var photos: [Photos.Photo]!
     
     func getPhotos() {
-        presenter?.presentPhotos(response: photos)
+        presenter?.presentPhotos(resource: photos)
     }
     
 }

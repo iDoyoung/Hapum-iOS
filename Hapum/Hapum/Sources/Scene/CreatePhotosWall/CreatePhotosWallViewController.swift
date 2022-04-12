@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol CreatePhotosWallDisplayLogic: AnyObject {
+    func displayPhotos(viewModel: [Photos.Photo]?)
+}
+
 class CreatePhotosWallViewController: UIViewController {
     
     @IBOutlet weak var photosWallView: UIView!

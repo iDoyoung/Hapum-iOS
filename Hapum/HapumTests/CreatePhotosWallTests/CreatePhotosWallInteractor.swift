@@ -28,7 +28,7 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         
         var presentPhotosCalled = false
         
-        func presentPhotos(response: [Photos.Photo]) {
+        func presentPhotos(resource: [Photos.Photo]) {
             presentPhotosCalled = true
         }
     }

@@ -8,5 +8,15 @@
 import Foundation
 
 protocol CreatePhotosWallPresentationLogic {
-    func presentPhotos(response: [Photos.Photo])
+    func presentPhotos(resource: [Photos.Photo])
+}
+
+class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
+    
+    weak var viewController: CreatePhotosWallDisplayLogic?
+    
+    func presentPhotos(resource: [Photos.Photo]) {
+        viewController?.displayPhotos(viewModel: resource)
+    }
+    
 }
