@@ -44,8 +44,12 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Photo>! = nil
     
-    @IBAction func presentFrameSelection(_ sender: UIButton) {
-        performSegue(withIdentifier: NameSpace.MainSegue.frameSelectionIdentifier, sender: self)
+    @IBAction func presentCreatePhotosWall(_ sender: UIButton) {
+        let selector = NSSelectorFromString("routeToCreatePhotosWallWithSegue:")
+        print("Route")
+        if let router = router, router.responds(to: selector) {
+            router.perform(selector, with: nil)
+        }
     }
     
     override func viewDidLoad() {
@@ -60,7 +64,6 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     //MARK: - Routing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let scene = segue.identifier else { return }
-        print("segue id: \(scene)")
         let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
         if let router = router, router.responds(to: selector) {
             router.perform(selector, with: segue)

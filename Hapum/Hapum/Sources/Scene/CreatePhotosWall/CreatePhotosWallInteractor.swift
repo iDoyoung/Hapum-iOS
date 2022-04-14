@@ -12,7 +12,7 @@ protocol CreatePhotosWallBusinessLogic {
 }
 
 protocol CreatePhotosDataStore {
-    var photos: [Photos.Photo]! { get }
+    var photos: [Photos.Photo]! { get set }
 }
 
 final class CreatePhotosWallInteractor: CreatePhotosWallBusinessLogic, CreatePhotosDataStore {

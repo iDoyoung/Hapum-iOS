@@ -8,31 +8,40 @@
 import UIKit
 
 @objc protocol MainRoutingLogic {
-    func routeToFrameSelection(segue: UIStoryboardSegue?)
+    func routeToCreatePhotosWall(segue: UIStoryboardSegue?)
 }
 
-protocol MainDataPassing { }
+protocol MainDataPassing {
+    var dataStore: MainDataStore? { get }
+}
 
 final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     
-    // MARK: Navigation
-    func navigateToFrameSelection(source: MainViewController, destination: FrameSelectionViewController)
-    {
+    weak var viewController: MainViewController?
+    var dataStore: MainDataStore?
+    
+    func routeToCreatePhotosWall(segue: UIStoryboardSegue?) {
+        guard let viewController = viewController else {
+            return
+        }
+        if let segue = segue {
+            let destinationVC = segue.destination as! CreatePhotosWallViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToCreatePhotosWall(source: dataStore!, destination: &destinationDS)
+        } else {
+            let storyboard = UIStoryboard(name: NameSpace.Storyboard.createPhotosWall, bundle: Bundle.main)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: NameSpace.ViewControllerID.createPhotosWall) as! CreatePhotosWallViewController
+            navigateToCreatePhotosWall(source: viewController, destination: destinationVC)
+        }
+    }
+    
+    func navigateToCreatePhotosWall(source: MainViewController, destination: CreatePhotosWallViewController) {
       source.show(destination, sender: nil)
     }
     
-    weak var viewController: MainViewController?
-    
-    func routeToFrameSelection(segue: UIStoryboardSegue?) {
-        print("route to frame selection")
+    func passDataToCreatePhotosWall(source: MainDataStore, destination: inout CreatePhotosDataStore) {
+        destination.photos = source.photos
     }
     
-//    weak var source: UIViewController?
-//    
-//    private let sceneFactory: SceneFactory
-//    
-//    init(sceneFactory: SceneFactory) {
-//        self.sceneFactory = sceneFactory
-//    }
 }
 

@@ -12,9 +12,14 @@ protocol CreatePhotosWallRoutingLogic {
     func routeToMain(segue: UIStoryboardSegue?)
 }
 
-final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic {
+protocol CreatePhotosWallDataPassing {
+    var dataStore: CreatePhotosDataStore? { get }
+}
+
+final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, CreatePhotosWallDataPassing {
     
     weak var viewController: CreatePhotosWallViewController?
+    var dataStore: CreatePhotosDataStore?
     
     func routeToMain(segue: UIStoryboardSegue?) {
         guard let viewController = viewController else {

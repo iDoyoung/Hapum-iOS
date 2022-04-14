@@ -10,6 +10,16 @@ import Foundation
 enum NameSpace {
     static let albumName = "Hapum"
     
+    enum Storyboard {
+        static let main = "Main"
+        static let createPhotosWall = "Create"
+    }
+    
+    enum  ViewControllerID {
+        static let main = "MainViewController"
+        static let createPhotosWall = "CreatePhotosWallViewController"
+    }
+    
     //MARK: - Nib Name
     static let photosViewCellNibName = "PhotosViewCell"
     static let frameViewCellNibName = "FrameViewCell"

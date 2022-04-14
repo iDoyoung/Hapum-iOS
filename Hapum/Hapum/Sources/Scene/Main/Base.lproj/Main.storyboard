@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +25,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <action selector="presentFrameSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fgk-PT-Dll"/>
+                                    <action selector="presentCreatePhotosWall:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jjt-Wr-u5t"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
@@ -77,59 +76,11 @@
                         <outlet property="photosCollectionView" destination="dXr-bL-VlX" id="vCO-J6-t3N"/>
                         <outlet property="photosWallView" destination="2nm-V5-xsv" id="3lI-iQ-ULw"/>
                         <outlet property="statusMessageLabel" destination="K3u-A0-wBJ" id="fIq-jx-GTM"/>
-                        <segue destination="pgD-mI-eAq" kind="show" identifier="FrameSelection" id="91T-kh-Cld"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1221.5384615384614" y="113.74407582938387"/>
-        </scene>
-        <!--Frame Selection View Controller-->
-        <scene sceneID="YtR-rC-XOK">
-            <objects>
-                <viewController id="pgD-mI-eAq" customClass="FrameSelectionViewController" customModule="Hapum" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4GS-tn-t8h">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zTP-Mi-IiE">
-                                <rect key="frame" x="0.0" y="88" width="390" height="756"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jAj-ss-vGi">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="k9i-4a-JgP">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="BLO-pV-Nan">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="fX1-31-9D3"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="zTP-Mi-IiE" firstAttribute="top" secondItem="fX1-31-9D3" secondAttribute="top" id="PuA-z4-NPf"/>
-                            <constraint firstAttribute="bottom" secondItem="zTP-Mi-IiE" secondAttribute="bottom" id="cnI-E0-XJu"/>
-                            <constraint firstItem="zTP-Mi-IiE" firstAttribute="trailing" secondItem="fX1-31-9D3" secondAttribute="trailing" id="dpV-kX-HZh"/>
-                            <constraint firstItem="zTP-Mi-IiE" firstAttribute="leading" secondItem="fX1-31-9D3" secondAttribute="leading" id="nbN-Wu-V8y"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="d86-BC-thB"/>
-                    <connections>
-                        <outlet property="framesCollectionView" destination="zTP-Mi-IiE" id="H8M-Do-TX7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZI4-sV-YR9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1993.8461538461538" y="113.74407582938387"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yeo-7K-AwD">

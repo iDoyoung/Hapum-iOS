@@ -12,7 +12,9 @@ protocol CreatePhotosWallDisplayLogic: AnyObject {
 }
 
 class CreatePhotosWallViewController: UIViewController {
-    
+    var interactor: CreatePhotosWallInteractor?
+    var router: (NSObjectProtocol & CreatePhotosWallRoutingLogic & CreatePhotosWallDataPassing)?
+
     @IBOutlet weak var photosWallView: UIView!
     @IBOutlet weak var lightViewSwitch: UISwitch!
     @IBOutlet weak var changeLightColorButton: UIButton!
