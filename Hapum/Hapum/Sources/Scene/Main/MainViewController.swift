@@ -36,6 +36,7 @@ final class MainViewController: UIViewController, MainDisplayLogic {
         interactor.presenter = presenter
         presenter.viewController = self
         router.viewController = self
+        router.dataStore = interactor
     }
     
     @IBOutlet var statusMessageLabel: UILabel!

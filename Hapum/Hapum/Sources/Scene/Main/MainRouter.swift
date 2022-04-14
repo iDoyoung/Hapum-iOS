@@ -31,6 +31,8 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         } else {
             let storyboard = UIStoryboard(name: NameSpace.Storyboard.createPhotosWall, bundle: Bundle.main)
             let destinationVC = storyboard.instantiateViewController(withIdentifier: NameSpace.ViewControllerID.createPhotosWall) as! CreatePhotosWallViewController
+            var destinationDS = destinationVC.router!.dataStore!
+            passDataToCreatePhotosWall(source: dataStore!, destination: &destinationDS)
             navigateToCreatePhotosWall(source: viewController, destination: destinationVC)
         }
     }

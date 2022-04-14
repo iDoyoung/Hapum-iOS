@@ -13,7 +13,7 @@ protocol CreatePhotosWallDisplayLogic: AnyObject {
 
 class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayLogic {
     
-    var interactor: CreatePhotosWallInteractor?
+    var interactor: CreatePhotosWallBusinessLogic?
     var router: (NSObjectProtocol & CreatePhotosWallRoutingLogic & CreatePhotosWallDataPassing)?
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -35,6 +35,7 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
         interactor.presenter = presenter
         presenter.viewController = self
         router.viewController = self
+        router.dataStore = interactor
     }
     
     @IBOutlet weak var photosWallView: UIView!
@@ -50,9 +51,29 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getPhotos()
+    }
 
+    var displayedPhotos: [Photos.Photo] = []
+    
+    func getPhotos() {
+        interactor?.getPhotos()
     }
     
     func displayPhotos(viewModel: [Photos.Photo]?) {
+        guard let viewModel = viewModel else { return }
+        displayedPhotos = viewModel
+        DispatchQueue.main.async {
+            self.configurePhotosWall()
+        }
     }
+    
+    private func configurePhotosWall() {
+        let view = PhotosWallView(frame: photosWallView.frame)
+        for (index, photo) in displayedPhotos.enumerated() {
+            view.photosFrameView[index].photoImageView.image = photo.image
+        }
+        photosWallView.addSubview(view)
+    }
+    
 }
