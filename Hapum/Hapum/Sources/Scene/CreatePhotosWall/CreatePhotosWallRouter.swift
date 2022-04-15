@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import PhotosUI
 
 @objc
 protocol CreatePhotosWallRoutingLogic {
     func routeToMain(segue: UIStoryboardSegue?)
+    func presentPickerView() 
 }
 
 protocol CreatePhotosWallDataPassing {
@@ -35,6 +37,16 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
     
     func navigateToMain(source: CreatePhotosWallViewController , destination: MainViewController) {
         source.navigationController?.popViewController(animated: true)
+    }
+    
+    func presentPickerView() {
+        guard let viewController = viewController else {
+            return
+        }
+        let configuration = PHPickerConfiguration()
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = viewController
+        viewController.present(picker, animated: true)
     }
     
 }
