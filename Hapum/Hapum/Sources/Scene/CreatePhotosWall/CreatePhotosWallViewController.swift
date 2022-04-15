@@ -78,11 +78,18 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     }
     
     private func configurePhotosWall() {
-        let view = PhotosWallView(frame: photosWallView.frame)
+        let view = PhotosWallView(frame: .zero)
         for (index, photo) in displayedPhotos.enumerated() {
             view.photosFrameView[index].photoImageView.image = photo.image
         }
+        view.translatesAutoresizingMaskIntoConstraints = false
         photosWallView.addSubview(view)
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: photosWallView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: photosWallView.trailingAnchor),
+            view.centerYAnchor.constraint(equalTo: photosWallView.centerYAnchor),
+            view.heightAnchor.constraint(equalTo: photosWallView.widthAnchor, multiplier: 4/3)
+        ])
     }
     
     private func configurePhotosViewAction() {
