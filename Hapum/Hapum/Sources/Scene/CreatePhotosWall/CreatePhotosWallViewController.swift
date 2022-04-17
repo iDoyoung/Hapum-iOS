@@ -63,10 +63,13 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
         case changeLightColorButton:
             print("Change color")
         case changeBackgroundColorButton:
-            let view = photosWallView.subviews.first?.subviews.last
-            view?.backgroundColor = color
+            let photosWallview = photosWallView.subviews.first?.subviews.last
+            photosWallview?.backgroundColor = color
         case changePhotosFrameColorButton:
-            print("Chage color")
+            let photosWallview = photosWallView.subviews.first as! PhotosWallView
+            for view in photosWallview.photosFrameView {
+                view.layer.borderColor = color.cgColor
+            }
         default:
             break
         }
