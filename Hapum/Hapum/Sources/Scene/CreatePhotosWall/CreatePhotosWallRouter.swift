@@ -11,7 +11,8 @@ import PhotosUI
 @objc
 protocol CreatePhotosWallRoutingLogic {
     func routeToMain(segue: UIStoryboardSegue?)
-    func presentPickerView() 
+    func presentPhotoPickerView()
+    func presentColorPickerView()
 }
 
 protocol CreatePhotosWallDataPassing {
@@ -39,7 +40,7 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         source.navigationController?.popViewController(animated: true)
     }
     
-    func presentPickerView() {
+    func presentPhotoPickerView() {
         guard let viewController = viewController else {
             return
         }
@@ -49,4 +50,13 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         viewController.present(picker, animated: true)
     }
     
+    func presentColorPickerView() {
+        guard let viewController = viewController else {
+            return
+        }
+        let picker = UIColorPickerViewController()
+        picker.supportsAlpha = true
+        picker.delegate = viewController
+        viewController.present(picker, animated: true)
+    }
 }

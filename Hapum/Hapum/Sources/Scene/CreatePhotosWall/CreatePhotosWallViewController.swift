@@ -47,7 +47,8 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     
     @IBAction func onOffLightEffect(_ sender: UISwitch) {
     }
-    @IBAction func changeColor(_ sender: UIButton) {
+    
+    @IBAction func tapChangeColorButtons(_ sender: UIButton) {
     }
     
     override func viewDidLoad() {
@@ -71,10 +72,17 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     }
     
     var selectedPhotosIndex: Int?
-    
-    func showPickerView() {
+
+    func showImagePickerView() {
         guard let router = router else { return }
-        router.presentPickerView()
+        router.presentPhotoPickerView()
+    }
+    
+    func showColorPickerView() {
+        guard let router = router else {
+            return
+        }
+        router.presentColorPickerView()
     }
     
     private func configurePhotosWall() {
@@ -110,10 +118,11 @@ extension CreatePhotosWallViewController {
     @objc
     func tapPhotos(sender : UITapGestureRecognizer) {
         selectedPhotosIndex = sender.view?.tag
-        showPickerView()
+        showImagePickerView()
     }
     
 }
+
 extension CreatePhotosWallViewController: PHPickerViewControllerDelegate {
     
     //MARK: - Think to move this method to router
@@ -139,4 +148,12 @@ extension CreatePhotosWallViewController: PHPickerViewControllerDelegate {
         }
     }
     
+}
+
+extension CreatePhotosWallViewController: UIColorPickerViewControllerDelegate {
+    
+    func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
+        viewController.dismiss(animated: true)
+    }
+
 }

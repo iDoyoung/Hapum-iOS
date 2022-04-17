@@ -40,7 +40,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Light"/>
                                         <connections>
-                                            <action selector="changeColor:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ttf-6r-m4J"/>
+                                            <action selector="tapChangeColorButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="TS4-qi-DJO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-Ce-gLN">
@@ -49,7 +49,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Frame"/>
                                         <connections>
-                                            <action selector="changeColor:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="MjB-vt-sXP"/>
+                                            <action selector="tapChangeColorButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="egJ-qg-oTG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ge-bY-wXy">
@@ -57,7 +57,7 @@
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Background"/>
                                         <connections>
-                                            <action selector="changeColor:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1dy-Kz-pdZ"/>
+                                            <action selector="tapChangeColorButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="d6B-K5-Ztz"/>
                                         </connections>
                                     </button>
                                 </subviews>
