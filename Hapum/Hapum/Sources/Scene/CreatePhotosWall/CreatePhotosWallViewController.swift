@@ -49,6 +49,27 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     }
     
     @IBAction func tapChangeColorButtons(_ sender: UIButton) {
+        guard let router = router else {
+            return
+        }
+        tappedButton = sender
+        router.presentColorPickerView()
+    }
+    
+    var tappedButton: UIButton?
+    
+    func chageColor(color: UIColor) {
+        switch tappedButton {
+        case changeLightColorButton:
+            print("Change color")
+        case changeBackgroundColorButton:
+            let view = photosWallView.subviews.first?.subviews.last
+            view?.backgroundColor = color
+        case changePhotosFrameColorButton:
+            print("Chage color")
+        default:
+            break
+        }
     }
     
     override func viewDidLoad() {
@@ -153,6 +174,7 @@ extension CreatePhotosWallViewController: PHPickerViewControllerDelegate {
 extension CreatePhotosWallViewController: UIColorPickerViewControllerDelegate {
     
     func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
+        chageColor(color: color)
         viewController.dismiss(animated: true)
     }
 
