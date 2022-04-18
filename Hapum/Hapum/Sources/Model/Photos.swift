@@ -10,11 +10,15 @@ import CoreLocation
 
 enum Photos {
     
-    struct Photo: Hashable {
+    struct Asset: Hashable {
         let identifier: String
         let image: UIImage?
         let creationDate: Date?
         let location: CLLocation?
+    }
+    
+    struct Photo {
+        let image: UIImage
     }
     
     enum Filtering {

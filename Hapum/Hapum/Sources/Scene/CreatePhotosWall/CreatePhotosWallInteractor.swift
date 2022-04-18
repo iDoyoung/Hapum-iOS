@@ -12,13 +12,13 @@ protocol CreatePhotosWallBusinessLogic {
 }
 
 protocol CreatePhotosDataStore {
-    var photos: [Photos.Photo]! { get set }
+    var photos: [Photos.Asset]! { get set }
 }
 
 final class CreatePhotosWallInteractor: CreatePhotosWallBusinessLogic, CreatePhotosDataStore {
     
     var presenter: CreatePhotosWallPresentationLogic?
-    var photos: [Photos.Photo]!
+    var photos: [Photos.Asset]!
     
     func getPhotos() {
         presenter?.presentPhotos(resource: photos)

@@ -8,19 +8,19 @@
 import Foundation
 
 protocol MainPresentationLogic {
-    func presentFetchedAllPhotos(resource: [Photos.Photo]?)
-    func presentFetchedAlbums(resource: [Photos.Photo]?)
+    func presentFetchedAllPhotos(resource: [Photos.Asset]?)
+    func presentFetchedAlbums(resource: [Photos.Asset]?)
 }
 
 final class MainPresenter: MainPresentationLogic {
     
     weak var viewController: MainDisplayLogic?
     
-    func presentFetchedAllPhotos(resource: [Photos.Photo]?) {
+    func presentFetchedAllPhotos(resource: [Photos.Asset]?) {
         viewController?.displayFetchedPhotos(viewModel: resource)
     }
     
-    func presentFetchedAlbums(resource: [Photos.Photo]?) {
+    func presentFetchedAlbums(resource: [Photos.Asset]?) {
         viewController?.displayFetchedAlbum(viewModel: resource)
     }
     

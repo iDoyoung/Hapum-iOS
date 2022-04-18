@@ -29,11 +29,11 @@ class MainInteractorTests: XCTestCase {
         var presentFetchedAllPhotosCalled = false
         var presentFetchedAlbumsCalled = false
         
-        func presentFetchedAllPhotos(resource: [Photos.Photo]?) {
+        func presentFetchedAllPhotos(resource: [Photos.Asset]?) {
             presentFetchedAllPhotosCalled = true
         }
         
-        func presentFetchedAlbums(resource: [Photos.Photo]?) {
+        func presentFetchedAlbums(resource: [Photos.Asset]?) {
             presentFetchedAlbumsCalled = true
         }
         
@@ -44,7 +44,7 @@ class MainInteractorTests: XCTestCase {
         var fetchAllPhotosCalled = false
         var fetchAlbumsPhotosCalled = false
         
-        override func fetchAllPhotos(completion: @escaping ([Photos.Photo]) -> Void) {
+        override func fetchAllPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
             fetchAllPhotosCalled = true
             completion([Seeds.PhotosDummy.springPhoto,
                         Seeds.PhotosDummy.summerPhoto,
@@ -52,7 +52,7 @@ class MainInteractorTests: XCTestCase {
                         Seeds.PhotosDummy.winterPhoto])
         }
         
-        override func fetchAlbumsPhotos(completion: @escaping ([Photos.Photo]) -> Void) {
+        override func fetchAlbumsPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
             fetchAlbumsPhotosCalled = true
             completion([Seeds.PhotosDummy.winterPhoto,
                         Seeds.PhotosDummy.springPhoto])
@@ -61,19 +61,22 @@ class MainInteractorTests: XCTestCase {
     }
     
     class MockPhotosService: PhotoFetchable {
+        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+        }
+        
         
         func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
             completion(.limited)
         }
         
-        func fetchPhotos(completion: @escaping ([Photos.Photo]) -> Void) {
+        func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
             completion([Seeds.PhotosDummy.springPhoto,
                         Seeds.PhotosDummy.summerPhoto,
                         Seeds.PhotosDummy.fallsPhoto,
                         Seeds.PhotosDummy.winterPhoto])
         }
         
-        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Photo]) -> Void) {
+        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
             completion([Seeds.PhotosDummy.winterPhoto,
                         Seeds.PhotosDummy.springPhoto
                        ])

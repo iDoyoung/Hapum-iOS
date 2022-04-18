@@ -15,13 +15,13 @@ class PhotosWorker {
         self.service = service
     }
     
-    func fetchAllPhotos(completion: @escaping ([Photos.Photo]) -> Void) {
+    func fetchAllPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
         service.fetchPhotos { photos in
             completion(photos)
         }
     }
     
-    func fetchAlbumsPhotos(completion: @escaping ([Photos.Photo]) -> Void) {
+    func fetchAlbumsPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
         service.fetchPhotosFromAlbums { photos in
             completion(photos)
         }
@@ -33,4 +33,9 @@ class PhotosWorker {
         }
     }
     
+    func addPhotoAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+        service.addAsset(photo: photo) { (success, error) in
+            completion((success, error))
+        }
+    }
 }

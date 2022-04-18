@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 
 protocol CreatePhotosWallDisplayLogic: AnyObject {
-    func displayPhotos(viewModel: [Photos.Photo]?)
+    func displayPhotos(viewModel: [Photos.Asset]?)
 }
 
 class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayLogic {
@@ -80,13 +80,13 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
         getPhotos()
     }
 
-    var displayedPhotos: [Photos.Photo] = []
+    var displayedPhotos: [Photos.Asset] = []
     
     func getPhotos() {
         interactor?.getPhotos()
     }
     
-    func displayPhotos(viewModel: [Photos.Photo]?) {
+    func displayPhotos(viewModel: [Photos.Asset]?) {
         guard let viewModel = viewModel else { return }
         displayedPhotos = viewModel
         DispatchQueue.main.async {

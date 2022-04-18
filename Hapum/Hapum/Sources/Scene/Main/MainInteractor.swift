@@ -12,16 +12,16 @@ protocol MainBusinessLogic {
 }
 
 protocol MainDataStore {
-    var photos: [Photos.Photo]? { get }
-    var albumsPhotos: [Photos.Photo]? { get }
+    var photos: [Photos.Asset]? { get }
+    var albumsPhotos: [Photos.Asset]? { get }
 }
 
 final class MainInteractor: MainBusinessLogic, MainDataStore {
 
     var presenter: MainPresentationLogic?
     var photosWorker = PhotosWorker(service: PhotosService())
-    var photos: [Photos.Photo]?
-    var albumsPhotos: [Photos.Photo]?
+    var photos: [Photos.Asset]?
+    var albumsPhotos: [Photos.Asset]?
     
     func fetchPhotos() {
         photosWorker.fetchAllPhotos(completion: { [weak self] photos in

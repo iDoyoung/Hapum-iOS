@@ -29,14 +29,14 @@ class MainPresenterTests: XCTestCase {
         var displayFetchedPhotosCalled = false
         var displayFetchedAlbumCalled = false
         
-        var viewModel: [Photos.Photo]!
+        var viewModel: [Photos.Asset]!
         
-        func displayFetchedPhotos(viewModel: [Photos.Photo]?) {
+        func displayFetchedPhotos(viewModel: [Photos.Asset]?) {
             displayFetchedPhotosCalled = true
             self.viewModel = viewModel
         }
         
-        func displayFetchedAlbum(viewModel: [Photos.Photo]?) {
+        func displayFetchedAlbum(viewModel: [Photos.Asset]?) {
             displayFetchedAlbumCalled = true
             self.viewModel = viewModel
         }

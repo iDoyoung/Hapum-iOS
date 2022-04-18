@@ -8,8 +8,8 @@
 import UIKit
 
 protocol MainDisplayLogic: AnyObject {
-    func displayFetchedPhotos(viewModel: [Photos.Photo]?)
-    func displayFetchedAlbum(viewModel: [Photos.Photo]?)
+    func displayFetchedPhotos(viewModel: [Photos.Asset]?)
+    func displayFetchedAlbum(viewModel: [Photos.Asset]?)
 }
 
 final class MainViewController: UIViewController, MainDisplayLogic {
@@ -43,7 +43,7 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     @IBOutlet var photosCollectionView: UICollectionView!
     @IBOutlet weak var photosWallView: PhotosWallView!
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Photo>! = nil
+    private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Asset>! = nil
     
     @IBAction func presentCreatePhotosWall(_ sender: UIButton) {
         let selector = NSSelectorFromString("routeToCreatePhotosWallWithSegue:")
@@ -72,14 +72,14 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     }
     
     //MARK: - Fetch Photos
-    var displayedPhotos: [Photos.Photo] = []
-    var displayedAlbumsPhotos: [Photos.Photo] = []
+    var displayedPhotos: [Photos.Asset] = []
+    var displayedAlbumsPhotos: [Photos.Asset] = []
 
     func fetchPhotos() {
         interactor?.fetchPhotos()
     }
     
-    func displayFetchedPhotos(viewModel: [Photos.Photo]?) {
+    func displayFetchedPhotos(viewModel: [Photos.Asset]?) {
         guard let viewModel = viewModel else {
             return
         }
@@ -89,7 +89,7 @@ final class MainViewController: UIViewController, MainDisplayLogic {
         }
     }
     
-    func displayFetchedAlbum(viewModel: [Photos.Photo]?) {
+    func displayFetchedAlbum(viewModel: [Photos.Asset]?) {
         guard let viewModel = viewModel else {
             return
         }
@@ -130,7 +130,7 @@ extension MainViewController {
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, Photos.Photo>(collectionView: photosCollectionView) { collectionView, indexPath, itemIdentifier in
+        dataSource = UICollectionViewDiffableDataSource<Int, Photos.Asset>(collectionView: photosCollectionView) { collectionView, indexPath, itemIdentifier in
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosViewCell.reuseIdentifier, for: indexPath) as? PhotosViewCell else {
                 return UICollectionViewCell()
             }
@@ -138,11 +138,11 @@ extension MainViewController {
             return cell
         }
         
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Photos.Photo>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Photos.Asset>()
         snapshot.appendSections([0])
-        snapshot.appendItems([Photos.Photo(identifier: "1", image: nil, creationDate: nil, location: nil),
-                              Photos.Photo(identifier: "2", image: nil, creationDate: Date(), location: nil),
-                              Photos.Photo(identifier: "3", image: nil, creationDate: nil, location: nil)])
+        snapshot.appendItems([Photos.Asset(identifier: "1", image: nil, creationDate: nil, location: nil),
+                              Photos.Asset(identifier: "2", image: nil, creationDate: Date(), location: nil),
+                              Photos.Asset(identifier: "3", image: nil, creationDate: nil, location: nil)])
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     

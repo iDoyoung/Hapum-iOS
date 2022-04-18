@@ -8,14 +8,14 @@
 import Foundation
 
 protocol CreatePhotosWallPresentationLogic {
-    func presentPhotos(resource: [Photos.Photo])
+    func presentPhotos(resource: [Photos.Asset])
 }
 
 class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
     
     weak var viewController: CreatePhotosWallDisplayLogic?
     
-    func presentPhotos(resource: [Photos.Photo]) {
+    func presentPhotos(resource: [Photos.Asset]) {
         viewController?.displayPhotos(viewModel: resource)
     }
     

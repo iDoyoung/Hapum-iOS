@@ -13,8 +13,8 @@ class PhotosWorkerTests: XCTestCase {
 
     var sut: PhotosWorker!
     static var testAccessStatus: Photos.Status!
-    static var testPhotos: [Photos.Photo]!
-    static var testAlbumsPhotos: [Photos.Photo]!
+    static var testPhotos: [Photos.Asset]!
+    static var testAlbumsPhotos: [Photos.Asset]!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
@@ -34,20 +34,25 @@ class PhotosWorkerTests: XCTestCase {
         var requestAccessStatusCalled = false
         var fetchPhotosCalled = false
         var fetchPhotosFromAlbumsCalled = false
+        var addAssetCalled = false
         
         func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
             requestAccessStatusCalled = true
             completion(PhotosWorkerTests.testAccessStatus)
         }
         
-        func fetchPhotos(completion: @escaping ([Photos.Photo]) -> Void) {
+        func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
             fetchPhotosCalled = true
             completion(PhotosWorkerTests.testPhotos)
         }
         
-        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Photo]) -> Void) {
+        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
             fetchPhotosFromAlbumsCalled = true
             completion(PhotosWorkerTests.testAlbumsPhotos)
+        }
+        
+        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+            addAssetCalled = true
         }
     }
 
@@ -71,11 +76,21 @@ class PhotosWorkerTests: XCTestCase {
         XCTAssertEqual(accessStatus, PhotosWorkerTests.testAccessStatus, "Requested access status match the status in the test")
     }
     
+    func test_addAssetsShouldAskPhotosService() {
+        ///given
+        let mockPhotosService = sut.service as! MockPhotosService
+        ///when
+        sut.addPhotoAsset(photo: Photos.Photo(image: Seeds.ImageDummy.image!)) { _ in
+        }
+        ///then
+        XCTAssert(mockPhotosService.addAssetCalled)
+    }
+    
     func test_fetchPhotosShouldReturnPhotos() {
         ///given
         let mockPhotosService = sut.service as! MockPhotosService
         ///when
-        var fetchedPhotos = [Photos.Photo]()
+        var fetchedPhotos = [Photos.Asset]()
         let expect = expectation(description: "Wait for fetchPhotos() to return")
         sut.fetchAllPhotos { photos in
             fetchedPhotos = photos
@@ -94,7 +109,7 @@ class PhotosWorkerTests: XCTestCase {
         ///given
         let mockPhotosService = sut.service as! MockPhotosService
         ///when
-        var fetchedAlbums = [Photos.Photo]()
+        var fetchedAlbums = [Photos.Asset]()
         let expect = expectation(description: "Wait for fetchAlbumsPhotos() to return")
         sut.fetchAlbumsPhotos { photos in
             fetchedAlbums = photos

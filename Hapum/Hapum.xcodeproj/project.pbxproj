@@ -22,7 +22,7 @@
 		7F375A5F2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A5E2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift */; };
 		7F375A61280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A60280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift */; };
 		7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A622805264500C6EE39 /* CreatePhotosWallRouter.swift */; };
-		7F42EB0327F52E9100FF8FE1 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0227F52E9100FF8FE1 /* Photo.swift */; };
+		7F42EB0327F52E9100FF8FE1 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0227F52E9100FF8FE1 /* Photos.swift */; };
 		7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */; };
 		7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */; };
 		7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */; };
@@ -77,7 +77,7 @@
 		7F375A5E2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallInteractor.swift; sourceTree = "<group>"; };
 		7F375A60280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallPresenterTests.swift; sourceTree = "<group>"; };
 		7F375A622805264500C6EE39 /* CreatePhotosWallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallRouter.swift; sourceTree = "<group>"; };
-		7F42EB0227F52E9100FF8FE1 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		7F42EB0227F52E9100FF8FE1 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewCell.swift; sourceTree = "<group>"; };
 		7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosViewCell.xib; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 		7F42EB1227F8233500FF8FE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7F42EB0227F52E9100FF8FE1 /* Photo.swift */,
+				7F42EB0227F52E9100FF8FE1 /* Photos.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -318,8 +318,8 @@
 		7FA3191927F087F9003CAF9E /* HapumTests */ = {
 			isa = PBXGroup;
 			children = (
-				7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */,
 				7F3759E027FF016D00C6EE39 /* Seeds.swift */,
+				7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */,
 				7F3759E627FFE78300C6EE39 /* MainTests */,
 				7F375A5D2804FAEB00C6EE39 /* CreatePhotosWallTests */,
 			);
@@ -471,7 +471,7 @@
 			files = (
 				7F375A5C2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift in Sources */,
 				7F3759F42802C90900C6EE39 /* FrameView.swift in Sources */,
-				7F42EB0327F52E9100FF8FE1 /* Photo.swift in Sources */,
+				7F42EB0327F52E9100FF8FE1 /* Photos.swift in Sources */,
 				7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */,
 				7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */,
 				7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */,
