@@ -9,6 +9,8 @@ import Foundation
 
 protocol CreatePhotosWallPresentationLogic {
     func presentPhotos(resource: [Photos.Asset])
+    func showCreatingSuccess()
+    func showCreatingFailure()
 }
 
 class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
@@ -17,6 +19,12 @@ class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
     
     func presentPhotos(resource: [Photos.Asset]) {
         viewController?.displayPhotos(viewModel: resource)
+    }
+        
+    func showCreatingSuccess() {
+    }
+    
+    func showCreatingFailure() {
     }
     
 }

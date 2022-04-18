@@ -27,22 +27,87 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
     class MockCreatePhotosWallPresentation: CreatePhotosWallPresentationLogic {
         
         var presentPhotosCalled = false
+        var showCreatingSuccessCalled = false
+        var showCreatingFailureCalled = false
         
         func presentPhotos(resource: [Photos.Asset]) {
             presentPhotosCalled = true
         }
+        
+        func showCreatingSuccess() {
+            showCreatingSuccessCalled = true
+        }
+        
+        func showCreatingFailure() {
+            showCreatingFailureCalled = true
+        }
+        
     }
     
+    class MockPhotosWorker: PhotosWorker {
+        
+        override func addPhotoAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+            service.addAsset(photo: Photos.Photo(image: Seeds.ImageDummy.image!)) { (success, error) in
+                completion((success, error))
+            }
+        }
+        
+    }
+    
+    class MockSuccessPhotosService: PhotoFetchable {
+        func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
+        }
+        
+        func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
+        }
+        
+        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
+        }
+        
+        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+            completion((true, nil))
+        }
+    }
+    
+    class MockFailurePhotosService: PhotoFetchable {
+        func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
+        }
+        
+        func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
+        }
+        
+        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
+        }
+        
+        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+            completion((false, nil))
+        }
+    }
+    
+    
     //MARK: - Test
-    func test_getPhotosShouldAskPreseterToFormat() {
+    func test_whenFailAddPhotoAskPhotosWorkerToAddPhotoAndPresenterShowCreatingFailure () {
         ///given
         let mockPresenter = MockCreatePhotosWallPresentation()
+        let mockPhotosWorker = MockPhotosWorker(service: MockFailurePhotosService())
         sut.presenter = mockPresenter
-        sut.photos = []
+        sut.photosWorker = mockPhotosWorker
         ///when
-        sut.getPhotos()
+        sut.addPhoto(photo: Photos.Photo(image: Seeds.ImageDummy.image!))
         ///then
-        XCTAssert(mockPresenter.presentPhotosCalled, "GetPhotos() should ask presenter to format photos")
+        XCTAssert(mockPresenter.showCreatingFailureCalled)
+    }
+    
+    func test_whenSuccessAddPhotoAskPhotosWorkerToAddPhotoAndPresenterShowCreatingSuccess() {
+        ///given
+        let mockPresenter = MockCreatePhotosWallPresentation()
+        let mockPhotosWorker = MockPhotosWorker(service: MockSuccessPhotosService())
+        sut.presenter = mockPresenter
+        sut.photosWorker = mockPhotosWorker
+        ///when
+        sut.addPhoto(photo: Photos.Photo(image: Seeds.ImageDummy.image!))
+        ///then
+        XCTAssert(mockPresenter.showCreatingSuccessCalled)
     }
     
 }
