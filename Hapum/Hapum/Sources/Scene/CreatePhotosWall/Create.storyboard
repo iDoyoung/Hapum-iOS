@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xw-fI-cAG">
-                                <rect key="frame" x="0.0" y="44" width="390" height="684.66666666666663"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="633.66666666666663"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLv-gC-5DJ">
-                                <rect key="frame" x="16" y="748.66666666666663" width="358" height="20.333333333333371"/>
+                                <rect key="frame" x="16" y="697.66666666666663" width="358" height="20.333333333333371"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="q0K-eI-dvc">
-                                <rect key="frame" x="16" y="779" width="358" height="31"/>
+                                <rect key="frame" x="16" y="728" width="358" height="31"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-Ce-gLN">
                                         <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="31"/>
@@ -47,20 +47,31 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9j-ms-j3l">
+                                <rect key="frame" x="16" y="779" width="358" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
+                                <connections>
+                                    <action selector="tapSaveButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="IcL-93-Fux"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="7Xw-fI-cAG" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="224-IK-g9W"/>
                             <constraint firstItem="q0K-eI-dvc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="3Nq-N0-iZ7"/>
+                            <constraint firstItem="Q9j-ms-j3l" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="5Ci-NC-U7h"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="q0K-eI-dvc" secondAttribute="trailing" constant="16" id="A00-Pg-0QJ"/>
                             <constraint firstItem="7Xw-fI-cAG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="EJD-8S-lc9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Q9j-ms-j3l" secondAttribute="trailing" constant="16" id="HVe-kg-WDh"/>
                             <constraint firstItem="oLv-gC-5DJ" firstAttribute="top" secondItem="7Xw-fI-cAG" secondAttribute="bottom" constant="20" id="Klq-2i-dfo"/>
                             <constraint firstItem="oLv-gC-5DJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="b98-zA-yhL"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oLv-gC-5DJ" secondAttribute="trailing" constant="16" id="dHa-WJ-mAp"/>
-                            <constraint firstItem="q0K-eI-dvc" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="ehN-S2-4Zg"/>
                             <constraint firstItem="7Xw-fI-cAG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="hjs-Pr-qBx"/>
+                            <constraint firstItem="Q9j-ms-j3l" firstAttribute="top" secondItem="q0K-eI-dvc" secondAttribute="bottom" constant="20" id="oGk-gi-CUb"/>
                             <constraint firstItem="q0K-eI-dvc" firstAttribute="top" secondItem="oLv-gC-5DJ" secondAttribute="bottom" constant="10" id="vfg-t0-DK0"/>
+                            <constraint firstItem="Q9j-ms-j3l" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="vtU-1q-ALe"/>
                         </constraints>
                     </view>
                     <connections>

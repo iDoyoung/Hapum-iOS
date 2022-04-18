@@ -51,6 +51,13 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
         router.presentColorPickerView()
     }
     
+    //TODO: - Implement Save button
+    @IBAction func tapSaveButton(_ sender: UIButton) {
+        /// - todo: Save to photo library
+        /// - todo: Show completion make photo
+    }
+    
+    
     var tappedButton: UIButton?
     
     func chageColor(color: UIColor) {
