@@ -40,14 +40,9 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     }
     
     @IBOutlet weak var photosWallView: UIView!
-    @IBOutlet weak var lightViewSwitch: UISwitch!
-    @IBOutlet weak var changeLightColorButton: UIButton!
     @IBOutlet weak var changePhotosFrameColorButton: UIButton!
     @IBOutlet weak var changeBackgroundColorButton: UIButton!
-    
-    @IBAction func onOffLightEffect(_ sender: UISwitch) {
-    }
-    
+   
     @IBAction func tapChangeColorButtons(_ sender: UIButton) {
         guard let router = router else {
             return
@@ -60,8 +55,6 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     
     func chageColor(color: UIColor) {
         switch tappedButton {
-        case changeLightColorButton:
-            print("Change color")
         case changeBackgroundColorButton:
             let photosWallview = photosWallView.subviews.first?.subviews.last
             photosWallview?.backgroundColor = color
