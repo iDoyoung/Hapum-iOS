@@ -140,9 +140,7 @@ extension MainViewController {
         
         var snapshot = NSDiffableDataSourceSnapshot<Int, Photos.Asset>()
         snapshot.appendSections([0])
-        snapshot.appendItems([Photos.Asset(identifier: "1", image: nil, creationDate: nil, location: nil),
-                              Photos.Asset(identifier: "2", image: nil, creationDate: Date(), location: nil),
-                              Photos.Asset(identifier: "3", image: nil, creationDate: nil, location: nil)])
+        snapshot.appendItems([])
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
