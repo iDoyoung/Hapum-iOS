@@ -22,9 +22,11 @@ class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
     }
         
     func showCreatingSuccess() {
+        viewController?.displayCreatingSuccess()
     }
     
     func showCreatingFailure() {
+        viewController?.displayCreatingFailure()
     }
     
 }

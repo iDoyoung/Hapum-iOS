@@ -10,6 +10,8 @@ import PhotosUI
 
 protocol CreatePhotosWallDisplayLogic: AnyObject {
     func displayPhotos(viewModel: [Photos.Asset]?)
+    func displayCreatingSuccess()
+    func displayCreatingFailure()
 }
 
 class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayLogic {
@@ -100,6 +102,14 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     func showImagePickerView() {
         guard let router = router else { return }
         router.presentPhotoPickerView()
+    }
+    
+    func displayCreatingSuccess() {
+        
+    }
+    
+    func displayCreatingFailure() {
+        
     }
     
     func showColorPickerView() {
