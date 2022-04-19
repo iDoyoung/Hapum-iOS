@@ -59,6 +59,7 @@ final class MainViewController: UIViewController, MainDisplayLogic {
         photosCollectionView.collectionViewLayout = createLayout()
         photosCollectionView.alwaysBounceVertical = false
         fetchPhotos()
+        fetchAlbum()
         configureDataSource()
     }
     
@@ -77,6 +78,10 @@ final class MainViewController: UIViewController, MainDisplayLogic {
 
     func fetchPhotos() {
         interactor?.fetchPhotos()
+    }
+    
+    func fetchAlbum() {
+        interactor?.fetchAlbumsPhotos()
     }
     
     func displayFetchedPhotos(viewModel: [Photos.Asset]?) {
@@ -140,7 +145,7 @@ extension MainViewController {
         
         var snapshot = NSDiffableDataSourceSnapshot<Int, Photos.Asset>()
         snapshot.appendSections([0])
-        snapshot.appendItems([])
+        snapshot.appendItems(displayedAlbumsPhotos)
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     

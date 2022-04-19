@@ -9,6 +9,7 @@ import Foundation
 
 protocol MainBusinessLogic {
     func fetchPhotos()
+    func fetchAlbumsPhotos()
 }
 
 protocol MainDataStore {
