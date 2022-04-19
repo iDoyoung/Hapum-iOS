@@ -14,7 +14,7 @@ protocol CreatePhotosWallDisplayLogic: AnyObject {
     func displayCreatingFailure()
 }
 
-class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayLogic {
+class CreatePhotosWallViewController: UIViewController {
     
     var interactor: CreatePhotosWallBusinessLogic?
     var router: (NSObjectProtocol & CreatePhotosWallRoutingLogic & CreatePhotosWallDataPassing)?
@@ -55,6 +55,7 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     
     //TODO: - Implement Save button
     @IBAction func tapSaveButton(_ sender: UIButton) {
+        interactor?.addPhoto(photo: Photos.Photo(image: UIImage(systemName: "")))
         /// - todo: Save to photo library
         /// - todo: Show completion make photo
     }
@@ -83,33 +84,15 @@ class CreatePhotosWallViewController: UIViewController, CreatePhotosWallDisplayL
     }
 
     var displayedPhotos: [Photos.Asset] = []
+    var selectedPhotosIndex: Int?
     
     func getPhotos() {
         interactor?.getPhotos()
     }
-    
-    func displayPhotos(viewModel: [Photos.Asset]?) {
-        guard let viewModel = viewModel else { return }
-        displayedPhotos = viewModel
-        DispatchQueue.main.async {
-            self.configurePhotosWall()
-            self.configurePhotosViewAction()
-        }
-    }
-    
-    var selectedPhotosIndex: Int?
 
     func showImagePickerView() {
         guard let router = router else { return }
         router.presentPhotoPickerView()
-    }
-    
-    func displayCreatingSuccess() {
-        
-    }
-    
-    func displayCreatingFailure() {
-        
     }
     
     func showColorPickerView() {
@@ -155,6 +138,29 @@ extension CreatePhotosWallViewController {
         showImagePickerView()
     }
     
+}
+
+extension CreatePhotosWallViewController: CreatePhotosWallDisplayLogic {
+    
+    func displayPhotos(viewModel: [Photos.Asset]?) {
+        guard let viewModel = viewModel else { return }
+        displayedPhotos = viewModel
+        DispatchQueue.main.async {
+            self.configurePhotosWall()
+            self.configurePhotosViewAction()
+        }
+    }
+    
+    func displayCreatingSuccess() {
+        let selector = NSSelectorFromString("presentCreatingFailureAlert")
+        if let router = router, router.responds(to: selector) {
+            router.perform(selector)
+        }
+    }
+    
+    func displayCreatingFailure() {
+        router?.presentCreatingFailureAlert()
+    }
 }
 
 extension CreatePhotosWallViewController: PHPickerViewControllerDelegate {

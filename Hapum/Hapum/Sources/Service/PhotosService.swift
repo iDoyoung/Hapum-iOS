@@ -53,7 +53,7 @@ class PhotosService: PhotoFetchable {
         guard let album = fetchResultCollection.firstObject else { return }
         
         PHPhotoLibrary.shared().performChanges {
-            let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: photo.image)
+            let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: photo.image!)
             guard let addAssetRequest = PHAssetCollectionChangeRequest(for: album) else { return }
             addAssetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
         } completionHandler: { success, error in

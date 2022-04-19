@@ -13,6 +13,7 @@ protocol CreatePhotosWallRoutingLogic {
     func routeToMain(segue: UIStoryboardSegue?)
     func presentPhotoPickerView()
     func presentColorPickerView()
+    func presentCreatingFailureAlert() 
 }
 
 protocol CreatePhotosWallDataPassing {
@@ -58,5 +59,15 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         picker.supportsAlpha = true
         picker.delegate = viewController
         viewController.present(picker, animated: true)
+    }
+    
+    func presentCreatingFailureAlert() {
+        guard let viewController = viewController else {
+            return
+        }
+        let alert = UIAlertController(title: "예기치 못한 오류로 이미지 저장에 실패하였습니다.", message: "개발자에게 오류를 알려주시면 감사하겠습니다.", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "확인", style: .cancel)
+        alert.addAction(cancel)
+        viewController.present(alert, animated: true)
     }
 }

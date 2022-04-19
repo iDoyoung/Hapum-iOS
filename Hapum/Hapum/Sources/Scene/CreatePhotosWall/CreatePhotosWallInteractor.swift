@@ -9,6 +9,7 @@ import Foundation
 
 protocol CreatePhotosWallBusinessLogic {
     func getPhotos()
+    func addPhoto(photo: Photos.Photo)
 }
 
 protocol CreatePhotosDataStore {

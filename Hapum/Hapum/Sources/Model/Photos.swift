@@ -18,7 +18,7 @@ enum Photos {
     }
     
     struct Photo {
-        let image: UIImage
+        let image: UIImage?
     }
     
     enum Filtering {
