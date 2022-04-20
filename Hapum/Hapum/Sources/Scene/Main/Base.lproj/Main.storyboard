@@ -52,19 +52,20 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-9E-xTo">
-                                <rect key="frame" x="0.0" y="779" width="390" height="31"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <rect key="frame" x="20" y="766" width="350" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="31" id="iqt-Kg-h3z"/>
+                                    <constraint firstAttribute="height" constant="44" id="iqt-Kg-h3z"/>
                                 </constraints>
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Create Photos Wall"/>
                                 <connections>
                                     <action selector="presentCreatePhotosWall:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jjt-Wr-u5t"/>
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
-                                <rect key="frame" x="0.0" y="615.66666666666663" width="390" height="163.33333333333337"/>
+                                <rect key="frame" x="0.0" y="615.66666666666663" width="390" height="150.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ps-c9-HNh">
                                     <size key="itemSize" width="128" height="128"/>
@@ -80,12 +81,12 @@
                         <constraints>
                             <constraint firstItem="dXr-bL-VlX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2XZ-T5-rsp"/>
                             <constraint firstItem="dXr-bL-VlX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Jy-UK-7fc"/>
-                            <constraint firstAttribute="trailing" secondItem="MD9-9E-xTo" secondAttribute="trailing" id="B0n-vi-cQq"/>
+                            <constraint firstAttribute="trailing" secondItem="MD9-9E-xTo" secondAttribute="trailing" constant="20" id="B0n-vi-cQq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uKU-oH-Ey0" secondAttribute="trailing" id="FXG-rX-3qi"/>
                             <constraint firstItem="uKU-oH-Ey0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LqP-eN-U81"/>
                             <constraint firstItem="dXr-bL-VlX" firstAttribute="top" secondItem="uKU-oH-Ey0" secondAttribute="bottom" id="SlR-te-1du"/>
                             <constraint firstItem="MD9-9E-xTo" firstAttribute="top" secondItem="dXr-bL-VlX" secondAttribute="bottom" id="hEy-jK-7mE"/>
-                            <constraint firstItem="MD9-9E-xTo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mlN-JT-UkU"/>
+                            <constraint firstItem="MD9-9E-xTo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="mlN-JT-UkU"/>
                             <constraint firstItem="MD9-9E-xTo" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qqI-6j-U3i"/>
                             <constraint firstItem="uKU-oH-Ey0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="we2-5M-i4c"/>
                         </constraints>
@@ -93,6 +94,7 @@
                     <navigationItem key="navigationItem" id="grY-TH-wHi"/>
                     <connections>
                         <outlet property="accessStatusView" destination="D7B-M1-9en" id="WMv-Md-Hdc"/>
+                        <outlet property="createButton" destination="MD9-9E-xTo" id="cD6-XP-RDt"/>
                         <outlet property="managePhotosAccessButton" destination="10I-BD-N0Z" id="2F5-2p-iCN"/>
                         <outlet property="photosCollectionView" destination="dXr-bL-VlX" id="vCO-J6-t3N"/>
                         <outlet property="photosWallView" destination="2nm-V5-xsv" id="3lI-iQ-ULw"/>
@@ -123,14 +125,14 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

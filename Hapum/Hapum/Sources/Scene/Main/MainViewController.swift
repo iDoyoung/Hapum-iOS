@@ -45,10 +45,11 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var managePhotosAccessButton: UIButton!
     @IBOutlet var photosCollectionView: UICollectionView!
     @IBOutlet weak var photosWallView: PhotosWallView!
+    @IBOutlet weak var createButton: UIButton!
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Asset>! = nil
     
-    @IBAction func presentCreatePhotosWall(_ sender: UIButton) {
+    @IBAction func tapCreateButton(_ sender: UIButton) {
         let selector = NSSelectorFromString("routeToCreatePhotosWallWithSegue:")
         if let router = router, router.responds(to: selector) {
             router.perform(selector, with: nil)
@@ -62,12 +63,20 @@ final class MainViewController: UIViewController {
         photosCollectionView.alwaysBounceVertical = false
         fetchPhotos()
         fetchAlbum()
+        setCreateButtonUI()
         configureDataSource()
     }
     
     private func setStatusMessageLabelUI(text: String?, textColor: UIColor) {
         statusMessageLabel.text = text
         statusMessageLabel.textColor = textColor
+    }
+    
+    private func setCreateButtonUI() {
+        createButton.layer.shadowPath = nil
+        createButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        createButton.layer.shadowOpacity = 0.3
+        createButton.layer.shadowRadius = 3
     }
     
     //MARK: - Routing
