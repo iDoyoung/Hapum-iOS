@@ -28,20 +28,25 @@ final class MainInteractor: MainBusinessLogic, MainDataStore {
     func fetchPhotosAccessStatus() {
         photosWorker.fetchAccessStatus { [weak self] status in
             if let status = status {
-                var message: String?
+                var response: Photos.Status.Response
                 switch status {
                 case .notDetermined:
-                    message = ""
+                    response = Photos.Status.Response(message: NameSpace.PhotosAccessStatusMessage.needToSet,
+                                                      isLimited: nil)
                 case .restricted:
-                    message = ""
+                    response = Photos.Status.Response(message: NameSpace.PhotosAccessStatusMessage.needToSet,
+                                                      isLimited: false)
                 case .authorized:
-                    message = ""
+                    response = Photos.Status.Response(message: nil,
+                                                      isLimited: nil)
                 case .denied:
-                    message = ""
+                    response = Photos.Status.Response(message: NameSpace.PhotosAccessStatusMessage.needToSet,
+                                                      isLimited: false)
                 case .limited:
-                    message = ""
+                    response = Photos.Status.Response(message: NameSpace.PhotosAccessStatusMessage.limitedStatus,
+                                                      isLimited: true)
                 }
-                self?.presenter?.presentPhotosAccessStatus(message: message)
+                self?.presenter?.presentPhotosAccessStatus(response: response)
             }
         }
     }

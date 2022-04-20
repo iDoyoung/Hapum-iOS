@@ -10,15 +10,15 @@ import Foundation
 protocol MainPresentationLogic {
     func presentFetchedAllPhotos(resource: [Photos.Asset]?)
     func presentFetchedAlbums(resource: [Photos.Asset]?)
-    func presentPhotosAccessStatus(message: String?)
+    func presentPhotosAccessStatus(response: Photos.Status.Response)
 }
 
 final class MainPresenter: MainPresentationLogic {
     
     weak var viewController: MainDisplayLogic?
     
-    func presentPhotosAccessStatus(message: String?) {
-        viewController?.displayPhotosAccessStatusMessage(message: message)
+    func presentPhotosAccessStatus(response: Photos.Status.Response) {
+        viewController?.displayPhotosAccessStatusMessage(viewModel: response)
     }
     
     func presentFetchedAllPhotos(resource: [Photos.Asset]?) {

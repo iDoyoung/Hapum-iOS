@@ -29,4 +29,8 @@ enum NameSpace {
         static let frameSelectionIdentifier = "FrameSelection"
     }
     
+    enum PhotosAccessStatusMessage {
+        static let needToSet = "Please Allow Access to Your Photos"
+        static let limitedStatus = "You allow access to selected only in your Photos"
+    }
 }

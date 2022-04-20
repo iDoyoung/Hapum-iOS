@@ -25,6 +25,15 @@ enum Photos {
         case all, today, location
     }
     
-    enum Status {  case notDetermined, restricted, denied, authorized, limited }
+    enum Status {
+        
+        struct Response {
+            var message: String?
+            var isLimited: Bool?
+        }
+        
+        case notDetermined, restricted, denied, authorized, limited
+    }
+    
     
 }

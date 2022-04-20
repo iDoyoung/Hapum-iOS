@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import PhotosUI
 
 @objc protocol MainRoutingLogic {
     func routeToCreatePhotosWall(segue: UIStoryboardSegue?)
+    func showManageAccessLimitedStatus()
+    func openSetting()
 }
 
 protocol MainDataPassing {
@@ -34,6 +37,36 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
             var destinationDS = destinationVC.router!.dataStore!
             passDataToCreatePhotosWall(source: dataStore!, destination: &destinationDS)
             navigateToCreatePhotosWall(source: viewController, destination: destinationVC)
+        }
+    }
+    
+    func showManageAccessLimitedStatus() {
+        guard let viewController = viewController else {
+            return
+        }
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        let alertActions = [
+            UIAlertAction(title: "Change Settings",
+                          style: .default) { [weak self] _ in
+                              self?.openSetting()
+                          },
+            UIAlertAction(title: "Select More Photos",
+                          style: .default) { _ in
+                              PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: viewController)
+                          }
+        ]
+        alertActions.forEach { action in
+            alert.addAction(action)
+        }
+        viewController.present(alert, animated: true)
+    }
+    
+    func openSetting() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else {
+           return
+        }
+        if UIApplication.shared.canOpenURL(url) {
+           UIApplication.shared.open(url, options: [:])
         }
     }
     

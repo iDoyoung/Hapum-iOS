@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainDisplayLogic: AnyObject {
-    func displayPhotosAccessStatusMessage(message: String?)
+    func displayPhotosAccessStatusMessage(viewModel: Photos.Status.Response)
     func displayFetchedPhotos(viewModel: [Photos.Asset]?)
     func displayFetchedAlbum(viewModel: [Photos.Asset]?)
 }
@@ -40,7 +40,9 @@ final class MainViewController: UIViewController {
         router.dataStore = interactor
     }
     
+    @IBOutlet weak var accessStatusView: UIStackView!
     @IBOutlet var statusMessageLabel: UILabel!
+    @IBOutlet weak var managePhotosAccessButton: UIButton!
     @IBOutlet var photosCollectionView: UICollectionView!
     @IBOutlet weak var photosWallView: PhotosWallView!
     
@@ -48,7 +50,6 @@ final class MainViewController: UIViewController {
     
     @IBAction func presentCreatePhotosWall(_ sender: UIButton) {
         let selector = NSSelectorFromString("routeToCreatePhotosWallWithSegue:")
-        print("Route")
         if let router = router, router.responds(to: selector) {
             router.perform(selector, with: nil)
         }
@@ -62,6 +63,11 @@ final class MainViewController: UIViewController {
         fetchPhotos()
         fetchAlbum()
         configureDataSource()
+    }
+    
+    private func setStatusMessageLabelUI(text: String?, textColor: UIColor) {
+        statusMessageLabel.text = text
+        statusMessageLabel.textColor = textColor
     }
     
     //MARK: - Routing
@@ -86,17 +92,36 @@ final class MainViewController: UIViewController {
         interactor?.fetchAlbumsPhotos()
     }
     
+    //MARK: - ManagePhotosAccessButton action
+    @objc
+    private func showPhotosAccessSetting() {
+        router?.openSetting()
+    }
+    
+    @objc
+    private func showManagePhotosAccessAlert() {
+        router?.showManageAccessLimitedStatus()
+    }
+    
 }
 
 extension MainViewController: MainDisplayLogic {
     
-    func displayPhotosAccessStatusMessage(message: String?) {
+    func displayPhotosAccessStatusMessage(viewModel: Photos.Status.Response) {
         DispatchQueue.main.async { [weak self] in
-            guard let message = message else {
-                self?.statusMessageLabel.isHidden = true
+            guard let self = self else { return }
+            guard let message = viewModel.message,
+                  let isLimited = viewModel.isLimited else {
+                self.accessStatusView.isHidden = true
                 return
             }
-            self?.statusMessageLabel.text = message
+            if isLimited {
+                self.setStatusMessageLabelUI(text: message, textColor: .systemBlue)
+                self.managePhotosAccessButton.addTarget(self, action: #selector(self.showManagePhotosAccessAlert), for: .touchUpInside)
+            } else {
+                self.setStatusMessageLabelUI(text: message, textColor: .systemPink)
+                self.managePhotosAccessButton.addTarget(self, action: #selector(self.showPhotosAccessSetting), for: .touchUpInside)
+            }
         }
     }
     
