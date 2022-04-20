@@ -40,6 +40,12 @@ class MainViewControllerTests: XCTestCase {
             fetchPhotosCalled = true
         }
         
+        func fetchPhotosAccessStatus() {
+        }
+        
+        func fetchAlbumsPhotos() {
+        }
+        
     }
     
     //MARK: - Test

@@ -8,6 +8,7 @@
 import Foundation
 
 protocol MainBusinessLogic {
+    func fetchPhotosAccessStatus()
     func fetchPhotos()
     func fetchAlbumsPhotos()
 }
@@ -23,6 +24,27 @@ final class MainInteractor: MainBusinessLogic, MainDataStore {
     var photosWorker = PhotosWorker(service: PhotosService())
     var photos: [Photos.Asset]?
     var albumsPhotos: [Photos.Asset]?
+    
+    func fetchPhotosAccessStatus() {
+        photosWorker.fetchAccessStatus { [weak self] status in
+            if let status = status {
+                var message: String?
+                switch status {
+                case .notDetermined:
+                    message = ""
+                case .restricted:
+                    message = ""
+                case .authorized:
+                    message = ""
+                case .denied:
+                    message = ""
+                case .limited:
+                    message = ""
+                }
+                self?.presenter?.presentPhotosAccessStatus(message: message)
+            }
+        }
+    }
     
     func fetchPhotos() {
         photosWorker.fetchAllPhotos(completion: { [weak self] photos in

@@ -28,6 +28,7 @@ class MainInteractorTests: XCTestCase {
         
         var presentFetchedAllPhotosCalled = false
         var presentFetchedAlbumsCalled = false
+        var presentPhotosAccessStatusCalled = false
         
         func presentFetchedAllPhotos(resource: [Photos.Asset]?) {
             presentFetchedAllPhotosCalled = true
@@ -37,12 +38,17 @@ class MainInteractorTests: XCTestCase {
             presentFetchedAlbumsCalled = true
         }
         
+        func presentPhotosAccessStatus(message: String?) {
+            presentPhotosAccessStatusCalled = true
+        }
+        
     }
     
     class MockPhotosWorker: PhotosWorker {
         
         var fetchAllPhotosCalled = false
         var fetchAlbumsPhotosCalled = false
+        var fetchAccessStatusCalled = false
         
         override func fetchAllPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
             fetchAllPhotosCalled = true
@@ -56,6 +62,11 @@ class MainInteractorTests: XCTestCase {
             fetchAlbumsPhotosCalled = true
             completion([Seeds.PhotosDummy.winterPhoto,
                         Seeds.PhotosDummy.springPhoto])
+        }
+        
+        override func fetchAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
+            fetchAccessStatusCalled = true
+            completion(.authorized)
         }
         
     }
@@ -85,6 +96,18 @@ class MainInteractorTests: XCTestCase {
     }
     
     //MARK: - Test
+    func test_fetchPhotosAccessStatusAsksPhotosWorkerAndPresenterToFromat() {
+        ///given
+        let mockMainPresentationLogic = MockMainPresentationLogic()
+        let mockPhotoWorker = MockPhotosWorker(service: MockPhotosService())
+        sut.presenter = mockMainPresentationLogic
+        sut.photosWorker = mockPhotoWorker
+        ///when
+        sut.fetchPhotosAccessStatus()
+        ///then
+        XCTAssert(mockMainPresentationLogic.presentPhotosAccessStatusCalled)
+        XCTAssert(mockPhotoWorker.fetchAccessStatusCalled)
+    }
     func test_fetchPhotosShouldAsksPhotosWorkerToFetchPhotosAndPresenterToFormat() {
         ///given
         let mockMainPresentationLogic = MockMainPresentationLogic()

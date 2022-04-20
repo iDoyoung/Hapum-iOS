@@ -78,6 +78,7 @@ final class MainViewController: UIViewController, MainDisplayLogic {
 
     func fetchPhotos() {
         interactor?.fetchPhotos()
+        interactor?.fetchPhotosAccessStatus()
     }
     
     func fetchAlbum() {

@@ -17,16 +17,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="uKU-oH-Ey0">
-                                <rect key="frame" x="0.0" y="88" width="390" height="512.33333333333337"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="514.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Access status message" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3u-A0-wBJ">
-                                        <rect key="frame" x="20" y="0.0" width="350" height="15.666666666666666"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="20" y="0.0" width="350" height="18"/>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                        <color key="textColor" systemColor="systemPinkColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-V5-xsv" customClass="PhotosWallView" customModule="Hapum" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="45.666666666666657" width="350" height="466.66666666666674"/>
+                                        <rect key="frame" x="20" y="48.000000000000028" width="350" height="466.66666666666674"/>
                                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2nm-V5-xsv" secondAttribute="height" multiplier="3:4" id="J78-QF-Nmu"/>
@@ -50,7 +50,7 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
-                                <rect key="frame" x="0.0" y="600.33333333333337" width="390" height="178.66666666666663"/>
+                                <rect key="frame" x="0.0" y="602.66666666666663" width="390" height="176.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ps-c9-HNh">
                                     <size key="itemSize" width="128" height="128"/>
@@ -115,6 +115,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
