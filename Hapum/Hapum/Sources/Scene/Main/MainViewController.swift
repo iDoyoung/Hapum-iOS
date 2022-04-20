@@ -8,11 +8,12 @@
 import UIKit
 
 protocol MainDisplayLogic: AnyObject {
+    func displayPhotosAccessStatusMessage(message: String?)
     func displayFetchedPhotos(viewModel: [Photos.Asset]?)
     func displayFetchedAlbum(viewModel: [Photos.Asset]?)
 }
 
-final class MainViewController: UIViewController, MainDisplayLogic {
+final class MainViewController: UIViewController {
     
     var interactor: MainBusinessLogic?
     var router: (NSObjectProtocol&MainRoutingLogic)?
@@ -83,6 +84,20 @@ final class MainViewController: UIViewController, MainDisplayLogic {
     
     func fetchAlbum() {
         interactor?.fetchAlbumsPhotos()
+    }
+    
+}
+
+extension MainViewController: MainDisplayLogic {
+    
+    func displayPhotosAccessStatusMessage(message: String?) {
+        DispatchQueue.main.async { [weak self] in
+            guard let message = message else {
+                self?.statusMessageLabel.isHidden = true
+                return
+            }
+            self?.statusMessageLabel.text = message
+        }
     }
     
     func displayFetchedPhotos(viewModel: [Photos.Asset]?) {

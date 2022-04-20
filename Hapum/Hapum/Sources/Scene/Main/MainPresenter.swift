@@ -18,7 +18,7 @@ final class MainPresenter: MainPresentationLogic {
     weak var viewController: MainDisplayLogic?
     
     func presentPhotosAccessStatus(message: String?) {
-        
+        viewController?.displayPhotosAccessStatusMessage(message: message)
     }
     
     func presentFetchedAllPhotos(resource: [Photos.Asset]?) {

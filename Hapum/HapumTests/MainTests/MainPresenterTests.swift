@@ -26,10 +26,17 @@ class MainPresenterTests: XCTestCase {
     //MARK: - Mock
     class MockMainDisplayLogic: MainDisplayLogic {
         
+        var displayPhotosAccessStatusMessageCalled = false
         var displayFetchedPhotosCalled = false
         var displayFetchedAlbumCalled = false
         
         var viewModel: [Photos.Asset]!
+        var message: String?
+        
+        func displayPhotosAccessStatusMessage(message: String?) {
+            displayPhotosAccessStatusMessageCalled = true
+            self.message = message
+        }
         
         func displayFetchedPhotos(viewModel: [Photos.Asset]?) {
             displayFetchedPhotosCalled = true
@@ -43,6 +50,13 @@ class MainPresenterTests: XCTestCase {
         
     }
     //MARK: - Test
+    func test_presentFetchedPhotos() {
+        let mockMainDisplayLogic = MockMainDisplayLogic()
+        sut.viewController = mockMainDisplayLogic
+        sut.presentPhotosAccessStatus(message: nil)
+        XCTAssert(mockMainDisplayLogic.displayPhotosAccessStatusMessageCalled)
+    }
+    
     func test_presentFetchedPhotosShouldAskViewControllerToDisplayFetchedPhotos() {
         ///given
         let mockMainDisplayLogic = MockMainDisplayLogic()
