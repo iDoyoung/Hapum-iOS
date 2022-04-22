@@ -63,14 +63,18 @@ class PhotosService: PhotoFetchable {
     
     private func requestPhotos(for assets: PHFetchResult<PHAsset>) -> [Photos.Asset] {
         var photos = [Photos.Asset]()
+        let requestOptions = PHImageRequestOptions()
+        requestOptions.isSynchronous = true
+
         for index in 0..<assets.count {
             let asset = assets[index]
-            imageManager.requestImage(for: assets[index], targetSize: .zero, contentMode: .default, options: nil) { image, _ in
+            imageManager.requestImage(for: assets[index], targetSize: .zero, contentMode: .default, options: requestOptions) { image, _ in
                 photos.append(
                     Photos.Asset(identifier: asset.localIdentifier,
-                          image: image,
-                          creationDate: asset.creationDate,
-                          location: asset.location))
+                                 image: image,
+                                 creationDate: asset.creationDate,
+                                 location: asset.location))
+                
             }
         }
         return photos
