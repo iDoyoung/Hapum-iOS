@@ -41,7 +41,6 @@ class PhotosService: PhotoFetchable {
     
     func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
         guard let album = fetchResultCollection.firstObject else {
-            createAlbum()
             return
         }
         let assets = PHAsset.fetchAssets(in: album, options: photosOptions)
