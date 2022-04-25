@@ -74,6 +74,7 @@ final class MainViewController: UIViewController {
     
     private func setCreateButtonUI() {
         createButton.layer.shadowPath = nil
+        createButton.layer.shadowColor = UIColor.label.cgColor
         createButton.layer.shadowOffset = CGSize(width: 0, height: 3)
         createButton.layer.shadowOpacity = 0.3
         createButton.layer.shadowRadius = 3
@@ -93,12 +94,12 @@ final class MainViewController: UIViewController {
     var displayedAlbumsPhotos: [Photos.Asset] = []
 
     func fetchPhotos() {
-        interactor?.fetchPhotos(width: Float(UIScreen.main.bounds.width) / 4, height: Float(UIScreen.main.bounds.width) / 4)
+        interactor?.fetchPhotos(width: Float(UIScreen.main.scale), height: Float(UIScreen.main.scale))
         interactor?.fetchPhotosAccessStatus()
     }
     
     func fetchAlbum() {
-        interactor?.fetchAlbumsPhotos(width: Float(UIScreen.main.bounds.width) / 4, height: Float(UIScreen.main.bounds.width) / 4)
+        interactor?.fetchAlbumsPhotos(width: Float(UIScreen.main.scale), height: Float(UIScreen.main.scale))
     }
     
     //MARK: - ManagePhotosAccessButton action

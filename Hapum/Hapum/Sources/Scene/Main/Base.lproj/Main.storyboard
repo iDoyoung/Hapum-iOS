@@ -55,8 +55,19 @@
                                     <constraint firstItem="D7B-M1-9en" firstAttribute="leading" secondItem="uKU-oH-Ey0" secondAttribute="leading" constant="20" id="ZGC-Vq-WDG"/>
                                 </constraints>
                             </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
+                                <rect key="frame" x="0.0" y="625.33333333333337" width="390" height="132.66666666666663"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ps-c9-HNh">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-9E-xTo">
-                                <rect key="frame" x="20" y="766" width="350" height="44"/>
+                                <rect key="frame" x="20" y="758" width="350" height="44"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="iqt-Kg-h3z"/>
@@ -68,17 +79,6 @@
                                     <action selector="tapCreateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d0E-sI-VOO"/>
                                 </connections>
                             </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
-                                <rect key="frame" x="0.0" y="625.33333333333337" width="390" height="140.66666666666663"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ps-c9-HNh">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -91,7 +91,7 @@
                             <constraint firstItem="dXr-bL-VlX" firstAttribute="top" secondItem="uKU-oH-Ey0" secondAttribute="bottom" id="SlR-te-1du"/>
                             <constraint firstItem="MD9-9E-xTo" firstAttribute="top" secondItem="dXr-bL-VlX" secondAttribute="bottom" id="hEy-jK-7mE"/>
                             <constraint firstItem="MD9-9E-xTo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="mlN-JT-UkU"/>
-                            <constraint firstItem="MD9-9E-xTo" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="qqI-6j-U3i"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MD9-9E-xTo" secondAttribute="bottom" constant="8" id="olR-2c-tzn"/>
                             <constraint firstItem="uKU-oH-Ey0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="we2-5M-i4c"/>
                         </constraints>
                     </view>
