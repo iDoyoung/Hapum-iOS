@@ -15,14 +15,14 @@ class PhotosWorker {
         self.service = service
     }
     
-    func fetchAllPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
-        service.fetchPhotos { photos in
+    func fetchAllPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        service.fetchPhotos (width: width, height: height) { photos in
             completion(photos)
         }
     }
     
-    func fetchAlbumsPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
-        service.fetchPhotosFromAlbums { photos in
+    func fetchAlbumsPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        service.fetchPhotosFromAlbums(width: width, height: height){ photos in
             completion(photos)
         }
     }

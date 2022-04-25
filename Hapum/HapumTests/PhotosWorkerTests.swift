@@ -41,12 +41,12 @@ class PhotosWorkerTests: XCTestCase {
             completion(PhotosWorkerTests.testAccessStatus)
         }
         
-        func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
+        func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
             fetchPhotosCalled = true
             completion(PhotosWorkerTests.testPhotos)
         }
         
-        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
+        func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
             fetchPhotosFromAlbumsCalled = true
             completion(PhotosWorkerTests.testAlbumsPhotos)
         }
@@ -92,7 +92,7 @@ class PhotosWorkerTests: XCTestCase {
         ///when
         var fetchedPhotos = [Photos.Asset]()
         let expect = expectation(description: "Wait for fetchPhotos() to return")
-        sut.fetchAllPhotos { photos in
+        sut.fetchAllPhotos(width: 0, height: 0) { photos in
             fetchedPhotos = photos
             expect.fulfill()
         }
@@ -111,7 +111,7 @@ class PhotosWorkerTests: XCTestCase {
         ///when
         var fetchedAlbums = [Photos.Asset]()
         let expect = expectation(description: "Wait for fetchAlbumsPhotos() to return")
-        sut.fetchAlbumsPhotos { photos in
+        sut.fetchAlbumsPhotos(width: 0, height: 0) { photos in
             fetchedAlbums = photos
             expect.fulfill()
         }
