@@ -12,8 +12,8 @@ import Photos
 
 protocol PhotoFetchable {
     func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void)
-    func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void)
-    func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void)
+    func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void)
+    func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) 
     func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void)
 }
 
@@ -27,9 +27,9 @@ class PhotosService: PhotoFetchable {
         return options
     }()
     
-    func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
+    func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
         let assets = PHAsset.fetchAssets(with: self.photosOptions)
-        let photos = requestPhotos(for: assets)
+        let photos = requestPhotos(for: assets, to: CGSize(width: CGFloat(width), height: CGFloat(height)))
         completion(photos)
     }
    
@@ -39,12 +39,12 @@ class PhotosService: PhotoFetchable {
         return PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: options)
     }()
     
-    func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
+    func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
         guard let album = fetchResultCollection.firstObject else {
             return
         }
         let assets = PHAsset.fetchAssets(in: album, options: photosOptions)
-        let photos = requestPhotos(for: assets)
+        let photos = requestPhotos(for: assets, to: CGSize(width: CGFloat(width), height: CGFloat(height)))
         completion(photos)
     }
     
@@ -60,20 +60,26 @@ class PhotosService: PhotoFetchable {
         }
     }
     
-    private func requestPhotos(for assets: PHFetchResult<PHAsset>) -> [Photos.Asset] {
+    private func requestPhotos(for assets: PHFetchResult<PHAsset>, to size: CGSize) -> [Photos.Asset] {
         var photos = [Photos.Asset]()
         let requestOptions = PHImageRequestOptions()
         requestOptions.isSynchronous = true
-
-        for index in 0..<assets.count {
+        var count: Int
+        
+        if assets.count > 14 {
+            count = 14
+        } else {
+            count = assets.count
+        }
+        
+        for index in 0..<count {
             let asset = assets[index]
-            imageManager.requestImage(for: assets[index], targetSize: .zero, contentMode: .default, options: requestOptions) { image, _ in
+            imageManager.requestImage(for: assets[index], targetSize: size, contentMode: .default, options: requestOptions) { image, _ in
                 photos.append(
                     Photos.Asset(identifier: asset.localIdentifier,
                                  image: image,
                                  creationDate: asset.creationDate,
                                  location: asset.location))
-                
             }
         }
         return photos
