@@ -8,7 +8,15 @@
 import Foundation
 
 extension Date {
-   
+    
+    func yesterday() -> Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+    }
+    
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: self)!
+    }
+    
     var onlyDate: String {
         let formatter = DateFormatter()
         formatter.timeStyle = .none

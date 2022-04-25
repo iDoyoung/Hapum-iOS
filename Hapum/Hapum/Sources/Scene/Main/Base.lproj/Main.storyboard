@@ -30,7 +30,8 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10I-BD-N0Z">
                                                 <rect key="frame" x="233.33333333333334" y="0.0" width="116.66666666666666" height="40.666666666666664"/>
-                                                <color key="tintColor" systemColor="systemGreenColor"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Manage">
                                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="15"/>
