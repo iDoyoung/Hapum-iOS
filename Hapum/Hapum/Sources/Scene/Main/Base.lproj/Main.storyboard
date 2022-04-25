@@ -17,19 +17,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="uKU-oH-Ey0">
-                                <rect key="frame" x="0.0" y="88" width="390" height="537.33333333333337"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="650"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7B-M1-9en">
-                                        <rect key="frame" x="20" y="0.0" width="350" height="40.666666666666664"/>
+                                        <rect key="frame" x="20" y="0.0" width="350" height="100"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Allow Access to Your Photos" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3u-A0-wBJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="233.33333333333334" height="40.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="233.33333333333334" height="100"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10I-BD-N0Z">
-                                                <rect key="frame" x="233.33333333333334" y="0.0" width="116.66666666666666" height="40.666666666666664"/>
+                                                <rect key="frame" x="233.33333333333334" y="0.0" width="116.66666666666666" height="100"/>
                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                 <state key="normal" title="Button"/>
@@ -43,8 +43,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-V5-xsv" customClass="PhotosWallView" customModule="Hapum" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="70.666666666666657" width="350" height="466.66666666666674"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <rect key="frame" x="0.0" y="130" width="390" height="520"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2nm-V5-xsv" secondAttribute="height" multiplier="3:4" id="J78-QF-Nmu"/>
                                         </constraints>
@@ -55,17 +54,6 @@
                                     <constraint firstItem="D7B-M1-9en" firstAttribute="leading" secondItem="uKU-oH-Ey0" secondAttribute="leading" constant="20" id="ZGC-Vq-WDG"/>
                                 </constraints>
                             </stackView>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dXr-bL-VlX">
-                                <rect key="frame" x="0.0" y="625.33333333333337" width="390" height="132.66666666666663"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Ps-c9-HNh">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-9E-xTo">
                                 <rect key="frame" x="20" y="758" width="350" height="44"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -83,13 +71,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dXr-bL-VlX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="2XZ-T5-rsp"/>
-                            <constraint firstItem="dXr-bL-VlX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Jy-UK-7fc"/>
                             <constraint firstAttribute="trailing" secondItem="MD9-9E-xTo" secondAttribute="trailing" constant="20" id="B0n-vi-cQq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uKU-oH-Ey0" secondAttribute="trailing" id="FXG-rX-3qi"/>
                             <constraint firstItem="uKU-oH-Ey0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="LqP-eN-U81"/>
-                            <constraint firstItem="dXr-bL-VlX" firstAttribute="top" secondItem="uKU-oH-Ey0" secondAttribute="bottom" id="SlR-te-1du"/>
-                            <constraint firstItem="MD9-9E-xTo" firstAttribute="top" secondItem="dXr-bL-VlX" secondAttribute="bottom" id="hEy-jK-7mE"/>
+                            <constraint firstItem="MD9-9E-xTo" firstAttribute="top" secondItem="uKU-oH-Ey0" secondAttribute="bottom" constant="20" id="m4R-mg-snb"/>
                             <constraint firstItem="MD9-9E-xTo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="mlN-JT-UkU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="MD9-9E-xTo" secondAttribute="bottom" constant="8" id="olR-2c-tzn"/>
                             <constraint firstItem="uKU-oH-Ey0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="we2-5M-i4c"/>
@@ -100,7 +85,6 @@
                         <outlet property="accessStatusView" destination="D7B-M1-9en" id="WMv-Md-Hdc"/>
                         <outlet property="createButton" destination="MD9-9E-xTo" id="cD6-XP-RDt"/>
                         <outlet property="managePhotosAccessButton" destination="10I-BD-N0Z" id="2F5-2p-iCN"/>
-                        <outlet property="photosCollectionView" destination="dXr-bL-VlX" id="vCO-J6-t3N"/>
                         <outlet property="photosWallView" destination="2nm-V5-xsv" id="3lI-iQ-ULw"/>
                         <outlet property="statusMessageLabel" destination="K3u-A0-wBJ" id="fIq-jx-GTM"/>
                     </connections>

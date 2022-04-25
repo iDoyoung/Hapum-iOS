@@ -43,7 +43,6 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var accessStatusView: UIStackView!
     @IBOutlet var statusMessageLabel: UILabel!
     @IBOutlet weak var managePhotosAccessButton: UIButton!
-    @IBOutlet var photosCollectionView: UICollectionView!
     @IBOutlet weak var photosWallView: PhotosWallView!
     @IBOutlet weak var createButton: UIButton!
     
@@ -58,13 +57,9 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        photosCollectionView.register(UINib(nibName: NameSpace.photosViewCellNibName, bundle: nil), forCellWithReuseIdentifier: PhotosViewCell.reuseIdentifier)
-        photosCollectionView.collectionViewLayout = createLayout()
-        photosCollectionView.alwaysBounceVertical = false
         fetchPhotos()
         fetchAlbum()
         setCreateButtonUI()
-        configureDataSource()
     }
     
     private func setStatusMessageLabelUI(text: String?, textColor: UIColor) {
@@ -157,47 +152,6 @@ extension MainViewController: MainDisplayLogic {
             photosWallView.photosFrameView[index].photoImageView.image = photo.image
         }
         photosWallView.setFrameView()
-    }
-    
-}
-
-extension MainViewController {
-    
-    private func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            
-            let item = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalHeight(3/5),
-                                                   heightDimension: .fractionalHeight(4/5)))
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                   heightDimension: .fractionalHeight(1)),
-                subitems: [item])
-            group.interItemSpacing = .fixed(4)
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0,
-                                                            leading: 0,
-                                                            bottom: 0,
-                                                            trailing: 0)
-            return section
-        }
-        return layout
-    }
-    
-    private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, Photos.Asset>(collectionView: photosCollectionView) { collectionView, indexPath, itemIdentifier in
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosViewCell.reuseIdentifier, for: indexPath) as? PhotosViewCell else {
-                return UICollectionViewCell()
-            }
-            cell.backgroundColor = .blue
-            return cell
-        }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, Photos.Asset>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(displayedAlbumsPhotos)
-        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
 }
