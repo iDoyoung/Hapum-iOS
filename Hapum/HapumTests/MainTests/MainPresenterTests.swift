@@ -33,9 +33,9 @@ class MainPresenterTests: XCTestCase {
         var viewModel: [Photos.Asset]!
         var message: String?
         
-        func displayPhotosAccessStatusMessage(message: String?) {
+        func displayPhotosAccessStatusMessage(viewModel: Photos.Status.Response) {
             displayPhotosAccessStatusMessageCalled = true
-            self.message = message
+            self.message = viewModel.message
         }
         
         func displayFetchedPhotos(viewModel: [Photos.Asset]?) {
@@ -53,7 +53,8 @@ class MainPresenterTests: XCTestCase {
     func test_presentFetchedPhotos() {
         let mockMainDisplayLogic = MockMainDisplayLogic()
         sut.viewController = mockMainDisplayLogic
-        sut.presentPhotosAccessStatus(message: nil)
+        sut.presentPhotosAccessStatus(response: Photos.Status.Response(message: nil,
+                                                                       isLimited: nil))
         XCTAssert(mockMainDisplayLogic.displayPhotosAccessStatusMessageCalled)
     }
     

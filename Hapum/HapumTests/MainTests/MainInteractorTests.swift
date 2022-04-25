@@ -25,7 +25,6 @@ class MainInteractorTests: XCTestCase {
 
     //MARK: - Mock
     class MockMainPresentationLogic: MainPresentationLogic {
-        
         var presentFetchedAllPhotosCalled = false
         var presentFetchedAlbumsCalled = false
         var presentPhotosAccessStatusCalled = false
@@ -38,7 +37,7 @@ class MainInteractorTests: XCTestCase {
             presentFetchedAlbumsCalled = true
         }
         
-        func presentPhotosAccessStatus(message: String?) {
+        func presentPhotosAccessStatus(response: Photos.Status.Response) {
             presentPhotosAccessStatusCalled = true
         }
         
@@ -50,20 +49,20 @@ class MainInteractorTests: XCTestCase {
         var fetchAlbumsPhotosCalled = false
         var fetchAccessStatusCalled = false
         
-        override func fetchAllPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
+        override func fetchAllPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
             fetchAllPhotosCalled = true
             completion([Seeds.PhotosDummy.springPhoto,
                         Seeds.PhotosDummy.summerPhoto,
                         Seeds.PhotosDummy.fallsPhoto,
                         Seeds.PhotosDummy.winterPhoto])
         }
-        
-        override func fetchAlbumsPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
+       
+        override func fetchAlbumsPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
             fetchAlbumsPhotosCalled = true
             completion([Seeds.PhotosDummy.winterPhoto,
                         Seeds.PhotosDummy.springPhoto])
         }
-        
+
         override func fetchAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
             fetchAccessStatusCalled = true
             completion(.authorized)
@@ -72,25 +71,25 @@ class MainInteractorTests: XCTestCase {
     }
     
     class MockPhotosService: PhotoFetchable {
-        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
-        }
-        
-        
-        func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
-            completion(.limited)
-        }
-        
-        func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
+        func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
             completion([Seeds.PhotosDummy.springPhoto,
                         Seeds.PhotosDummy.summerPhoto,
                         Seeds.PhotosDummy.fallsPhoto,
                         Seeds.PhotosDummy.winterPhoto])
         }
         
-        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
+        func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
             completion([Seeds.PhotosDummy.winterPhoto,
                         Seeds.PhotosDummy.springPhoto
                        ])
+        }
+        
+        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+        }
+        
+        
+        func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
+            completion(.limited)
         }
         
     }
@@ -116,7 +115,7 @@ class MainInteractorTests: XCTestCase {
         sut.photosWorker = mockPhotosWorker
         
         ///when
-        sut.fetchPhotos()
+        sut.fetchPhotos(width: 0, height: 0)
         
         ///then
         XCTAssert(mockMainPresentationLogic.presentFetchedAllPhotosCalled, "FetchPhotos() should ask presenter to format photos")
@@ -131,7 +130,7 @@ class MainInteractorTests: XCTestCase {
         sut.photosWorker = mockPhotosWorker
         
         ///when
-        sut.fetchAlbumsPhotos()
+        sut.fetchAlbumsPhotos(width: 0, height: 0)
         
         ///then
         XCTAssert(mockMainPresentationLogic.presentFetchedAlbumsCalled, "FetchAlbumsPhotos() should ask presenter to format photos")

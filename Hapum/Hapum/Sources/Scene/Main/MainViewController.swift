@@ -93,12 +93,12 @@ final class MainViewController: UIViewController {
     var displayedAlbumsPhotos: [Photos.Asset] = []
 
     func fetchPhotos() {
-        interactor?.fetchPhotos()
+        interactor?.fetchPhotos(width: Float(UIScreen.main.bounds.width) / 4, height: Float(UIScreen.main.bounds.width) / 4)
         interactor?.fetchPhotosAccessStatus()
     }
     
     func fetchAlbum() {
-        interactor?.fetchAlbumsPhotos()
+        interactor?.fetchAlbumsPhotos(width: Float(UIScreen.main.bounds.width) / 4, height: Float(UIScreen.main.bounds.width) / 4)
     }
     
     //MARK: - ManagePhotosAccessButton action
@@ -125,7 +125,7 @@ extension MainViewController: MainDisplayLogic {
                 return
             }
             if isLimited {
-                self.setStatusMessageLabelUI(text: message, textColor: .systemBlue)
+                self.setStatusMessageLabelUI(text: message, textColor: .label)
                 self.managePhotosAccessButton.addTarget(self, action: #selector(self.showManagePhotosAccessAlert), for: .touchUpInside)
             } else {
                 self.setStatusMessageLabelUI(text: message, textColor: .systemPink)

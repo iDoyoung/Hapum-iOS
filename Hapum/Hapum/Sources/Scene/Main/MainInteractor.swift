@@ -9,8 +9,8 @@ import Foundation
 
 protocol MainBusinessLogic {
     func fetchPhotosAccessStatus()
-    func fetchPhotos()
-    func fetchAlbumsPhotos()
+    func fetchPhotos(width: Float, height: Float)
+    func fetchAlbumsPhotos(width: Float, height: Float)
 }
 
 protocol MainDataStore {
@@ -51,18 +51,18 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
         }
     }
     
-    func fetchPhotos() {
-        photosWorker.fetchAllPhotos(completion: { [weak self] photos in
+    func fetchPhotos(width: Float, height: Float) {
+        photosWorker.fetchAllPhotos(width: width, height: height) { [weak self] photos in
             self?.photos = photos
             self?.presenter?.presentFetchedAllPhotos(resource: photos)
-        })
+        }
     }
     
-    func fetchAlbumsPhotos() {
-        photosWorker.fetchAlbumsPhotos(completion: { [weak self] albumsPhotos in
+    func fetchAlbumsPhotos(width: Float, height: Float) {
+        photosWorker.fetchAlbumsPhotos(width: width, height: height) { [weak self] albumsPhotos in
             self?.albumsPhotos = albumsPhotos
             self?.presenter?.presentFetchedAlbums(resource: self?.albumsPhotos)
-        })
+        }
     }
     
 }

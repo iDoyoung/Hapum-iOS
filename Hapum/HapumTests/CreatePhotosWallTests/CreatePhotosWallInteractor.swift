@@ -55,13 +55,13 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
     }
     
     class MockSuccessPhotosService: PhotoFetchable {
+        func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        }
+        
+        func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        }
+        
         func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
-        }
-        
-        func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
-        }
-        
-        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
         }
         
         func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
@@ -70,14 +70,15 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
     }
     
     class MockFailurePhotosService: PhotoFetchable {
+        func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        }
+        
+        func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        }
+        
         func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
         }
-        
-        func fetchPhotos(completion: @escaping ([Photos.Asset]) -> Void) {
-        }
-        
-        func fetchPhotosFromAlbums(completion: @escaping ([Photos.Asset]) -> Void) {
-        }
+     
         
         func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
             completion((false, nil))
