@@ -39,8 +39,8 @@ class FrameView: UIView {
         
         layer.shadowPath = nil
         layer.shadowOffset = CGSize(width: 0, height: 3)
-        layer.shadowOpacity = 0.3
-        layer.shadowRadius = 3
+        layer.shadowOpacity = 0.4
+        layer.shadowRadius = 2
     }
     
     private func setLayoutConstraint() {
