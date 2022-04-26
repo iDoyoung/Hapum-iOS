@@ -59,6 +59,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         fetchPhotos()
         fetchAlbum()
+        setPhotoViewUI()
         setCreateButtonUI()
     }
     
@@ -67,12 +68,12 @@ final class MainViewController: UIViewController {
         statusMessageLabel.textColor = textColor
     }
     
+    private func setPhotoViewUI() {
+        photosWallView.shadowEffect(height: photosWallView.bounds.height/60)
+    }
+    
     private func setCreateButtonUI() {
-        createButton.layer.shadowPath = nil
-        createButton.layer.shadowColor = UIColor.label.cgColor
-        createButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        createButton.layer.shadowOpacity = 0.3
-        createButton.layer.shadowRadius = 3
+        createButton.shadowEffect(height: createButton.bounds.height/10)
     }
     
     //MARK: - Routing
@@ -89,7 +90,7 @@ final class MainViewController: UIViewController {
     var displayedAlbumsPhotos: [Photos.Asset] = []
 
     func fetchPhotos() {
-        interactor?.fetchPhotos(width: Float(UIScreen.main.scale), height: Float(UIScreen.main.scale))
+        interactor?.fetchPhotos(width: .zero, height: .zero)
         interactor?.fetchPhotosAccessStatus()
     }
     

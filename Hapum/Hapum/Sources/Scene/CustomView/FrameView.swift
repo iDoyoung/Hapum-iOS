@@ -35,12 +35,9 @@ class FrameView: UIView {
     private func setSuperView() {
         backgroundColor = .white
         layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 2
+        layer.borderWidth = UIScreen.main.bounds.width / 200
         
-        layer.shadowPath = nil
-        layer.shadowOffset = CGSize(width: 0, height: 3)
-        layer.shadowOpacity = 0.4
-        layer.shadowRadius = 2
+        self.shadowEffect(height: self.bounds.height / 20)
     }
     
     private func setLayoutConstraint() {

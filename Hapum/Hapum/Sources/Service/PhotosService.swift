@@ -29,8 +29,8 @@ class PhotosService: PhotoFetchable {
     
     func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
         let options = fetchOptions
-        let dateFrom: Date = Date().yesterday()
-        options.predicate = NSPredicate(format: "creationDate > %@", dateFrom as NSDate)
+        //let dateFrom: Date = Date().yesterday()
+        //options.predicate = NSPredicate(format: "creationDate > %@", dateFrom as NSDate)
         options.fetchLimit = 14
         let assets = PHAsset.fetchAssets(with: options)
         let photos = requestPhotos(for: assets, to: CGSize(width: CGFloat(width), height: CGFloat(height)))
