@@ -122,9 +122,11 @@ extension MainViewController: MainDisplayLogic {
                 return
             }
             if isLimited {
+                self.accessStatusView.isHidden = false
                 self.setStatusMessageLabelUI(text: message, textColor: .label)
                 self.managePhotosAccessButton.addTarget(self, action: #selector(self.showManagePhotosAccessAlert), for: .touchUpInside)
             } else {
+                self.accessStatusView.isHidden = false
                 self.setStatusMessageLabelUI(text: message, textColor: .systemPink)
                 self.managePhotosAccessButton.addTarget(self, action: #selector(self.showPhotosAccessSetting), for: .touchUpInside)
             }

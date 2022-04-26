@@ -16,21 +16,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="uKU-oH-Ey0">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uKU-oH-Ey0">
                                 <rect key="frame" x="0.0" y="88" width="390" height="712"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7B-M1-9en">
-                                        <rect key="frame" x="20" y="0.0" width="350" height="88"/>
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D7B-M1-9en">
+                                        <rect key="frame" x="20" y="-64" width="350" height="44"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Allow Access to Your Photos" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3u-A0-wBJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="233.33333333333334" height="88"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3u-A0-wBJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="233.33333333333334" height="44"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                 <color key="textColor" systemColor="systemPinkColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10I-BD-N0Z">
-                                                <rect key="frame" x="233.33333333333334" y="0.0" width="116.66666666666666" height="88"/>
+                                                <rect key="frame" x="233.33333333333334" y="0.0" width="116.66666666666666" height="44"/>
                                                 <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="cfz-E1-npF"/>
+                                                </constraints>
                                                 <color key="tintColor" systemColor="systemBackgroundColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Manage">
@@ -43,7 +46,7 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-V5-xsv" customClass="PhotosWallView" customModule="Hapum" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="118" width="390" height="520"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2nm-V5-xsv" secondAttribute="height" multiplier="3:4" id="J78-QF-Nmu"/>
                                         </constraints>
@@ -63,6 +66,9 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="MD9-9E-xTo" firstAttribute="top" secondItem="2nm-V5-xsv" secondAttribute="bottom" priority="750" constant="20" id="0MP-wj-I4K"/>
+                                    <constraint firstItem="2nm-V5-xsv" firstAttribute="top" secondItem="D7B-M1-9en" secondAttribute="bottom" priority="750" constant="20" id="62c-T9-cQu"/>
+                                    <constraint firstAttribute="bottom" secondItem="MD9-9E-xTo" secondAttribute="bottom" id="DpK-O8-p1a"/>
                                     <constraint firstAttribute="trailing" secondItem="D7B-M1-9en" secondAttribute="trailing" constant="20" id="QuQ-Uf-uF4"/>
                                     <constraint firstItem="D7B-M1-9en" firstAttribute="leading" secondItem="uKU-oH-Ey0" secondAttribute="leading" constant="20" id="ZGC-Vq-WDG"/>
                                     <constraint firstItem="MD9-9E-xTo" firstAttribute="leading" secondItem="uKU-oH-Ey0" secondAttribute="leading" constant="10" id="g0d-gI-mQX"/>
