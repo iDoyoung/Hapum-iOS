@@ -52,14 +52,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qr3-h4-Dhm" customClass="FrameView" customModule="Hapum" customModuleProvider="target">
-                    <rect key="frame" x="176" y="285.5" width="64" height="75"/>
+                    <rect key="frame" x="176" y="290" width="64" height="75"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="qr3-h4-Dhm" secondAttribute="height" multiplier="64:75" id="asJ-8T-7FA"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lge-8c-Wcr" customClass="FrameView" customModule="Hapum" customModuleProvider="target">
-                    <rect key="frame" x="176" y="532.5" width="58" height="58"/>
+                    <rect key="frame" x="176" y="535.5" width="58" height="58"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="lge-8c-Wcr" secondAttribute="height" multiplier="1:1" id="p51-eP-QJO"/>
@@ -87,7 +87,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RaY-qc-ph2" customClass="FrameView" customModule="Hapum" customModuleProvider="target">
-                    <rect key="frame" x="176" y="449.5" width="64" height="75"/>
+                    <rect key="frame" x="176" y="450" width="64" height="75"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="RaY-qc-ph2" secondAttribute="height" multiplier="64:75" id="hRZ-qx-58S"/>
@@ -146,14 +146,14 @@
                 <constraint firstItem="7bT-Xp-Y5k" firstAttribute="leading" secondItem="FRG-Br-OgJ" secondAttribute="trailing" multiplier="1.08" id="Gw3-Gx-xoA"/>
                 <constraint firstItem="r1b-kV-NkX" firstAttribute="bottom" secondItem="FRG-Br-OgJ" secondAttribute="bottom" multiplier="0.9" id="Hho-2r-DMn"/>
                 <constraint firstItem="i5M-J3-2n3" firstAttribute="trailing" secondItem="FRG-Br-OgJ" secondAttribute="trailing" id="Hye-Hl-f41"/>
-                <constraint firstItem="RaY-qc-ph2" firstAttribute="top" secondItem="7bT-Xp-Y5k" secondAttribute="bottom" constant="8" symbolic="YES" id="IR1-gR-IR5"/>
+                <constraint firstItem="RaY-qc-ph2" firstAttribute="top" secondItem="7bT-Xp-Y5k" secondAttribute="bottom" multiplier="1.02" id="IR1-gR-IR5"/>
                 <constraint firstItem="qr3-h4-Dhm" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.181303" id="QGC-Gd-FsF"/>
                 <constraint firstItem="lb6-D6-1W6" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.232295" id="RDA-po-QQI"/>
                 <constraint firstItem="r1b-kV-NkX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.192635" id="ROP-tK-LiY"/>
                 <constraint firstItem="qr3-h4-Dhm" firstAttribute="leading" secondItem="7bT-Xp-Y5k" secondAttribute="leading" id="Rtp-S6-u1q"/>
                 <constraint firstItem="RaY-qc-ph2" firstAttribute="leading" secondItem="7bT-Xp-Y5k" secondAttribute="leading" id="TYu-TR-HZx"/>
                 <constraint firstItem="7bT-Xp-Y5k" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.195467" id="UEe-62-dvl"/>
-                <constraint firstItem="lge-8c-Wcr" firstAttribute="top" secondItem="RaY-qc-ph2" secondAttribute="bottom" constant="8" symbolic="YES" id="Uk8-yV-w6Y"/>
+                <constraint firstItem="lge-8c-Wcr" firstAttribute="top" secondItem="RaY-qc-ph2" secondAttribute="bottom" multiplier="1.02" id="Uk8-yV-w6Y"/>
                 <constraint firstItem="MAM-Yp-48u" firstAttribute="top" secondItem="lb6-D6-1W6" secondAttribute="bottom" multiplier="1.02" id="X9e-U8-tnY"/>
                 <constraint firstItem="nX5-Ri-QVm" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.192635" id="Z6V-IY-QUf"/>
                 <constraint firstItem="nX5-Ri-QVm" firstAttribute="trailing" secondItem="FRG-Br-OgJ" secondAttribute="trailing" id="bNL-rL-Rma"/>
@@ -168,7 +168,7 @@
                 <constraint firstItem="lb6-D6-1W6" firstAttribute="top" secondItem="7bT-Xp-Y5k" secondAttribute="top" id="naQ-0N-m8y"/>
                 <constraint firstItem="lb6-D6-1W6" firstAttribute="top" secondItem="Sgz-KA-UAE" secondAttribute="bottom" multiplier="1.03" id="reA-6m-N3k"/>
                 <constraint firstItem="MAM-Yp-48u" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.172805" id="tB9-IU-csI"/>
-                <constraint firstItem="7bT-Xp-Y5k" firstAttribute="top" secondItem="qr3-h4-Dhm" secondAttribute="bottom" multiplier="1.01" constant="8" symbolic="YES" id="tIg-3F-anJ"/>
+                <constraint firstItem="7bT-Xp-Y5k" firstAttribute="top" secondItem="qr3-h4-Dhm" secondAttribute="bottom" multiplier="1.02" id="tIg-3F-anJ"/>
                 <constraint firstItem="lb6-D6-1W6" firstAttribute="leading" secondItem="7bT-Xp-Y5k" secondAttribute="trailing" multiplier="1.05" id="uME-3o-GXS"/>
                 <constraint firstItem="lge-8c-Wcr" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.164306" id="y3Z-0I-MZ6"/>
             </constraints>
