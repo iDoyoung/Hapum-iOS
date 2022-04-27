@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>PHPhotoLibraryPreventAutomaticLimitedAccessAlert</key>
-	<false/>
+	<true/>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string></string>
 	<key>UIApplicationSceneManifest</key>

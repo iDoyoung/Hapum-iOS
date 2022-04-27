@@ -24,6 +24,20 @@ enum NameSpace {
     static let photosViewCellNibName = "PhotosViewCell"
     static let frameViewCellNibName = "FrameViewCell"
     static let photosWallViewNibName = "PhotosWallView"
+    
+    //MARK: - Alert
+    enum Alert {
+        static let title = "Manage to Access to Your Photos"
+        static let message = ""
+        
+        enum ActionTitle {
+            static let changeSetting = "Change Settings"
+            static let selectMore = "Select More Photos"
+            static let cancel = "Cancel"
+        }
+        
+    }
+    
     //MARK: - Segue identifier
     enum MainSegue {
         static let frameSelectionIdentifier = "FrameSelection"

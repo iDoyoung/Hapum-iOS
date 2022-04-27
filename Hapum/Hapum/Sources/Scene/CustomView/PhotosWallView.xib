@@ -126,7 +126,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="Aa9-2M-Fwd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.175637" id="0O4-0H-9Ig"/>
                 <constraint firstItem="i5M-J3-2n3" firstAttribute="top" secondItem="nX5-Ri-QVm" secondAttribute="bottom" multiplier="1.04" id="1eK-hR-cUi"/>
@@ -177,9 +177,6 @@
         </view>
     </objects>
     <resources>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

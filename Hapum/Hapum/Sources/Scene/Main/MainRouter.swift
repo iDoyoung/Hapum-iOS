@@ -44,16 +44,19 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         guard let viewController = viewController else {
             return
         }
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: NameSpace.Alert.title,
+                                      message: NameSpace.Alert.message,
+                                      preferredStyle: .actionSheet)
         let alertActions = [
-            UIAlertAction(title: "Change Settings",
+            UIAlertAction(title: NameSpace.Alert.ActionTitle.changeSetting,
                           style: .default) { [weak self] _ in
                               self?.openSetting()
                           },
-            UIAlertAction(title: "Select More Photos",
+            UIAlertAction(title: NameSpace.Alert.ActionTitle.selectMore,
                           style: .default) { _ in
                               PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: viewController)
-                          }
+                          },
+            UIAlertAction(title: NameSpace.Alert.ActionTitle.cancel, style: .cancel)
         ]
         alertActions.forEach { action in
             alert.addAction(action)
