@@ -13,8 +13,8 @@ extension UIView {
         self.layer.shadowPath = nil
         self.layer.shadowColor = UIColor.black.cgColor
         self.layer.shadowOffset = CGSize(width: 0, height: height)
-        self.layer.shadowOpacity = 0.3
-        self.layer.shadowRadius = 3
+        self.layer.shadowOpacity = 0.4
+        self.layer.shadowRadius = 2
     }
     
 }

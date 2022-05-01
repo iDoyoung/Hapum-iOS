@@ -17,66 +17,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xw-fI-cAG">
-                                <rect key="frame" x="0.0" y="44" width="390" height="633.66666666666663"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="717"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oLv-gC-5DJ">
-                                <rect key="frame" x="16" y="697.66666666666663" width="358" height="20.333333333333371"/>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="q0K-eI-dvc">
-                                <rect key="frame" x="16" y="728" width="358" height="31"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fp-Ce-gLN">
-                                        <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="31"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcG-80-Qvq">
+                                <rect key="frame" x="0.0" y="761" width="390" height="49"/>
+                                <items>
+                                    <barButtonItem image="paintpalette" catalog="system" id="J86-no-OOa" userLabel="Change Color">
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Frame"/>
-                                        <connections>
-                                            <action selector="tapChangeColorButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="egJ-qg-oTG"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ge-bY-wXy">
-                                        <rect key="frame" x="191.66666666666663" y="0.0" width="166.33333333333337" height="31"/>
+                                    </barButtonItem>
+                                    <barButtonItem width="307" style="plain" systemItem="fixedSpace" id="cDW-uO-bYG"/>
+                                    <barButtonItem style="done" systemItem="done" id="nsb-ct-Ns7">
                                         <color key="tintColor" systemColor="labelColor"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Background"/>
                                         <connections>
-                                            <action selector="tapChangeColorButtons:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="d6B-K5-Ztz"/>
+                                            <action selector="tapDoneButton:" destination="Y6W-OH-hqX" id="IPo-2D-2aq"/>
                                         </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9j-ms-j3l">
-                                <rect key="frame" x="16" y="779" width="358" height="31"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
-                                <connections>
-                                    <action selector="tapSaveButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="IcL-93-Fux"/>
-                                </connections>
-                            </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="224-IK-g9W"/>
-                            <constraint firstItem="q0K-eI-dvc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="3Nq-N0-iZ7"/>
-                            <constraint firstItem="Q9j-ms-j3l" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="5Ci-NC-U7h"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="q0K-eI-dvc" secondAttribute="trailing" constant="16" id="A00-Pg-0QJ"/>
-                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="EJD-8S-lc9"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Q9j-ms-j3l" secondAttribute="trailing" constant="16" id="HVe-kg-WDh"/>
-                            <constraint firstItem="oLv-gC-5DJ" firstAttribute="top" secondItem="7Xw-fI-cAG" secondAttribute="bottom" constant="20" id="Klq-2i-dfo"/>
-                            <constraint firstItem="oLv-gC-5DJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="b98-zA-yhL"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oLv-gC-5DJ" secondAttribute="trailing" constant="16" id="dHa-WJ-mAp"/>
-                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="hjs-Pr-qBx"/>
-                            <constraint firstItem="Q9j-ms-j3l" firstAttribute="top" secondItem="q0K-eI-dvc" secondAttribute="bottom" constant="20" id="oGk-gi-CUb"/>
-                            <constraint firstItem="q0K-eI-dvc" firstAttribute="top" secondItem="oLv-gC-5DJ" secondAttribute="bottom" constant="10" id="vfg-t0-DK0"/>
-                            <constraint firstItem="Q9j-ms-j3l" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="vtU-1q-ALe"/>
+                            <constraint firstItem="lcG-80-Qvq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5Sy-mN-2V1"/>
+                            <constraint firstItem="lcG-80-Qvq" firstAttribute="top" secondItem="7Xw-fI-cAG" secondAttribute="bottom" id="D4q-6O-Ocf"/>
+                            <constraint firstItem="lcG-80-Qvq" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="HAN-ka-JBO"/>
+                            <constraint firstItem="lcG-80-Qvq" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NOh-er-ODd"/>
+                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="VRr-Cg-C3X"/>
+                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZHj-OK-gjE"/>
+                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="oSB-rP-ved"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="changeBackgroundColorButton" destination="4Ge-bY-wXy" id="EcY-zd-EzC"/>
-                        <outlet property="changePhotosFrameColorButton" destination="2fp-Ce-gLN" id="zgc-5H-9HY"/>
+                        <outlet property="changeColorButton" destination="J86-no-OOa" id="uly-bY-XXE"/>
                         <outlet property="photosWallView" destination="7Xw-fI-cAG" id="QPu-9B-qoL"/>
                     </connections>
                 </viewController>
@@ -86,14 +58,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="paintpalette" catalog="system" width="128" height="105"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

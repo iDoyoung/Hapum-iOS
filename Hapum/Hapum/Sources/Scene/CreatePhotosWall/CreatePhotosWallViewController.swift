@@ -42,64 +42,41 @@ class CreatePhotosWallViewController: UIViewController {
     }
     
     @IBOutlet weak var photosWallView: UIView!
-    @IBOutlet weak var changePhotosFrameColorButton: UIButton!
-    @IBOutlet weak var changeBackgroundColorButton: UIButton!
-   
-    @IBAction func tapChangeColorButtons(_ sender: UIButton) {
-        guard let router = router else {
-            return
-        }
-        tappedButton = sender
-        router.presentColorPickerView()
-    }
-    
-    //TODO: - Implement Save button
-    @IBAction func tapSaveButton(_ sender: UIButton) {
-        interactor?.addPhoto(photo: Photos.Photo(image: UIImage(systemName: "")))
-        /// - todo: Save to photo library
-        /// - todo: Show completion make photo
-    }
-    
-    
-    var tappedButton: UIButton?
-    
-    func chageColor(color: UIColor) {
-        switch tappedButton {
-        case changeBackgroundColorButton:
-            let photosWallview = photosWallView.subviews.first?.subviews.last
-            photosWallview?.backgroundColor = color
-        case changePhotosFrameColorButton:
-            let photosWallview = photosWallView.subviews.first as! PhotosWallView
-            for view in photosWallview.photosFrameView {
-                view.layer.borderColor = color.cgColor
-            }
-        default:
-            break
-        }
+    @IBOutlet weak var changeColorButton: UIBarButtonItem!
+    @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureChangeColorMenu()
         getPhotos()
+        setShadow()
     }
 
     var displayedPhotos: [Photos.Asset] = []
     var selectedPhotosIndex: Int?
     
-    func getPhotos() {
+    private func getPhotos() {
         interactor?.getPhotos()
     }
 
-    func showImagePickerView() {
+    private func showImagePickerView() {
         guard let router = router else { return }
         router.presentPhotoPickerView()
     }
     
-    func showColorPickerView() {
-        guard let router = router else {
-            return
+    var changeColor: ((UIColor) -> Void)?
+    
+    private func changeBackgroundColor(color: UIColor) {
+        let photosWallview = photosWallView.subviews.first?.subviews.last
+        photosWallview?.backgroundColor = color
+    }
+    
+    private func changePhotosFrameColor(color: UIColor) {
+        let photosWallview = photosWallView.subviews.first as! PhotosWallView
+        for view in photosWallview.photosFrameView {
+            view.layer.borderColor = color.cgColor
         }
-        router.presentColorPickerView()
     }
     
     private func configurePhotosWall() {
@@ -127,7 +104,32 @@ class CreatePhotosWallViewController: UIViewController {
             view.addGestureRecognizer(gesture)
         }
     }
-   
+    
+    private func setShadow() {
+        photosWallView.shadowEffect(height: photosWallView.bounds.height/60)
+    }
+
+    private func changeBackgroundColorAction() -> UIAction {
+        return UIAction(title: "Background") { [weak self] _ in
+            self?.changeColor = self?.changeBackgroundColor(color:)
+            self?.router?.presentColorPickerView()
+        }
+    }
+
+    private func changeFrameColorAction() -> UIAction {
+        return UIAction(title: "Frame") { [weak self] _ in
+            self?.changeColor = self?.changePhotosFrameColor(color:)
+            self?.router?.presentColorPickerView()
+        }
+    }
+    
+    private func configureChangeColorMenu() {
+        let changeBackgroundColorAction = self.changeBackgroundColorAction()
+        let changeFrameColorAction = self.changeFrameColorAction()
+        changeColorButton.primaryAction = nil
+        changeColorButton.menu = UIMenu(title: "Change Color", options: [], children: [changeBackgroundColorAction, changeFrameColorAction])
+    }
+    
 }
 
 extension CreatePhotosWallViewController {
@@ -193,7 +195,7 @@ extension CreatePhotosWallViewController: PHPickerViewControllerDelegate {
 extension CreatePhotosWallViewController: UIColorPickerViewControllerDelegate {
     
     func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
-        chageColor(color: color)
+        _ = changeColor?(color)
         viewController.dismiss(animated: true)
     }
 

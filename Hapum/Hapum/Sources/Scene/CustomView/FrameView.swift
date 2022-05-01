@@ -37,7 +37,7 @@ class FrameView: UIView {
         layer.borderColor = UIColor.black.cgColor
         layer.borderWidth = UIScreen.main.bounds.width / 200
         
-        self.shadowEffect(height: self.bounds.height / 20)
+        self.shadowEffect(height: self.bounds.height / 30)
     }
     
     private func setLayoutConstraint() {
