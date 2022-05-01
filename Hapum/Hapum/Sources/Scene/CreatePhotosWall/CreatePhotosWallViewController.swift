@@ -99,9 +99,9 @@ class CreatePhotosWallViewController: UIViewController {
             return
         }
         for (index, view) in previousImageView.enumerated() {
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.tapPhotos))
-            view.tag = index
-            view.addGestureRecognizer(gesture)
+            let interaction = UIContextMenuInteraction(delegate: self)
+            interaction.view?.tag = index
+            view.addInteraction(interaction)
         }
     }
     
@@ -109,6 +109,29 @@ class CreatePhotosWallViewController: UIViewController {
         photosWallView.shadowEffect(height: photosWallView.bounds.height/60)
     }
 
+    //MARK: - Chnage Photo Menu
+    private func choosePhotoAction() -> UIAction {
+        return UIAction(title: "Choose Photo",image: .init(systemName: "photo.on.rectangle")) { [weak self] action in
+            let sender = action.sender as? UIContextMenuInteraction
+            self?.selectedPhotosIndex = sender?.view?.tag
+            self?.showImagePickerView()
+        }
+    }
+    
+    private func takePhotoAction() -> UIAction {
+        return UIAction(title: "Take Photo", image: .init(systemName: "camera")) { [weak self] _ in
+            print("Make Camera")
+        }
+    }
+    
+    //MARK: - Change Color Menu
+    private func configureChangeColorMenu() {
+        let changeBackgroundColorAction = self.changeBackgroundColorAction()
+        let changeFrameColorAction = self.changeFrameColorAction()
+        changeColorButton.primaryAction = nil
+        changeColorButton.menu = UIMenu(title: "Change Color", options: [], children: [changeBackgroundColorAction, changeFrameColorAction])
+    }
+        
     private func changeBackgroundColorAction() -> UIAction {
         return UIAction(title: "Background") { [weak self] _ in
             self?.changeColor = self?.changeBackgroundColor(color:)
@@ -121,23 +144,6 @@ class CreatePhotosWallViewController: UIViewController {
             self?.changeColor = self?.changePhotosFrameColor(color:)
             self?.router?.presentColorPickerView()
         }
-    }
-    
-    private func configureChangeColorMenu() {
-        let changeBackgroundColorAction = self.changeBackgroundColorAction()
-        let changeFrameColorAction = self.changeFrameColorAction()
-        changeColorButton.primaryAction = nil
-        changeColorButton.menu = UIMenu(title: "Change Color", options: [], children: [changeBackgroundColorAction, changeFrameColorAction])
-    }
-    
-}
-
-extension CreatePhotosWallViewController {
-    
-    @objc
-    func tapPhotos(sender : UITapGestureRecognizer) {
-        selectedPhotosIndex = sender.view?.tag
-        showImagePickerView()
     }
     
 }
@@ -165,6 +171,19 @@ extension CreatePhotosWallViewController: CreatePhotosWallDisplayLogic {
     }
 }
 
+extension CreatePhotosWallViewController: UIContextMenuInteractionDelegate {
+    
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let choosePhotoAction = choosePhotoAction()
+        let takePhotoAction = takePhotoAction()
+        return UIContextMenuConfiguration(
+            identifier: nil,
+            previewProvider: nil) { _ in
+                return UIMenu(title: "", children: [choosePhotoAction, takePhotoAction])
+            }
+    }
+    
+}
 extension CreatePhotosWallViewController: PHPickerViewControllerDelegate {
     
     //MARK: - Think to move this method to router
