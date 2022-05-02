@@ -10,6 +10,7 @@ import PhotosUI
 
 protocol CreatePhotosWallDisplayLogic: AnyObject {
     func displayPhotos(viewModel: [Photos.Asset]?)
+    func displayCamera()
     func displayCreatingSuccess()
     func displayCreatingFailure()
 }
@@ -119,8 +120,10 @@ class CreatePhotosWallViewController: UIViewController {
     }
     
     private func takePhotoAction() -> UIAction {
-        return UIAction(title: "Take Photo", image: .init(systemName: "camera")) { [weak self] _ in
-            print("Make Camera")
+        return UIAction(title: "Take Photo", image: .init(systemName: "camera")) { [weak self] action in
+            let sender = action.sender as? UIContextMenuInteraction
+            self?.selectedPhotosIndex = sender?.view?.tag
+            self?.router?.showImagePicker()
         }
     }
     
@@ -159,6 +162,13 @@ extension CreatePhotosWallViewController: CreatePhotosWallDisplayLogic {
         }
     }
     
+    func displayCamera() {
+        guard let router = router else { return }
+        DispatchQueue.main.async {
+            router.showImagePicker()
+        }
+    }
+    
     func displayCreatingSuccess() {
         let selector = NSSelectorFromString("presentCreatingFailureAlert")
         if let router = router, router.responds(to: selector) {
@@ -184,6 +194,19 @@ extension CreatePhotosWallViewController: UIContextMenuInteractionDelegate {
     }
     
 }
+
+extension CreatePhotosWallViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let pickedImage = info[.originalImage] as? UIImage {
+            guard let selectedPhotosIndex = selectedPhotosIndex else { return }
+            let imageView = (photosWallView.subviews.first as? PhotosWallView)?.photosFrameView[selectedPhotosIndex].photoImageView
+            imageView?.image = pickedImage
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
 extension CreatePhotosWallViewController: PHPickerViewControllerDelegate {
     
     //MARK: - Think to move this method to router

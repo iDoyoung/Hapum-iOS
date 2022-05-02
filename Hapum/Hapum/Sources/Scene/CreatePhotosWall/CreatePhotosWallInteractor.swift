@@ -5,11 +5,12 @@
 //  Created by Doyoung on 2022/04/11.
 //
 
-import Foundation
+import AVFoundation
 
 protocol CreatePhotosWallBusinessLogic {
     func getPhotos()
     func addPhoto(photo: Photos.Photo)
+    func requestAccessCamera()
 }
 
 protocol CreatePhotosDataStore {
@@ -38,6 +39,20 @@ final class CreatePhotosWallInteractor: CreatePhotosWallBusinessLogic, CreatePho
             } else {
                 self?.presenter?.showCreatingSuccess()
             }
+        }
+    }
+    
+    func requestAccessCamera() {
+        let authStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        
+        if authStatus == AVAuthorizationStatus.denied || authStatus == AVAuthorizationStatus.notDetermined  {
+            AVCaptureDevice.requestAccess(for: .video) { [weak self] granted in
+                if granted {
+                    self?.presenter?.showCameraTypeImagePicker()
+                }
+            }
+        } else {
+            presenter?.showCameraTypeImagePicker()
         }
     }
     

@@ -12,6 +12,7 @@ import PhotosUI
 protocol CreatePhotosWallRoutingLogic {
     func routeToMain(segue: UIStoryboardSegue?)
     func presentPhotoPickerView()
+    func showImagePicker()
     func presentColorPickerView()
     func presentCreatingFailureAlert() 
 }
@@ -51,6 +52,17 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         viewController.present(picker, animated: true)
     }
     
+    private var imagePickerController = UIImagePickerController()
+    
+    func showImagePicker() {
+        guard let viewController = viewController else {
+            return
+        }
+        imagePickerController.delegate = viewController
+        imagePickerController.sourceType = .camera
+        viewController.present(imagePickerController, animated: true)
+    }
+    
     func presentColorPickerView() {
         guard let viewController = viewController else {
             return
@@ -70,4 +82,5 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         alert.addAction(cancel)
         viewController.present(alert, animated: true)
     }
+    
 }
