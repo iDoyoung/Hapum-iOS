@@ -238,7 +238,6 @@ extension CreatePhotosWallViewController: UIColorPickerViewControllerDelegate {
     
     func colorPickerViewController(_ viewController: UIColorPickerViewController, didSelect color: UIColor, continuously: Bool) {
         _ = changeColor?(color)
-        viewController.dismiss(animated: true)
     }
 
 }
