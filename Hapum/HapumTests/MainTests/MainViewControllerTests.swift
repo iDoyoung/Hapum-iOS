@@ -33,19 +33,18 @@ class MainViewControllerTests: XCTestCase {
     
     //MARK: - Mock
     class MockBusinessLogic: MainBusinessLogic {
-        
-        var fetchPhotosCalled = false
-        
-        func fetchPhotos() {
+        func fetchPhotos(width: Float, height: Float) {
             fetchPhotosCalled = true
         }
         
+        func fetchAlbumsPhotos(width: Float, height: Float) {
+        }
+        
+        var fetchPhotosCalled = false
+       
         func fetchPhotosAccessStatus() {
         }
-        
-        func fetchAlbumsPhotos() {
-        }
-        
+       
     }
     
     //MARK: - Test

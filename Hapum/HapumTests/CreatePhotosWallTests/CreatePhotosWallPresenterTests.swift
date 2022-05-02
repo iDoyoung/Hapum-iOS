@@ -27,6 +27,7 @@ class CreatePhotosWallPresenterTests: XCTestCase {
     class MockCreatePhotosWallDisplayLogic: CreatePhotosWallDisplayLogic {
         
         var displayPhotosCalled = false
+        var displayCameraCalled = false
         var displayCreatingSuccessCalled = false
         var displayCreatingFailureCalled = false
         var viewModel: [Photos.Asset]!
@@ -34,6 +35,10 @@ class CreatePhotosWallPresenterTests: XCTestCase {
         func displayPhotos(viewModel: [Photos.Asset]?) {
             displayPhotosCalled = true
             self.viewModel = viewModel
+        }
+        
+        func displayCamera() {
+            displayCameraCalled = true
         }
         
         func displayCreatingSuccess() {

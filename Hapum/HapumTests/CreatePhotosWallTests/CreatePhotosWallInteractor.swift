@@ -27,11 +27,16 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
     class MockCreatePhotosWallPresentation: CreatePhotosWallPresentationLogic {
         
         var presentPhotosCalled = false
+        var showCameraTypeImagePickerCalled = false
         var showCreatingSuccessCalled = false
         var showCreatingFailureCalled = false
         
         func presentPhotos(resource: [Photos.Asset]) {
             presentPhotosCalled = true
+        }
+        
+        func showCameraTypeImagePicker() {
+            showCameraTypeImagePickerCalled = true
         }
         
         func showCreatingSuccess() {

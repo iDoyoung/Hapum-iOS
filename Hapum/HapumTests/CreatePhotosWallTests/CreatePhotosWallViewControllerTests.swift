@@ -40,6 +40,9 @@ class CreatePhotosWallViewControllerTests: XCTestCase {
             getPhotosCalled = true
         }
         
+        func requestAccessCamera() {
+        }
+        
         func addPhoto(photo: Photos.Photo) {
         }
         
