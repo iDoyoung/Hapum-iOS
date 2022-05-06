@@ -46,6 +46,7 @@ final class CreatePhotosWallViewController: UIViewController {
     @IBOutlet weak var photosWallView: UIView!
     @IBOutlet weak var changeColorButton: UIBarButtonItem!
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
+        photosWallFrameView.hideEmptyFrameViews()
         interactor?.trySavePhotosWallView()
     }
     
