@@ -13,6 +13,7 @@ protocol CreatePhotosWallRoutingLogic {
     func routeToMain(segue: UIStoryboardSegue?)
     func presentPhotoPickerView()
     func showImagePicker()
+    func presentDoneActionSheet()
     func presentColorPickerView()
     func presentCreatingFailureAlert() 
 }
@@ -71,6 +72,18 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         picker.supportsAlpha = true
         picker.delegate = viewController
         viewController.present(picker, animated: true)
+    }
+    
+    func presentDoneActionSheet() {
+        guard let viewController = viewController else {
+            return
+        }
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let action = viewController.savePhotosWallViewAlertAction
+        let cancel = viewController.cancelDoneAlertAction
+        alert.addAction(action)
+        alert.addAction(cancel)
+        viewController.present(alert, animated: true)
     }
     
     func presentCreatingFailureAlert() {

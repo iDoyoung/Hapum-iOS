@@ -29,11 +29,16 @@ class PhotosWallView: UIView {
         }
     }
     
-    func setFrameView() {
+    func hideEmptyFrameViews() {
         photosFrameView.forEach {
             if $0.photoImageView.image == nil {
                 $0.isHidden = true
             }
         }
     }
+    
+    func showAllFrameView() {
+        photosFrameView.filter { $0.isHidden }.forEach { $0.isHidden = false }
+    }
+    
 }

@@ -22,7 +22,7 @@ class MainPresenterTests: XCTestCase {
         sut = nil
         try super.tearDownWithError()
     }
-
+    
     //MARK: - Mock
     class MockMainDisplayLogic: MainDisplayLogic {
         

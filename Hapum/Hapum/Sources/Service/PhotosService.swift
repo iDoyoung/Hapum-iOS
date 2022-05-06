@@ -53,7 +53,18 @@ class PhotosService: PhotoFetchable {
     }
     
     func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
-        guard let album = fetchResultCollection.firstObject else { return }
+        guard let album = fetchResultCollection.firstObject else {
+            createAlbum {
+                PHPhotoLibrary.shared().performChanges {
+                    let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: photo.image!)
+                    guard let addAssetRequest = PHAssetCollectionChangeRequest(for: self.fetchResultCollection.firstObject!) else { return }
+                    addAssetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
+                } completionHandler: { success, error in
+                    completion((success, error))
+                }
+            }
+            return
+        }
         
         PHPhotoLibrary.shared().performChanges {
             let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: photo.image!)
@@ -103,7 +114,7 @@ class PhotosService: PhotoFetchable {
         }
     }
     
-    private func createAlbum() {
+    private func createAlbum(completion: @escaping () -> Void) {
         PHPhotoLibrary.shared().performChanges {
             PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: NameSpace.albumName)
         }

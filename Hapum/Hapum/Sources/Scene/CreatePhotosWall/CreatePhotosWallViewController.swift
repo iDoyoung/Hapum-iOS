@@ -11,11 +11,12 @@ import PhotosUI
 protocol CreatePhotosWallDisplayLogic: AnyObject {
     func displayPhotos(viewModel: [Photos.Asset]?)
     func displayCamera()
+    func displayDoneAlert()
     func displayCreatingSuccess()
     func displayCreatingFailure()
 }
 
-class CreatePhotosWallViewController: UIViewController {
+final class CreatePhotosWallViewController: UIViewController {
     
     var interactor: CreatePhotosWallBusinessLogic?
     var router: (NSObjectProtocol & CreatePhotosWallRoutingLogic & CreatePhotosWallDataPassing)?
@@ -45,6 +46,25 @@ class CreatePhotosWallViewController: UIViewController {
     @IBOutlet weak var photosWallView: UIView!
     @IBOutlet weak var changeColorButton: UIBarButtonItem!
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
+        interactor?.trySavePhotosWallView()
+    }
+    
+    func savePhotosWallViewInAlbums() {
+        let image = convertToImage(view: photosWallFrameView)
+        let photo = Photos.Photo(image: image)
+        interactor?.addPhoto(photo: photo)
+    }
+    
+    private func convertToImage(view: UIView) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: view.bounds.width,
+                                                            height: view.bounds.height))
+        return renderer.image { context in
+            view.layer.render(in: context.cgContext)
+        }
+    }
+    
+    private var photosWallFrameView: PhotosWallView {
+        return photosWallView.subviews.first as! PhotosWallView
     }
     
     override func viewDidLoad() {
@@ -54,8 +74,8 @@ class CreatePhotosWallViewController: UIViewController {
         setShadow()
     }
 
-    var displayedPhotos: [Photos.Asset] = []
-    var selectedPhotosIndex: Int?
+    private var displayedPhotos: [Photos.Asset] = []
+    private var selectedPhotosIndex: Int?
     
     private func getPhotos() {
         interactor?.getPhotos()
@@ -66,7 +86,7 @@ class CreatePhotosWallViewController: UIViewController {
         router.presentPhotoPickerView()
     }
     
-    var changeColor: ((UIColor) -> Void)?
+    private var changeColor: ((UIColor) -> Void)?
     
     private func changeBackgroundColor(color: UIColor) {
         let photosWallview = photosWallView.subviews.first?.subviews.last
@@ -149,6 +169,19 @@ class CreatePhotosWallViewController: UIViewController {
         }
     }
     
+    //MARK: Done Alert Actions
+    var savePhotosWallViewAlertAction: UIAlertAction {
+        return UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+            self?.savePhotosWallViewInAlbums()
+        }
+    }
+    
+    var cancelDoneAlertAction: UIAlertAction {
+        return UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+            self?.photosWallFrameView.showAllFrameView()
+        }
+    }
+    
 }
 
 extension CreatePhotosWallViewController: CreatePhotosWallDisplayLogic {
@@ -169,15 +202,23 @@ extension CreatePhotosWallViewController: CreatePhotosWallDisplayLogic {
         }
     }
     
+    func displayDoneAlert() {
+        router?.presentDoneActionSheet()
+    }
+    
     func displayCreatingSuccess() {
-        let selector = NSSelectorFromString("presentCreatingFailureAlert")
-        if let router = router, router.responds(to: selector) {
-            router.perform(selector)
+        DispatchQueue.main.async {
+            let selector = NSSelectorFromString("routeToMainWithSegue:")
+            if let router = self.router, router.responds(to: selector) {
+                router.perform(selector, with: nil)
+            }
         }
     }
     
     func displayCreatingFailure() {
-        router?.presentCreatingFailureAlert()
+        DispatchQueue.main.async {
+            self.router?.presentCreatingFailureAlert()
+        }
     }
 }
 

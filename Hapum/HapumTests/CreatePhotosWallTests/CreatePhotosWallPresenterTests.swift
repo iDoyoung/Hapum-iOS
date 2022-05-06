@@ -30,6 +30,8 @@ class CreatePhotosWallPresenterTests: XCTestCase {
         var displayCameraCalled = false
         var displayCreatingSuccessCalled = false
         var displayCreatingFailureCalled = false
+        var displayDoneAlertCalled = false
+        
         var viewModel: [Photos.Asset]!
         
         func displayPhotos(viewModel: [Photos.Asset]?) {
@@ -47,6 +49,10 @@ class CreatePhotosWallPresenterTests: XCTestCase {
         
         func displayCreatingFailure() {
             displayCreatingFailureCalled = true
+        }
+        
+        func displayDoneAlert() {
+            displayDoneAlertCalled = true
         }
         
     }
@@ -80,5 +86,12 @@ class CreatePhotosWallPresenterTests: XCTestCase {
         sut.showCreatingFailure()
         ///then
         XCTAssert(mockDisplayLogic.displayCreatingFailureCalled)
+    }
+    
+    func test_whenShowDoneAlertShouldAskViewController() {
+        let mockDisplayLogic = MockCreatePhotosWallDisplayLogic()
+        sut.viewController = mockDisplayLogic
+        sut.showDoneAlert()
+        XCTAssert(mockDisplayLogic.displayDoneAlertCalled)
     }
 }

@@ -154,7 +154,7 @@ extension MainViewController: MainDisplayLogic {
         for (index, photo) in displayedPhotos.enumerated() {
             photosWallView.photosFrameView[index].photoImageView.image = photo.image
         }
-        photosWallView.setFrameView()
+        photosWallView.hideEmptyFrameViews()
     }
     
 }

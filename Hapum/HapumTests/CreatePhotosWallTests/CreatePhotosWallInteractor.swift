@@ -30,6 +30,7 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         var showCameraTypeImagePickerCalled = false
         var showCreatingSuccessCalled = false
         var showCreatingFailureCalled = false
+        var showDoneAlertCalled = false
         
         func presentPhotos(resource: [Photos.Asset]) {
             presentPhotosCalled = true
@@ -47,6 +48,9 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
             showCreatingFailureCalled = true
         }
         
+        func showDoneAlert() {
+            showDoneAlertCalled = true
+        }
     }
     
     class MockPhotosWorker: PhotosWorker {
@@ -114,6 +118,13 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         sut.addPhoto(photo: Photos.Photo(image: Seeds.ImageDummy.image!))
         ///then
         XCTAssert(mockPresenter.showCreatingSuccessCalled)
+    }
+    
+    func test_whenTrySavePhotosWallViewPresenterShowAlert() {
+        let mockPresenter = MockCreatePhotosWallPresentation()
+        sut.presenter = mockPresenter
+        sut.trySavePhotosWallView()
+        XCTAssert(mockPresenter.showDoneAlertCalled)
     }
     
 }

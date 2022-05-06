@@ -11,6 +11,7 @@ protocol CreatePhotosWallBusinessLogic {
     func getPhotos()
     func addPhoto(photo: Photos.Photo)
     func requestAccessCamera()
+    func trySavePhotosWallView()
 }
 
 protocol CreatePhotosDataStore {
@@ -56,4 +57,7 @@ final class CreatePhotosWallInteractor: CreatePhotosWallBusinessLogic, CreatePho
         }
     }
     
+    func trySavePhotosWallView() {
+        presenter?.showDoneAlert()
+    }
 }

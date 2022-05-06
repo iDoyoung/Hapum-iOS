@@ -35,6 +35,11 @@ class CreatePhotosWallViewControllerTests: XCTestCase {
     class MockBusinessLogic: CreatePhotosWallBusinessLogic {
         
         var getPhotosCalled = false
+        var trySavePhotosWallViewCalled = false
+        
+        func trySavePhotosWallView() {
+            trySavePhotosWallViewCalled = true
+        }
         
         func getPhotos() {
             getPhotosCalled = true
