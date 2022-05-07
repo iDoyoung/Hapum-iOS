@@ -78,7 +78,8 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         guard let viewController = viewController else {
             return
         }
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: NameSpace.AlertTitle.savingInPhotos, message: NameSpace.AlertMessage.savingInPhotos, preferredStyle: .actionSheet)
+        alert.view.tintColor = .systemGreen
         let action = viewController.savePhotosWallViewAlertAction
         let cancel = viewController.cancelDoneAlertAction
         alert.addAction(action)
@@ -90,8 +91,8 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         guard let viewController = viewController else {
             return
         }
-        let alert = UIAlertController(title: "예기치 못한 오류로 이미지 저장에 실패하였습니다.", message: "개발자에게 오류를 알려주시면 감사하겠습니다.", preferredStyle: .alert)
-        let cancel = UIAlertAction(title: "확인", style: .cancel)
+        let alert = UIAlertController(title: NameSpace.AlertTitle.creatingFailure, message: NameSpace.AlertMessage.creatingFailure, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: NameSpace.AlertActionTitle.okay, style: .cancel)
         alert.addAction(cancel)
         viewController.present(alert, animated: true)
     }

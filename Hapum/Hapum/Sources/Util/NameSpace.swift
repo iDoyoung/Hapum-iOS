@@ -26,17 +26,26 @@ enum NameSpace {
     static let photosWallViewNibName = "PhotosWallView"
     
     //MARK: - Alert
-    enum Alert {
-        static let title = "Manage to Access to Your Photos"
-        static let message = ""
-        
-        enum ActionTitle {
-            static let changeSetting = "Change Settings"
-            static let selectMore = "Select More Photos"
-            static let cancel = "Cancel"
-        }
+    enum AlertTitle {
+        static let managingPhotosAccess = "Manage to Access to Your Photos"
+        static let savingInPhotos = "Save Photos Wall"
+        static let creatingFailure = "예기치 못한 오류로 이미지 저장에 실패하였습니다."
         
     }
+    
+    enum AlertMessage {
+        static let managingPhotosAccess = ""
+        static let savingInPhotos = "Save in Photos"
+        static let creatingFailure = "개발자에게 오류를 알려주시면 감사하겠습니다."
+    }
+    
+    enum AlertActionTitle {
+        static let changeSetting = "Change Settings"
+        static let selectMore = "Select More Photos"
+        static let okay = "OK"
+        static let cancel = "Cancel"
+    }
+    
     
     //MARK: - Segue identifier
     enum MainSegue {
