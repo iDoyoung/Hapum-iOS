@@ -15,7 +15,8 @@ protocol CreatePhotosWallRoutingLogic {
     func showImagePicker()
     func presentDoneActionSheet()
     func presentColorPickerView()
-    func presentCreatingFailureAlert() 
+    func presentCreatingFailureAlert()
+    func presentActivityVC(photo: UIImage)
 }
 
 protocol CreatePhotosWallDataPassing {
@@ -95,6 +96,26 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         let cancel = UIAlertAction(title: NameSpace.AlertActionTitle.okay, style: .cancel)
         alert.addAction(cancel)
         viewController.present(alert, animated: true)
+    }
+    
+    func presentActivityVC(photo: UIImage) {
+        let items = [photo]
+        guard let viewController = viewController else { return }
+        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if let popup = activityVC.popoverPresentationController {
+                popup.sourceView = viewController.view
+            }
+        }
+        
+        activityVC.completionWithItemsHandler = {(activity, success, items, error) in
+            if !success {
+                viewController.showAllPhotosFrame()
+            }
+        }
+        
+        viewController.present(activityVC, animated: true, completion: nil)
     }
     
 }

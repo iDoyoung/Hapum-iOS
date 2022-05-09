@@ -45,9 +45,16 @@ final class CreatePhotosWallViewController: UIViewController {
     
     @IBOutlet weak var photosWallView: UIView!
     @IBOutlet weak var changeColorButton: UIBarButtonItem!
+    
     @IBAction func tapDoneButton(_ sender: UIBarButtonItem) {
         photosWallFrameView.hideEmptyFrameViews()
         interactor?.trySavePhotosWallView()
+    }
+    
+    @IBAction func tapShareButton(_ sender: UIBarButtonItem) {
+        photosWallFrameView.hideEmptyFrameViews()
+        let image = convertToImage(view: photosWallFrameView)
+        router?.presentActivityVC(photo: image)
     }
     
     func savePhotosWallViewInAlbums() {
@@ -68,13 +75,17 @@ final class CreatePhotosWallViewController: UIViewController {
         return photosWallView.subviews.first as! PhotosWallView
     }
     
+    func showAllPhotosFrame() {
+        photosWallFrameView.showAllFrameView()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureChangeColorMenu()
         getPhotos()
         setShadow()
     }
-
+    
     private var displayedPhotos: [Photos.Asset] = []
     private var selectedPhotosIndex: Int?
     
@@ -179,7 +190,7 @@ final class CreatePhotosWallViewController: UIViewController {
     
     var cancelDoneAlertAction: UIAlertAction {
         return UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
-            self?.photosWallFrameView.showAllFrameView()
+            self?.showAllPhotosFrame()
         }
     }
     

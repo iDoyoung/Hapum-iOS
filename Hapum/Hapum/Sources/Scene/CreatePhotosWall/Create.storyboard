@@ -25,8 +25,15 @@
                                     <barButtonItem image="paintpalette" catalog="system" id="J86-no-OOa" userLabel="Change Color">
                                         <color key="tintColor" systemColor="labelColor"/>
                                     </barButtonItem>
-                                    <barButtonItem width="307" style="plain" systemItem="fixedSpace" id="cDW-uO-bYG"/>
-                                    <barButtonItem style="done" systemItem="done" id="nsb-ct-Ns7">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ijL-Sz-7lG"/>
+                                    <barButtonItem image="square.and.arrow.up" catalog="system" id="8rd-Tf-tvE">
+                                        <color key="tintColor" systemColor="labelColor"/>
+                                        <connections>
+                                            <action selector="tapShareButton:" destination="Y6W-OH-hqX" id="hMt-Wf-LXV"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="stD-eN-ry4"/>
+                                    <barButtonItem style="done" systemItem="add" id="nsb-ct-Ns7">
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <connections>
                                             <action selector="tapDoneButton:" destination="Y6W-OH-hqX" id="IPo-2D-2aq"/>
@@ -59,6 +66,7 @@
     </scenes>
     <resources>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
