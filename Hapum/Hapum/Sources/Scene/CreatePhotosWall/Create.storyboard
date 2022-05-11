@@ -41,6 +41,12 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap and hold to change photo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eX-q0-Em6">
+                                <rect key="frame" x="16" y="64" width="358" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
@@ -48,10 +54,13 @@
                             <constraint firstItem="lcG-80-Qvq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5Sy-mN-2V1"/>
                             <constraint firstItem="lcG-80-Qvq" firstAttribute="top" secondItem="7Xw-fI-cAG" secondAttribute="bottom" id="D4q-6O-Ocf"/>
                             <constraint firstItem="lcG-80-Qvq" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="HAN-ka-JBO"/>
+                            <constraint firstItem="7eX-q0-Em6" firstAttribute="top" secondItem="7Xw-fI-cAG" secondAttribute="top" constant="20" id="MSE-pK-SUk"/>
                             <constraint firstItem="lcG-80-Qvq" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NOh-er-ODd"/>
-                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="VRr-Cg-C3X"/>
                             <constraint firstItem="7Xw-fI-cAG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZHj-OK-gjE"/>
+                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="nls-aN-shU"/>
                             <constraint firstItem="7Xw-fI-cAG" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="oSB-rP-ved"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7eX-q0-Em6" secondAttribute="trailing" constant="16" id="ph8-fz-Hqv"/>
+                            <constraint firstItem="7eX-q0-Em6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="tph-mr-QTf"/>
                         </constraints>
                     </view>
                     <connections>
@@ -69,6 +78,9 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

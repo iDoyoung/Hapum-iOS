@@ -47,6 +47,7 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         let alert = UIAlertController(title: NameSpace.AlertTitle.managingPhotosAccess,
                                       message: NameSpace.AlertMessage.managingPhotosAccess,
                                       preferredStyle: .actionSheet)
+        alert.view.tintColor = .systemGreen
         let alertActions = [
             UIAlertAction(title: NameSpace.AlertActionTitle.changeSetting,
                           style: .default) { [weak self] _ in
