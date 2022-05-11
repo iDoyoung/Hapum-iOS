@@ -133,7 +133,7 @@ final class CreatePhotosWallViewController: UIViewController {
         }
         for (index, view) in previousImageView.enumerated() {
             let interaction = UIContextMenuInteraction(delegate: self)
-            interaction.view?.tag = index
+            view.tag = index
             view.addInteraction(interaction)
         }
     }
