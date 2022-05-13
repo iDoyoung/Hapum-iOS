@@ -23,7 +23,8 @@ class PhotosService: PhotoFetchable {
     
     private var fetchOptions: PHFetchOptions = {
         let options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        options.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.image.rawValue)
         return options
     }()
     
@@ -47,7 +48,8 @@ class PhotosService: PhotoFetchable {
         guard let album = fetchResultCollection.firstObject else {
             return
         }
-        let assets = PHAsset.fetchAssets(in: album, options: fetchOptions)
+        let options = fetchOptions
+        let assets = PHAsset.fetchAssets(in: album, options: options)
         let photos = requestPhotos(for: assets, to: CGSize(width: CGFloat(width), height: CGFloat(height)))
         completion(photos)
     }
