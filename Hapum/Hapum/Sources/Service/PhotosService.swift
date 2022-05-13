@@ -24,14 +24,16 @@ class PhotosService: PhotoFetchable {
     private var fetchOptions: PHFetchOptions = {
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        options.predicate = NSPredicate(format: "mediaType == %d", PHAssetMediaType.image.rawValue)
         return options
     }()
     
     func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
         let options = fetchOptions
-        //let dateFrom: Date = Date().yesterday()
-        //options.predicate = NSPredicate(format: "creationDate > %@", dateFrom as NSDate)
+        let dateFrom: Date = Date().yesterday()
+        options.predicate = NSPredicate(format: "mediaType == %d && !(mediaSubtypes == %d) && creationDate > %@",
+                                        PHAssetMediaType.image.rawValue,
+                                        PHAssetMediaSubtype.photoScreenshot.rawValue,
+                                        dateFrom as NSDate)
         options.fetchLimit = 14
         let assets = PHAsset.fetchAssets(with: options)
         let photos = requestPhotos(for: assets, to: CGSize(width: CGFloat(width), height: CGFloat(height)))
