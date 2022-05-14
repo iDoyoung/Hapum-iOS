@@ -3,6 +3,7 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,8 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap and hold photo frame to change photo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eX-q0-Em6">
+                                <rect key="frame" x="10" y="64" width="360" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Xw-fI-cAG">
-                                <rect key="frame" x="0.0" y="44" width="390" height="717"/>
+                                <rect key="frame" x="0.0" y="84.333333333333314" width="390" height="676.66666666666674"/>
                             </view>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lcG-80-Qvq">
                                 <rect key="frame" x="0.0" y="761" width="390" height="49"/>
@@ -33,34 +40,28 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="stD-eN-ry4"/>
-                                    <barButtonItem style="done" systemItem="add" id="nsb-ct-Ns7">
-                                        <color key="tintColor" systemColor="labelColor"/>
+                                    <barButtonItem image="square.and.arrow.down.fill" catalog="system" id="nsb-ct-Ns7">
+                                        <color key="tintColor" name="Theme"/>
                                         <connections>
                                             <action selector="tapDoneButton:" destination="Y6W-OH-hqX" id="IPo-2D-2aq"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap and hold to change photo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eX-q0-Em6">
-                                <rect key="frame" x="16" y="64" width="358" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="lcG-80-Qvq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5Sy-mN-2V1"/>
+                            <constraint firstItem="7eX-q0-Em6" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="7fe-LC-2Ng"/>
                             <constraint firstItem="lcG-80-Qvq" firstAttribute="top" secondItem="7Xw-fI-cAG" secondAttribute="bottom" id="D4q-6O-Ocf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7eX-q0-Em6" secondAttribute="trailing" constant="20" id="Do8-PK-xY3"/>
                             <constraint firstItem="lcG-80-Qvq" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" id="HAN-ka-JBO"/>
-                            <constraint firstItem="7eX-q0-Em6" firstAttribute="top" secondItem="7Xw-fI-cAG" secondAttribute="top" constant="20" id="MSE-pK-SUk"/>
                             <constraint firstItem="lcG-80-Qvq" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="NOh-er-ODd"/>
                             <constraint firstItem="7Xw-fI-cAG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ZHj-OK-gjE"/>
-                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="nls-aN-shU"/>
+                            <constraint firstItem="7eX-q0-Em6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="eEV-QA-BK0"/>
                             <constraint firstItem="7Xw-fI-cAG" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="oSB-rP-ved"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7eX-q0-Em6" secondAttribute="trailing" constant="16" id="ph8-fz-Hqv"/>
-                            <constraint firstItem="7eX-q0-Em6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="tph-mr-QTf"/>
+                            <constraint firstItem="7Xw-fI-cAG" firstAttribute="top" secondItem="7eX-q0-Em6" secondAttribute="bottom" id="wLc-gQ-9WH"/>
                         </constraints>
                     </view>
                     <connections>
@@ -75,7 +76,11 @@
     </scenes>
     <resources>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
+        <image name="square.and.arrow.down.fill" catalog="system" width="121" height="128"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <namedColor name="Theme">
+            <color red="0.0" green="0.72549019607843135" blue="0.41960784313725491" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

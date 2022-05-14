@@ -57,19 +57,14 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setCreateButtonUI()
         fetchPhotos()
         fetchAlbum()
-        setPhotoViewUI()
-        setCreateButtonUI()
     }
     
     private func setStatusMessageLabelUI(text: String?, textColor: UIColor) {
         statusMessageLabel.text = text
         statusMessageLabel.textColor = textColor
-    }
-    
-    private func setPhotoViewUI() {
-        photosWallView.shadowEffect(height: photosWallView.bounds.height/60)
     }
     
     private func setCreateButtonUI() {

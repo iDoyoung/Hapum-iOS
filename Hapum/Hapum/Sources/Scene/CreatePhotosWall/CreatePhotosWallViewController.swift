@@ -83,7 +83,6 @@ final class CreatePhotosWallViewController: UIViewController {
         super.viewDidLoad()
         configureChangeColorMenu()
         getPhotos()
-        setShadow()
     }
     
     private var displayedPhotos: [Photos.Asset] = []
@@ -138,9 +137,6 @@ final class CreatePhotosWallViewController: UIViewController {
         }
     }
     
-    private func setShadow() {
-        photosWallView.shadowEffect(height: photosWallView.bounds.height/60)
-    }
 
     //MARK: - Chnage Photo Menu
     private func choosePhotoAction() -> UIAction {

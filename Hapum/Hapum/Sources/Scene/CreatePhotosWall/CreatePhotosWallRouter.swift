@@ -70,6 +70,7 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
             return
         }
         let picker = UIColorPickerViewController()
+        picker.view.tintColor = .theme
         picker.supportsAlpha = true
         picker.delegate = viewController
         viewController.present(picker, animated: true)
@@ -80,7 +81,7 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
             return
         }
         let alert = UIAlertController(title: NameSpace.AlertTitle.savingInPhotos, message: NameSpace.AlertMessage.savingInPhotos, preferredStyle: .actionSheet)
-        alert.view.tintColor = .systemGreen
+        alert.view.tintColor = .theme
         let action = viewController.savePhotosWallViewAlertAction
         let cancel = viewController.cancelDoneAlertAction
         alert.addAction(action)

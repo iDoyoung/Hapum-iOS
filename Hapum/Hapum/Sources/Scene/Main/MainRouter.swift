@@ -47,7 +47,7 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         let alert = UIAlertController(title: NameSpace.AlertTitle.managingPhotosAccess,
                                       message: NameSpace.AlertMessage.managingPhotosAccess,
                                       preferredStyle: .actionSheet)
-        alert.view.tintColor = .systemGreen
+        alert.view.tintColor = .theme
         let alertActions = [
             UIAlertAction(title: NameSpace.AlertActionTitle.changeSetting,
                           style: .default) { [weak self] _ in
@@ -75,7 +75,7 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     }
     
     func navigateToCreatePhotosWall(source: MainViewController, destination: CreatePhotosWallViewController) {
-      source.show(destination, sender: nil)
+        source.show(destination, sender: nil)
     }
     
     func passDataToCreatePhotosWall(source: MainDataStore, destination: inout CreatePhotosDataStore) {

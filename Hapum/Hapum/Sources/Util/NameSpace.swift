@@ -27,14 +27,14 @@ enum NameSpace {
     
     //MARK: - Alert
     enum AlertTitle {
-        static let managingPhotosAccess = "Manage to Access to Your Photos"
-        static let savingInPhotos = "Save Photos Wall"
+        static let managingPhotosAccess = ""
+        static let savingInPhotos = ""
         static let creatingFailure = "예기치 못한 오류로 이미지 저장에 실패하였습니다."
         
     }
     
     enum AlertMessage {
-        static let managingPhotosAccess = ""
+        static let managingPhotosAccess = "Manage to Access to Your Photos"
         static let savingInPhotos = "Save in Photos"
         static let creatingFailure = "개발자에게 오류를 알려주시면 감사하겠습니다."
     }
