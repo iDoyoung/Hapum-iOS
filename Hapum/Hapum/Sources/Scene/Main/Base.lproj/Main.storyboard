@@ -97,7 +97,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="grY-TH-wHi">
-                        <barButtonItem key="leftBarButtonItem" image="Logo" style="plain" id="Pcv-xl-Ses"/>
+                        <barButtonItem key="leftBarButtonItem" image="Logo" id="Pcv-xl-Ses">
+                            <connections>
+                                <action selector="tapRighBarItem:" destination="BYZ-38-t0r" id="GNW-qX-rlF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="accessStatusView" destination="D7B-M1-9en" id="WMv-Md-Hdc"/>

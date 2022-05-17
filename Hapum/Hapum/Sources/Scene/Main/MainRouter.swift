@@ -8,7 +8,9 @@
 import UIKit
 import PhotosUI
 
-@objc protocol MainRoutingLogic {
+@objc
+protocol MainRoutingLogic {
+    func routeToAboutApp(segue: UIStoryboardSegue?)
     func routeToCreatePhotosWall(segue: UIStoryboardSegue?)
     func showManageAccessLimitedStatus()
     func openSetting()
@@ -23,10 +25,21 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     weak var viewController: MainViewController?
     var dataStore: MainDataStore?
     
-    func routeToCreatePhotosWall(segue: UIStoryboardSegue?) {
-        guard let viewController = viewController else {
-            return
+    func routeToAboutApp(segue: UIStoryboardSegue?) {
+        guard let viewController = viewController else { return }
+        
+        if segue == nil {
+            let storyboard = UIStoryboard(name: NameSpace.Storyboard.about, bundle: Bundle.main)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: NameSpace.ViewControllerID.about) as! AboutAppViewController
+            let destinationNVC = UINavigationController(rootViewController: destinationVC)
+            destinationNVC.navigationBar.tintColor = .label
+            presentAboutApp(source: viewController, destination: destinationNVC)
         }
+    }
+    
+    func routeToCreatePhotosWall(segue: UIStoryboardSegue?) {
+        guard let viewController = viewController else { return }
+        
         if let segue = segue {
             let destinationVC = segue.destination as! CreatePhotosWallViewController
             var destinationDS = destinationVC.router!.dataStore!
@@ -80,6 +93,10 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     
     func passDataToCreatePhotosWall(source: MainDataStore, destination: inout CreatePhotosDataStore) {
         destination.photos = source.photos
+    }
+    
+    func presentAboutApp(source: MainViewController, destination: UIViewController) {
+        source.present(destination, animated: true)
     }
     
 }

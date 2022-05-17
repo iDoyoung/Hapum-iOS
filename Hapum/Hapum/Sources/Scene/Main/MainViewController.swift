@@ -48,11 +48,12 @@ final class MainViewController: UIViewController {
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Asset>! = nil
     
+    @IBAction func tapRighBarItem(_ sender: UIBarButtonItem) {
+        routeScene("AboutApp", segue: nil)
+    }
+    
     @IBAction func tapCreateButton(_ sender: UIButton) {
-        let selector = NSSelectorFromString("routeToCreatePhotosWallWithSegue:")
-        if let router = router, router.responds(to: selector) {
-            router.perform(selector, with: nil)
-        }
+        routeScene("CreatePhotosWall", segue: nil)
     }
     
     override func viewDidLoad() {
@@ -74,6 +75,10 @@ final class MainViewController: UIViewController {
     //MARK: - Routing
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let scene = segue.identifier else { return }
+        routeScene(scene, segue: segue)
+    }
+    
+    private func routeScene(_ scene: String, segue: UIStoryboardSegue?) {
         let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
         if let router = router, router.responds(to: selector) {
             router.perform(selector, with: segue)

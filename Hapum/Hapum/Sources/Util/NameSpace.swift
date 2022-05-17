@@ -12,11 +12,13 @@ enum NameSpace {
     
     enum Storyboard {
         static let main = "Main"
+        static let about = "About"
         static let createPhotosWall = "Create"
     }
     
     enum  ViewControllerID {
         static let main = "MainViewController"
+        static let about = "AboutAppViewController"
         static let createPhotosWall = "CreatePhotosWallViewController"
     }
     

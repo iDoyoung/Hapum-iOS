@@ -43,6 +43,12 @@
 		7FA3192727F087F9003CAF9E /* HapumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3192627F087F9003CAF9E /* HapumUITestsLaunchTests.swift */; };
 		7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193327F142DC003CAF9E /* PhotosService.swift */; };
 		7FA3193827F3F55F003CAF9E /* NameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193727F3F55F003CAF9E /* NameSpace.swift */; };
+		7FA874F22830FD1D006644B3 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA874F12830FD1D006644B3 /* About.storyboard */; };
+		7FA874F42830FDC8006644B3 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F32830FDC8006644B3 /* AboutAppViewController.swift */; };
+		7FA874F62831046E006644B3 /* AppInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F52831046E006644B3 /* AppInfoTableViewCell.swift */; };
+		7FA874F828310C40006644B3 /* AboutAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F728310C40006644B3 /* AboutAppTableViewCell.swift */; };
+		7FA874FA2833516E006644B3 /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F92833516E006644B3 /* AboutAppRouter.swift */; };
+		7FA874FC28336B1F006644B3 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874FB28336B1F006644B3 /* PrivacyPolicyViewController.swift */; };
 		7FD1F8BA28083E7F0078849C /* CreatePhotosWallViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1F8B928083E7F0078849C /* CreatePhotosWallViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +111,12 @@
 		7FA3192627F087F9003CAF9E /* HapumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7FA3193327F142DC003CAF9E /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
 		7FA3193727F3F55F003CAF9E /* NameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpace.swift; sourceTree = "<group>"; };
+		7FA874F12830FD1D006644B3 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		7FA874F32830FDC8006644B3 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
+		7FA874F52831046E006644B3 /* AppInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoTableViewCell.swift; sourceTree = "<group>"; };
+		7FA874F728310C40006644B3 /* AboutAppTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppTableViewCell.swift; sourceTree = "<group>"; };
+		7FA874F92833516E006644B3 /* AboutAppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppRouter.swift; sourceTree = "<group>"; };
+		7FA874FB28336B1F006644B3 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
 		7FD1F8B928083E7F0078849C /* CreatePhotosWallViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +190,7 @@
 		7F42EB0A27F72EBF00FF8FE1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				7FA874EC2830C34C006644B3 /* About */,
 				7F42EB1327F82CD500FF8FE1 /* Main */,
 				7F375A5228043DA800C6EE39 /* CreatePhotosWall */,
 				7F375A402803B99400C6EE39 /* CustomView */,
@@ -341,6 +354,19 @@
 			path = HapumUITests;
 			sourceTree = "<group>";
 		};
+		7FA874EC2830C34C006644B3 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				7FA874F12830FD1D006644B3 /* About.storyboard */,
+				7FA874F32830FDC8006644B3 /* AboutAppViewController.swift */,
+				7FA874F52831046E006644B3 /* AppInfoTableViewCell.swift */,
+				7FA874F728310C40006644B3 /* AboutAppTableViewCell.swift */,
+				7FA874F92833516E006644B3 /* AboutAppRouter.swift */,
+				7FA874FB28336B1F006644B3 /* PrivacyPolicyViewController.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -446,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F3759FF28030C4C00C6EE39 /* PhotosWallView.xib in Resources */,
+				7FA874F22830FD1D006644B3 /* About.storyboard in Resources */,
 				7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */,
 				7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */,
 				7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */,
@@ -475,11 +502,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA874F42830FDC8006644B3 /* AboutAppViewController.swift in Sources */,
 				7F2E115C282F9184006E7A30 /* UIColor+Extension.swift in Sources */,
 				7F375A5C2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift in Sources */,
 				7F3759F42802C90900C6EE39 /* FrameView.swift in Sources */,
 				7F42EB0327F52E9100FF8FE1 /* Photos.swift in Sources */,
+				7FA874F828310C40006644B3 /* AboutAppTableViewCell.swift in Sources */,
 				7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */,
+				7FA874F62831046E006644B3 /* AppInfoTableViewCell.swift in Sources */,
 				7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */,
 				7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */,
 				7F739AC927FBED9200253C55 /* MainRouter.swift in Sources */,
@@ -489,9 +519,11 @@
 				7F3759F62802E91100C6EE39 /* PhotosWallView.swift in Sources */,
 				7F739ACC27FC5E4D00253C55 /* PhotosWorker.swift in Sources */,
 				7FA3190827F087F9003CAF9E /* MainViewController.swift in Sources */,
+				7FA874FC28336B1F006644B3 /* PrivacyPolicyViewController.swift in Sources */,
 				7FA3190427F087F9003CAF9E /* AppDelegate.swift in Sources */,
 				7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */,
 				7FA3193827F3F55F003CAF9E /* NameSpace.swift in Sources */,
+				7FA874FA2833516E006644B3 /* AboutAppRouter.swift in Sources */,
 				7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */,
 				7FA3190627F087F9003CAF9E /* SceneDelegate.swift in Sources */,
 				7F25722B28178E130092499D /* UIView+Extension.swift in Sources */,
@@ -682,6 +714,7 @@
 				DEVELOPMENT_TEAM = 3XVAQ6DRC4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hapum/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSMainNibFile = Main;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -711,6 +744,7 @@
 				DEVELOPMENT_TEAM = 3XVAQ6DRC4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hapum/Supporting Files/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSMainNibFile = Main;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
