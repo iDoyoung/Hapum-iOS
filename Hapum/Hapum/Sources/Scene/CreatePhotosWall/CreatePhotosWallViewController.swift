@@ -138,9 +138,9 @@ final class CreatePhotosWallViewController: UIViewController {
     }
     
 
-    //MARK: - Chnage Photo Menu
+    //MARK: - Change Photo Menu
     private func choosePhotoAction() -> UIAction {
-        return UIAction(title: "Choose Photo",image: .init(systemName: "photo.on.rectangle")) { [weak self] action in
+        return UIAction(title: MenuActionTitle.choosePhoto,image: .init(systemName: "photo.on.rectangle")) { [weak self] action in
             let sender = action.sender as? UIContextMenuInteraction
             self?.selectedPhotosIndex = sender?.view?.tag
             self?.showImagePickerView()
@@ -148,7 +148,7 @@ final class CreatePhotosWallViewController: UIViewController {
     }
     
     private func takePhotoAction() -> UIAction {
-        return UIAction(title: "Take Photo", image: .init(systemName: "camera")) { [weak self] action in
+        return UIAction(title: MenuActionTitle.takePhoto, image: .init(systemName: "camera")) { [weak self] action in
             let sender = action.sender as? UIContextMenuInteraction
             self?.selectedPhotosIndex = sender?.view?.tag
             self?.router?.showImagePicker()
@@ -160,18 +160,18 @@ final class CreatePhotosWallViewController: UIViewController {
         let changeBackgroundColorAction = self.changeBackgroundColorAction()
         let changeFrameColorAction = self.changeFrameColorAction()
         changeColorButton.primaryAction = nil
-        changeColorButton.menu = UIMenu(title: "Change Color", options: [], children: [changeBackgroundColorAction, changeFrameColorAction])
+        changeColorButton.menu = UIMenu(title: MenuTitle.changeColor, options: [], children: [changeBackgroundColorAction, changeFrameColorAction])
     }
         
     private func changeBackgroundColorAction() -> UIAction {
-        return UIAction(title: "Background") { [weak self] _ in
+        return UIAction(title: MenuActionTitle.changeBackgroundColor) { [weak self] _ in
             self?.changeColor = self?.changeBackgroundColor(color:)
             self?.router?.presentColorPickerView()
         }
     }
 
     private func changeFrameColorAction() -> UIAction {
-        return UIAction(title: "Frame") { [weak self] _ in
+        return UIAction(title: MenuActionTitle.changeFrameColor) { [weak self] _ in
             self?.changeColor = self?.changePhotosFrameColor(color:)
             self?.router?.presentColorPickerView()
         }
@@ -179,13 +179,13 @@ final class CreatePhotosWallViewController: UIViewController {
     
     //MARK: Done Alert Actions
     var savePhotosWallViewAlertAction: UIAlertAction {
-        return UIAlertAction(title: "Save", style: .default) { [weak self] _ in
+        return UIAlertAction(title: AlertActionTitle.save, style: .default) { [weak self] _ in
             self?.savePhotosWallViewInAlbums()
         }
     }
     
     var cancelDoneAlertAction: UIAlertAction {
-        return UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+        return UIAlertAction(title: AlertActionTitle.cancel, style: .cancel) { [weak self] _ in
             self?.showAllPhotosFrame()
         }
     }
@@ -238,7 +238,7 @@ extension CreatePhotosWallViewController: UIContextMenuInteractionDelegate {
         return UIContextMenuConfiguration(
             identifier: nil,
             previewProvider: nil) { _ in
-                return UIMenu(title: "", children: [choosePhotoAction, takePhotoAction])
+                return UIMenu(title: MenuTitle.changePhoto, children: [choosePhotoAction, takePhotoAction])
             }
     }
     

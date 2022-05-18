@@ -1,0 +1,15 @@
+
+/* Class = "UIButton"; configuration.title = "Manage"; ObjectID = "10I-BD-N0Z"; */
+"10I-BD-N0Z.configuration.title" = "관리";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "10I-BD-N0Z"; */
+"10I-BD-N0Z.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Create Photos Wall"; ObjectID = "MD9-9E-xTo"; */
+"MD9-9E-xTo.configuration.title" = "만들기";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "MD9-9E-xTo"; */
+"MD9-9E-xTo.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "This is sample preview created by today photos"; ObjectID = "nmC-Ru-keQ"; */
+"nmC-Ru-keQ.text" = "오늘 찍은 사진으로 만든 미리보기 샘플입니다";

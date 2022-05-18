@@ -80,7 +80,7 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         guard let viewController = viewController else {
             return
         }
-        let alert = UIAlertController(title: NameSpace.AlertTitle.savingInPhotos, message: NameSpace.AlertMessage.savingInPhotos, preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: AlertTitle.savingInPhotos, message: AlertMessage.savingInPhotos, preferredStyle: .actionSheet)
         alert.view.tintColor = .theme
         let action = viewController.savePhotosWallViewAlertAction
         let cancel = viewController.cancelDoneAlertAction
@@ -93,8 +93,8 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         guard let viewController = viewController else {
             return
         }
-        let alert = UIAlertController(title: NameSpace.AlertTitle.creatingFailure, message: NameSpace.AlertMessage.creatingFailure, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: NameSpace.AlertActionTitle.okay, style: .cancel)
+        let alert = UIAlertController(title: AlertTitle.creatingFailure, message: AlertMessage.creatingFailure, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: AlertActionTitle.okay, style: .cancel)
         alert.addAction(cancel)
         viewController.present(alert, animated: true)
     }

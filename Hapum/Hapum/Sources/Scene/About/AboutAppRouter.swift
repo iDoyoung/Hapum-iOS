@@ -9,7 +9,7 @@ import UIKit
 
 @objc
 protocol AboutAppRoutingLogic {
-    func routeToRecomandApp()
+    func routeToRecommendApp()
     func routeToPrivacyPolicy(segue: UIStoryboardSegue?)
 }
 
@@ -17,7 +17,7 @@ final class AboutAppRouter: NSObject, AboutAppRoutingLogic {
     
     weak var viewController: AboutAppViewController?
     
-    func routeToRecomandApp() {
+    func routeToRecommendApp() {
         guard let viewController = viewController else { return }
         presentActivityVC(source: viewController)
     }
@@ -26,7 +26,7 @@ final class AboutAppRouter: NSObject, AboutAppRoutingLogic {
         guard let viewController = viewController else { return }
         
         if segue == nil {
-            let storyboard = UIStoryboard(name: NameSpace.Storyboard.about, bundle: Bundle.main)
+            let storyboard = UIStoryboard(name: StoryboardName.about, bundle: Bundle.main)
             let destinationVC = storyboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
             navigateToPrivacyPolicy(source: viewController, destination: destinationVC)
         }

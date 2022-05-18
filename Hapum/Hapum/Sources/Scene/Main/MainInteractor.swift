@@ -31,19 +31,19 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
                 var response: Photos.Status.Response
                 switch status {
                 case .notDetermined:
-                    response = Photos.Status.Response(message: NameSpace.PhotosAccessStatusMessage.needToSet,
+                    response = Photos.Status.Response(message: PhotosAccessStatusMessage.needToSet,
                                                       isLimited: nil)
                 case .restricted:
-                    response = Photos.Status.Response(message: NameSpace.PhotosAccessStatusMessage.needToSet,
+                    response = Photos.Status.Response(message: PhotosAccessStatusMessage.needToSet,
                                                       isLimited: false)
                 case .authorized:
                     response = Photos.Status.Response(message: nil,
                                                       isLimited: nil)
                 case .denied:
-                    response = Photos.Status.Response(message: NameSpace.PhotosAccessStatusMessage.needToSet,
+                    response = Photos.Status.Response(message: PhotosAccessStatusMessage.needToSet,
                                                       isLimited: false)
                 case .limited:
-                    response = Photos.Status.Response(message: NameSpace.PhotosAccessStatusMessage.limitedStatus,
+                    response = Photos.Status.Response(message: PhotosAccessStatusMessage.limitedStatus,
                                                       isLimited: true)
                 }
                 self?.presenter?.presentPhotosAccessStatus(response: response)

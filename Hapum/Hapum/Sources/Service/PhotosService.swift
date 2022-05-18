@@ -42,7 +42,7 @@ class PhotosService: PhotoFetchable {
    
     private let fetchResultCollection: PHFetchResult<PHAssetCollection> = {
         let options = PHFetchOptions()
-        options.predicate = NSPredicate(format: "title = %@", NameSpace.albumName)
+        options.predicate = NSPredicate(format: "title = %@", AlbumName.hapum)
         return PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: options)
     }()
     
@@ -120,7 +120,7 @@ class PhotosService: PhotoFetchable {
     
     private func createAlbum(completion: @escaping () -> Void) {
         PHPhotoLibrary.shared().performChanges {
-            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: NameSpace.albumName)
+            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: AlbumName.hapum)
         }
     }
     

@@ -22,7 +22,7 @@ class PhotosWallView: UIView {
     }
     
     private func loadViewFromNib() {
-        if let view = Bundle.main.loadNibNamed(NameSpace.photosWallViewNibName, owner: self)?.first as? UIView {
+        if let view = Bundle.main.loadNibNamed(NibName.photosWallView, owner: self)?.first as? UIView {
             view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             view.frame = self.bounds
             addSubview(view)

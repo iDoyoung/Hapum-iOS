@@ -51,7 +51,7 @@ final class AboutAppViewController: UITableViewController {
               let version = infoDictionary["CFBundleShortVersionString"] as? String else {
             return "???"
         }
-        return "version \(version)"
+        return "Version \(version)"
     }
     
     //MARK: - Routing
@@ -97,13 +97,13 @@ final class AboutAppViewController: UITableViewController {
             var content = cell.defaultContentConfiguration()
             switch indexPath.row {
             case 0:
-                content.text = "Recommed Hapum"
+                content.text = LabelText.recommending
             case 1:
-                content.text = "Write a review"
+                content.text = LabelText.reviewing
             case 2:
-                content.text = "Privacy policy"
+                content.text = LabelText.privacyPolicy
             default:
-                content.text = ""
+                break
             }
             cell.contentConfiguration = content
             return cell
@@ -118,7 +118,7 @@ final class AboutAppViewController: UITableViewController {
             case 1:
                 print("")
             case 2:
-                performSegue(withIdentifier: "PrivacyPolicy", sender: self)
+                performSegue(withIdentifier: SegueID.privacyPolicy, sender: self)
             default:
                 break
             }

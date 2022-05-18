@@ -29,8 +29,8 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         guard let viewController = viewController else { return }
         
         if segue == nil {
-            let storyboard = UIStoryboard(name: NameSpace.Storyboard.about, bundle: Bundle.main)
-            let destinationVC = storyboard.instantiateViewController(withIdentifier: NameSpace.ViewControllerID.about) as! AboutAppViewController
+            let storyboard = UIStoryboard(name: StoryboardName.about, bundle: Bundle.main)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: ViewControllerID.about) as! AboutAppViewController
             let destinationNVC = UINavigationController(rootViewController: destinationVC)
             destinationNVC.navigationBar.tintColor = .label
             presentAboutApp(source: viewController, destination: destinationNVC)
@@ -45,8 +45,8 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
             var destinationDS = destinationVC.router!.dataStore!
             passDataToCreatePhotosWall(source: dataStore!, destination: &destinationDS)
         } else {
-            let storyboard = UIStoryboard(name: NameSpace.Storyboard.createPhotosWall, bundle: Bundle.main)
-            let destinationVC = storyboard.instantiateViewController(withIdentifier: NameSpace.ViewControllerID.createPhotosWall) as! CreatePhotosWallViewController
+            let storyboard = UIStoryboard(name: StoryboardName.createPhotosWall, bundle: Bundle.main)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: ViewControllerID.createPhotosWall) as! CreatePhotosWallViewController
             var destinationDS = destinationVC.router!.dataStore!
             passDataToCreatePhotosWall(source: dataStore!, destination: &destinationDS)
             navigateToCreatePhotosWall(source: viewController, destination: destinationVC)
@@ -57,20 +57,20 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         guard let viewController = viewController else {
             return
         }
-        let alert = UIAlertController(title: NameSpace.AlertTitle.managingPhotosAccess,
-                                      message: NameSpace.AlertMessage.managingPhotosAccess,
+        let alert = UIAlertController(title: AlertTitle.managingPhotosAccess,
+                                      message: AlertMessage.managingPhotosAccess,
                                       preferredStyle: .actionSheet)
         alert.view.tintColor = .theme
         let alertActions = [
-            UIAlertAction(title: NameSpace.AlertActionTitle.changeSetting,
+            UIAlertAction(title: AlertActionTitle.changeSetting,
                           style: .default) { [weak self] _ in
                               self?.openSetting()
                           },
-            UIAlertAction(title: NameSpace.AlertActionTitle.selectMore,
+            UIAlertAction(title: AlertActionTitle.selectMore,
                           style: .default) { _ in
                               PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: viewController)
                           },
-            UIAlertAction(title: NameSpace.AlertActionTitle.cancel, style: .cancel)
+            UIAlertAction(title: AlertActionTitle.cancel, style: .cancel)
         ]
         alertActions.forEach { action in
             alert.addAction(action)
@@ -100,4 +100,3 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     }
     
 }
-

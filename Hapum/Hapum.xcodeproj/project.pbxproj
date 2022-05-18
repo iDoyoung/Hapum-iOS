@@ -18,7 +18,6 @@
 		7F3759FF28030C4C00C6EE39 /* PhotosWallView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F3759F72802E92E00C6EE39 /* PhotosWallView.xib */; };
 		7F375A422803C3C200C6EE39 /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A412803C3C200C6EE39 /* MainViewControllerTests.swift */; };
 		7F375A562804406800C6EE39 /* CreatePhotosWallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */; };
-		7F375A582804407200C6EE39 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F375A572804407200C6EE39 /* Create.storyboard */; };
 		7F375A5A280472CA00C6EE39 /* CreatePhotosWallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A59280472CA00C6EE39 /* CreatePhotosWallInteractor.swift */; };
 		7F375A5C2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A5B2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift */; };
 		7F375A5F2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A5E2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift */; };
@@ -42,13 +41,16 @@
 		7FA3192527F087F9003CAF9E /* HapumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3192427F087F9003CAF9E /* HapumUITests.swift */; };
 		7FA3192727F087F9003CAF9E /* HapumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3192627F087F9003CAF9E /* HapumUITestsLaunchTests.swift */; };
 		7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193327F142DC003CAF9E /* PhotosService.swift */; };
-		7FA3193827F3F55F003CAF9E /* NameSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193727F3F55F003CAF9E /* NameSpace.swift */; };
-		7FA874F22830FD1D006644B3 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA874F12830FD1D006644B3 /* About.storyboard */; };
+		7FA3193827F3F55F003CAF9E /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193727F3F55F003CAF9E /* Namespace.swift */; };
 		7FA874F42830FDC8006644B3 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F32830FDC8006644B3 /* AboutAppViewController.swift */; };
 		7FA874F62831046E006644B3 /* AppInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F52831046E006644B3 /* AppInfoTableViewCell.swift */; };
 		7FA874F828310C40006644B3 /* AboutAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F728310C40006644B3 /* AboutAppTableViewCell.swift */; };
 		7FA874FA2833516E006644B3 /* AboutAppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F92833516E006644B3 /* AboutAppRouter.swift */; };
 		7FA874FC28336B1F006644B3 /* PrivacyPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874FB28336B1F006644B3 /* PrivacyPolicyViewController.swift */; };
+		7FAA24392833AC130014B8E5 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA243B2833AC130014B8E5 /* About.storyboard */; };
+		7FAA243C2833AC180014B8E5 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA243E2833AC180014B8E5 /* Create.storyboard */; };
+		7FAA24442833C6F80014B8E5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA24432833C6F80014B8E5 /* String+Extension.swift */; };
+		7FAA244628347CCA0014B8E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA244528347CCA0014B8E5 /* Localizable.strings */; };
 		7FD1F8BA28083E7F0078849C /* CreatePhotosWallViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1F8B928083E7F0078849C /* CreatePhotosWallViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +83,6 @@
 		7F3759F72802E92E00C6EE39 /* PhotosWallView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosWallView.xib; sourceTree = "<group>"; };
 		7F375A412803C3C200C6EE39 /* MainViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
 		7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallViewController.swift; sourceTree = "<group>"; };
-		7F375A572804407200C6EE39 /* Create.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Create.storyboard; sourceTree = "<group>"; };
 		7F375A59280472CA00C6EE39 /* CreatePhotosWallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallInteractor.swift; sourceTree = "<group>"; };
 		7F375A5B2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallPresenter.swift; sourceTree = "<group>"; };
 		7F375A5E2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallInteractor.swift; sourceTree = "<group>"; };
@@ -110,13 +111,20 @@
 		7FA3192427F087F9003CAF9E /* HapumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapumUITests.swift; sourceTree = "<group>"; };
 		7FA3192627F087F9003CAF9E /* HapumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7FA3193327F142DC003CAF9E /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
-		7FA3193727F3F55F003CAF9E /* NameSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameSpace.swift; sourceTree = "<group>"; };
-		7FA874F12830FD1D006644B3 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		7FA3193727F3F55F003CAF9E /* Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
 		7FA874F32830FDC8006644B3 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		7FA874F52831046E006644B3 /* AppInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoTableViewCell.swift; sourceTree = "<group>"; };
 		7FA874F728310C40006644B3 /* AboutAppTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppTableViewCell.swift; sourceTree = "<group>"; };
 		7FA874F92833516E006644B3 /* AboutAppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppRouter.swift; sourceTree = "<group>"; };
 		7FA874FB28336B1F006644B3 /* PrivacyPolicyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyViewController.swift; sourceTree = "<group>"; };
+		7FAA243A2833AC130014B8E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/About.storyboard; sourceTree = "<group>"; };
+		7FAA243D2833AC180014B8E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Create.storyboard; sourceTree = "<group>"; };
+		7FAA243F2833AC300014B8E5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/About.strings; sourceTree = "<group>"; };
+		7FAA24402833AC300014B8E5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
+		7FAA24412833AC300014B8E5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Create.strings; sourceTree = "<group>"; };
+		7FAA24422833AC300014B8E5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7FAA24432833C6F80014B8E5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		7FAA244528347CCA0014B8E5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7FD1F8B928083E7F0078849C /* CreatePhotosWallViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -168,7 +176,7 @@
 		7F375A5228043DA800C6EE39 /* CreatePhotosWall */ = {
 			isa = PBXGroup;
 			children = (
-				7F375A572804407200C6EE39 /* Create.storyboard */,
+				7FAA243E2833AC180014B8E5 /* Create.storyboard */,
 				7F375A552804406800C6EE39 /* CreatePhotosWallViewController.swift */,
 				7F375A59280472CA00C6EE39 /* CreatePhotosWallInteractor.swift */,
 				7F375A5B2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift */,
@@ -212,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				7FA3191127F087F9003CAF9E /* Info.plist */,
+				7FAA244528347CCA0014B8E5 /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -241,7 +250,7 @@
 		7F42EB1027F8231300FF8FE1 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				7FA3193727F3F55F003CAF9E /* NameSpace.swift */,
+				7FA3193727F3F55F003CAF9E /* Namespace.swift */,
 				7F42EB1127F8232300FF8FE1 /* Extension */,
 			);
 			path = Util;
@@ -250,6 +259,7 @@
 		7F42EB1127F8232300FF8FE1 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7FAA24432833C6F80014B8E5 /* String+Extension.swift */,
 				7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */,
 				7F25722A28178E130092499D /* UIView+Extension.swift */,
 				7F2E115B282F9184006E7A30 /* UIColor+Extension.swift */,
@@ -357,7 +367,7 @@
 		7FA874EC2830C34C006644B3 /* About */ = {
 			isa = PBXGroup;
 			children = (
-				7FA874F12830FD1D006644B3 /* About.storyboard */,
+				7FAA243B2833AC130014B8E5 /* About.storyboard */,
 				7FA874F32830FDC8006644B3 /* AboutAppViewController.swift */,
 				7FA874F52831046E006644B3 /* AppInfoTableViewCell.swift */,
 				7FA874F728310C40006644B3 /* AboutAppTableViewCell.swift */,
@@ -453,6 +463,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 7FA318F727F087F9003CAF9E;
 			productRefGroup = 7FA3190127F087F9003CAF9E /* Products */;
@@ -472,11 +483,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F3759FF28030C4C00C6EE39 /* PhotosWallView.xib in Resources */,
-				7FA874F22830FD1D006644B3 /* About.storyboard in Resources */,
+				7FAA24392833AC130014B8E5 /* About.storyboard in Resources */,
 				7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */,
 				7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */,
 				7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */,
-				7F375A582804407200C6EE39 /* Create.storyboard in Resources */,
+				7FAA244628347CCA0014B8E5 /* Localizable.strings in Resources */,
+				7FAA243C2833AC180014B8E5 /* Create.storyboard in Resources */,
 				7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,8 +533,9 @@
 				7FA3190827F087F9003CAF9E /* MainViewController.swift in Sources */,
 				7FA874FC28336B1F006644B3 /* PrivacyPolicyViewController.swift in Sources */,
 				7FA3190427F087F9003CAF9E /* AppDelegate.swift in Sources */,
+				7FAA24442833C6F80014B8E5 /* String+Extension.swift in Sources */,
 				7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */,
-				7FA3193827F3F55F003CAF9E /* NameSpace.swift in Sources */,
+				7FA3193827F3F55F003CAF9E /* Namespace.swift in Sources */,
 				7FA874FA2833516E006644B3 /* AboutAppRouter.swift in Sources */,
 				7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */,
 				7FA3190627F087F9003CAF9E /* SceneDelegate.swift in Sources */,
@@ -575,6 +588,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7FA3190A27F087F9003CAF9E /* Base */,
+				7FAA24402833AC300014B8E5 /* ko */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -583,8 +597,27 @@
 			isa = PBXVariantGroup;
 			children = (
 				7FA3190F27F087F9003CAF9E /* Base */,
+				7FAA24422833AC300014B8E5 /* ko */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7FAA243B2833AC130014B8E5 /* About.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FAA243A2833AC130014B8E5 /* Base */,
+				7FAA243F2833AC300014B8E5 /* ko */,
+			);
+			name = About.storyboard;
+			sourceTree = "<group>";
+		};
+		7FAA243E2833AC180014B8E5 /* Create.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FAA243D2833AC180014B8E5 /* Base */,
+				7FAA24412833AC300014B8E5 /* ko */,
+			);
+			name = Create.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -594,6 +627,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -654,6 +688,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
