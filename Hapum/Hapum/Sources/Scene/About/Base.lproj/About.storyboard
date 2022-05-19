@@ -37,14 +37,33 @@
                     <view key="view" contentMode="scaleToFill" id="gkU-D6-aC8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUR-D8-UGN">
+                                <rect key="frame" x="0.0" y="44" width="414" height="798"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="1DF-dX-XOb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="uUR-D8-UGN" firstAttribute="leading" secondItem="1DF-dX-XOb" secondAttribute="leading" id="7Hu-JR-E2t"/>
+                            <constraint firstItem="uUR-D8-UGN" firstAttribute="top" secondItem="1DF-dX-XOb" secondAttribute="top" id="Bxl-R1-nsV"/>
+                            <constraint firstItem="1DF-dX-XOb" firstAttribute="bottom" secondItem="uUR-D8-UGN" secondAttribute="bottom" id="CZC-Is-Igb"/>
+                            <constraint firstAttribute="trailing" secondItem="uUR-D8-UGN" secondAttribute="trailing" id="LKK-pM-Wx6"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Privacy policy" id="TYv-Jk-DKI"/>
+                    <connections>
+                        <outlet property="privacyPolicyWebView" destination="uUR-D8-UGN" id="8DL-uA-nAB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zr3-AL-qch" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2340.5797101449275" y="75.669642857142847"/>
+            <point key="canvasLocation" x="2339.130434782609" y="75.669642857142847"/>
         </scene>
     </scenes>
     <resources>

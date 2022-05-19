@@ -50,8 +50,8 @@
 		7FAA24392833AC130014B8E5 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA243B2833AC130014B8E5 /* About.storyboard */; };
 		7FAA243C2833AC180014B8E5 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA243E2833AC180014B8E5 /* Create.storyboard */; };
 		7FAA24442833C6F80014B8E5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA24432833C6F80014B8E5 /* String+Extension.swift */; };
-		7FAA244628347CCA0014B8E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA244528347CCA0014B8E5 /* Localizable.strings */; };
 		7FD1F8BA28083E7F0078849C /* CreatePhotosWallViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1F8B928083E7F0078849C /* CreatePhotosWallViewControllerTests.swift */; };
+		7FEA944B2835F29F00EC872F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FEA944D2835F29F00EC872F /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,8 +124,9 @@
 		7FAA24412833AC300014B8E5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Create.strings; sourceTree = "<group>"; };
 		7FAA24422833AC300014B8E5 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		7FAA24432833C6F80014B8E5 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		7FAA244528347CCA0014B8E5 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		7FD1F8B928083E7F0078849C /* CreatePhotosWallViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallViewControllerTests.swift; sourceTree = "<group>"; };
+		7FEA944C2835F29F00EC872F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7FEA944E2835F2AF00EC872F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				7FA3191127F087F9003CAF9E /* Info.plist */,
-				7FAA244528347CCA0014B8E5 /* Localizable.strings */,
+				7FEA944D2835F29F00EC872F /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -487,7 +488,7 @@
 				7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */,
 				7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */,
 				7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */,
-				7FAA244628347CCA0014B8E5 /* Localizable.strings in Resources */,
+				7FEA944B2835F29F00EC872F /* Localizable.strings in Resources */,
 				7FAA243C2833AC180014B8E5 /* Create.storyboard in Resources */,
 				7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */,
 			);
@@ -618,6 +619,15 @@
 				7FAA24412833AC300014B8E5 /* ko */,
 			);
 			name = Create.storyboard;
+			sourceTree = "<group>";
+		};
+		7FEA944D2835F29F00EC872F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7FEA944C2835F29F00EC872F /* en */,
+				7FEA944E2835F2AF00EC872F /* ko */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

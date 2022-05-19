@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  Hapum
+
+  Created by Doyoung on 2022/05/18.
+  
+*/
+
+//LabelText
+"Recommend Hapum" = "Recommend Hapum";
+"Write a review" = "Write a review";
+"Privacy policy" = "Privacy policy";
+
+//AlertTitle
+"" = "예기치 못한 오류로 이미지 저장에 실패하였습니다";
+
+//AlertMessage
+"Manage to Access to Your Photos" = "Manage to Access to Your Photos";
+"Save in Photos" = "Save in Photos";
+"개발자에게 오류를 알려주시면 감사하겠습니다" = "개발자에게 오류를 알려주시면 감사하겠습니다";
+
+//AlertActionTitle
+"Change Settings" = "Change Settings";
+"Select More Photos" = "Select More Photos";
+"OK" = "OK";
+"Cancel" = "Cancel";
+"Save" = "Save";
+
+//PhotosAccessStatusMessage
+"Please Allow Access to Your Photos" = "Please Allow Access to Your Photos";
+"You allow access to selected only" = "You allow access to selected only";
+
+//ManuTitle
+"Change Color" = "Change Color";
+
+//MenuActionTitle
+"Choose a photo" = "Choose a photo";
+"Take a photo" = "Take a photo";
+"Background" = "Background";
+"Frame" = "Frame";
