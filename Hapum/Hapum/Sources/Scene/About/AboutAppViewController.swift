@@ -114,9 +114,9 @@ final class AboutAppViewController: UITableViewController {
         if indexPath.section == TableViewSection.detail.rawValue {
             switch indexPath.row {
             case 0:
-                print("")
+                routeScene("RecommendApp", segue: nil)
             case 1:
-                print("")
+                router?.openAppStoreToWriteReview()
             case 2:
                 performSegue(withIdentifier: SegueID.privacyPolicy, sender: self)
             default:

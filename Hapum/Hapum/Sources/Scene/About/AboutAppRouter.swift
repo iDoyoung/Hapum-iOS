@@ -9,15 +9,16 @@ import UIKit
 
 @objc
 protocol AboutAppRoutingLogic {
-    func routeToRecommendApp()
+    func routeToRecommendApp(segue: UIStoryboardSegue?)
     func routeToPrivacyPolicy(segue: UIStoryboardSegue?)
+    func openAppStoreToWriteReview()
 }
 
 final class AboutAppRouter: NSObject, AboutAppRoutingLogic {
     
     weak var viewController: AboutAppViewController?
     
-    func routeToRecommendApp() {
+    func routeToRecommendApp(segue: UIStoryboardSegue?) {
         guard let viewController = viewController else { return }
         presentActivityVC(source: viewController)
     }
@@ -32,15 +33,24 @@ final class AboutAppRouter: NSObject, AboutAppRoutingLogic {
         }
     }
     
+    func openAppStoreToWriteReview() {
+        guard let url = URL(string: "https://apps.apple.com/app/id1625220721?action=write-review") else {
+           return
+        }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     private func presentActivityVC(source: AboutAppViewController) {
-        let message = ["Message and link.."]
+        let message = ["https://apps.apple.com/app/id1625220721"]
         let activityVC = UIActivityViewController(activityItems: message, applicationActivities: nil)
         if UIDevice.current.userInterfaceIdiom == .pad {
             if let popup = activityVC.popoverPresentationController {
                 popup.sourceView = source.view
             }
-            source.present(activityVC, animated: true, completion: nil)
         }
+        source.present(activityVC, animated: true, completion: nil)
     }
     
     private func navigateToPrivacyPolicy(source: AboutAppViewController, destination: PrivacyPolicyViewController) {
