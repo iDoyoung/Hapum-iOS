@@ -11,9 +11,6 @@
 "Write a review" = "Write a review";
 "Privacy policy" = "Privacy policy";
 
-//AlertTitle
-"" = "예기치 못한 오류로 이미지 저장에 실패하였습니다";
-
 //AlertMessage
 "Manage to Access to Photos" = "Manage to Access to Photos";
 "Save in Photos" = "Save in Photos";

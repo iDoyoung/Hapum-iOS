@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7F1A410327FE8CC9002BC9E0 /* PhotosWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */; };
 		7F25722B28178E130092499D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F25722A28178E130092499D /* UIView+Extension.swift */; };
+		7F2749852837805100DDDA91 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2749842837805100DDDA91 /* Namespace.swift */; };
 		7F2E115C282F9184006E7A30 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E115B282F9184006E7A30 /* UIColor+Extension.swift */; };
 		7F3759E127FF016D00C6EE39 /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759E027FF016D00C6EE39 /* Seeds.swift */; };
 		7F3759E527FFE77B00C6EE39 /* MainInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759E427FFE77B00C6EE39 /* MainInteractorTests.swift */; };
@@ -42,7 +43,6 @@
 		7FA3192527F087F9003CAF9E /* HapumUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3192427F087F9003CAF9E /* HapumUITests.swift */; };
 		7FA3192727F087F9003CAF9E /* HapumUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3192627F087F9003CAF9E /* HapumUITestsLaunchTests.swift */; };
 		7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193327F142DC003CAF9E /* PhotosService.swift */; };
-		7FA3193827F3F55F003CAF9E /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA3193727F3F55F003CAF9E /* Namespace.swift */; };
 		7FA874F42830FDC8006644B3 /* AboutAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F32830FDC8006644B3 /* AboutAppViewController.swift */; };
 		7FA874F62831046E006644B3 /* AppInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F52831046E006644B3 /* AppInfoTableViewCell.swift */; };
 		7FA874F828310C40006644B3 /* AboutAppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA874F728310C40006644B3 /* AboutAppTableViewCell.swift */; };
@@ -75,6 +75,7 @@
 /* Begin PBXFileReference section */
 		7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosWorkerTests.swift; sourceTree = "<group>"; };
 		7F25722A28178E130092499D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		7F2749842837805100DDDA91 /* Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
 		7F2E115B282F9184006E7A30 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7F3759E027FF016D00C6EE39 /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		7F3759E427FFE77B00C6EE39 /* MainInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractorTests.swift; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		7FA3192427F087F9003CAF9E /* HapumUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapumUITests.swift; sourceTree = "<group>"; };
 		7FA3192627F087F9003CAF9E /* HapumUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapumUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7FA3193327F142DC003CAF9E /* PhotosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosService.swift; sourceTree = "<group>"; };
-		7FA3193727F3F55F003CAF9E /* Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
 		7FA874F32830FDC8006644B3 /* AboutAppViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppViewController.swift; sourceTree = "<group>"; };
 		7FA874F52831046E006644B3 /* AppInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoTableViewCell.swift; sourceTree = "<group>"; };
 		7FA874F728310C40006644B3 /* AboutAppTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutAppTableViewCell.swift; sourceTree = "<group>"; };
@@ -255,8 +255,8 @@
 		7F42EB1027F8231300FF8FE1 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				7FA3193727F3F55F003CAF9E /* Namespace.swift */,
 				7F42EB1127F8232300FF8FE1 /* Extension */,
+				7F2749842837805100DDDA91 /* Namespace.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -539,9 +539,9 @@
 				7FA3190827F087F9003CAF9E /* MainViewController.swift in Sources */,
 				7FA874FC28336B1F006644B3 /* PrivacyPolicyViewController.swift in Sources */,
 				7FA3190427F087F9003CAF9E /* AppDelegate.swift in Sources */,
+				7F2749852837805100DDDA91 /* Namespace.swift in Sources */,
 				7FAA24442833C6F80014B8E5 /* String+Extension.swift in Sources */,
 				7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */,
-				7FA3193827F3F55F003CAF9E /* Namespace.swift in Sources */,
 				7FA874FA2833516E006644B3 /* AboutAppRouter.swift in Sources */,
 				7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */,
 				7FA3190627F087F9003CAF9E /* SceneDelegate.swift in Sources */,
@@ -794,7 +794,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -829,7 +829,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

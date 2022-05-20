@@ -12,12 +12,11 @@
 "Privacy policy" = "개인정보 처리방침";
 
 //AlertTitle
-"" = "예기치 못한 오류로 이미지 저장에 실패하였습니다";
 
 //AlertMessage
 "Manage to Access to Photos" = "사진에 대한 접근 권한을 관리합니다";
 "Save in Photos" = "사진에 저장";
-"개발자에게 오류를 알려주시면 감사하겠습니다" = "";
+"Failed to save image due to an unexpected error" = "예기치 못한 오류로 이미지 저장에 실패하였습니다";
 
 //AlertActionTitle
 "Change Settings" = "설정 변경";
