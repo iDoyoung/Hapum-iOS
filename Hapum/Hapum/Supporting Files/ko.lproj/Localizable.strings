@@ -15,7 +15,7 @@
 "" = "예기치 못한 오류로 이미지 저장에 실패하였습니다";
 
 //AlertMessage
-"Manage to Access to Your Photos" = "사진에 대한 접근 권한을 관리합니다";
+"Manage to Access to Photos" = "사진에 대한 접근 권한을 관리합니다";
 "Save in Photos" = "사진에 저장";
 "개발자에게 오류를 알려주시면 감사하겠습니다" = "";
 
@@ -28,7 +28,7 @@
 
 //PhotosAccessStatusMessage
 "Please Allow Access to Your Photos" = "사진에 접근 권한을 부여해주세요";
-"You allow access to selected only" = "선택된 수의 사진에 접근할 수 있는 권한을 부여했습니다";
+"You allow access to selected only" = "선택된 사진에 접근할 수 있는 권한을 부여했습니다";
 
 //ManuTitle
 "Change Color" = "색상 변경";
