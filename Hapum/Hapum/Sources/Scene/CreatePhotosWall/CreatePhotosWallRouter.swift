@@ -80,7 +80,16 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         guard let viewController = viewController else {
             return
         }
-        let alert = UIAlertController(title: AlertTitle.savingInPhotos, message: AlertMessage.savingInPhotos, preferredStyle: .actionSheet)
+        let alert: UIAlertController!
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert = UIAlertController(title: AlertTitle.savingInPhotos,
+                                      message: AlertMessage.savingInPhotos,
+                                      preferredStyle: .alert)
+        } else {
+            alert = UIAlertController(title: AlertTitle.savingInPhotos,
+                                      message: AlertMessage.savingInPhotos,
+                                      preferredStyle: .actionSheet)
+        }
         alert.view.tintColor = .theme
         let action = viewController.savePhotosWallViewAlertAction
         let cancel = viewController.cancelDoneAlertAction

@@ -57,9 +57,16 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         guard let viewController = viewController else {
             return
         }
-        let alert = UIAlertController(title: AlertTitle.managingPhotosAccess,
-                                      message: AlertMessage.managingPhotosAccess,
-                                      preferredStyle: .actionSheet)
+        let alert: UIAlertController!
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alert = UIAlertController(title: AlertTitle.managingPhotosAccess,
+                                          message: AlertMessage.managingPhotosAccess,
+                                          preferredStyle: .alert)
+        } else {
+            alert = UIAlertController(title: AlertTitle.managingPhotosAccess,
+                                          message: AlertMessage.managingPhotosAccess,
+                                          preferredStyle: .actionSheet)
+        }
         alert.view.tintColor = .theme
         let alertActions = [
             UIAlertAction(title: AlertActionTitle.changeSetting,
@@ -75,6 +82,13 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         alertActions.forEach { action in
             alert.addAction(action)
         }
+        
+        if let popup = alert.popoverPresentationController {
+            guard let view = viewController.view else { return }
+            popup.sourceView = view
+            popup.sourceRect = CGRect(x: view.frame.midX, y: view.frame.midY, width: .zero, height: .zero)
+        }
+        
         viewController.present(alert, animated: true)
     }
     
