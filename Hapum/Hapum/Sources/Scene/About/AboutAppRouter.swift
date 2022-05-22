@@ -9,7 +9,7 @@ import UIKit
 
 @objc
 protocol AboutAppRoutingLogic {
-    func routeToRecommendApp(segue: UIStoryboardSegue?)
+    func presentActivityVC(source: AboutAppViewController, sender: UITableViewCell?)
     func routeToPrivacyPolicy(segue: UIStoryboardSegue?)
     func openAppStoreToWriteReview()
 }
@@ -17,12 +17,7 @@ protocol AboutAppRoutingLogic {
 final class AboutAppRouter: NSObject, AboutAppRoutingLogic {
     
     weak var viewController: AboutAppViewController?
-    
-    func routeToRecommendApp(segue: UIStoryboardSegue?) {
-        guard let viewController = viewController else { return }
-        presentActivityVC(source: viewController)
-    }
-    
+
     func routeToPrivacyPolicy(segue: UIStoryboardSegue?) {
         guard let viewController = viewController else { return }
         
@@ -42,12 +37,13 @@ final class AboutAppRouter: NSObject, AboutAppRoutingLogic {
         }
     }
     
-    private func presentActivityVC(source: AboutAppViewController) {
+    func presentActivityVC(source: AboutAppViewController, sender: UITableViewCell?) {
         let message = ["https://apps.apple.com/app/id1625220721"]
         let activityVC = UIActivityViewController(activityItems: message, applicationActivities: nil)
         if UIDevice.current.userInterfaceIdiom == .pad {
-            if let popup = activityVC.popoverPresentationController {
-                popup.sourceView = source.view
+            if let popover = activityVC.popoverPresentationController {
+                popover.sourceView = source.view
+                popover.sourceRect = sender?.frame ?? CGRect()
             }
         }
         source.present(activityVC, animated: true, completion: nil)

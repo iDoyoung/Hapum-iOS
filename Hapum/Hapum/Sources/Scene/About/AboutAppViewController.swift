@@ -114,7 +114,7 @@ final class AboutAppViewController: UITableViewController {
         if indexPath.section == TableViewSection.detail.rawValue {
             switch indexPath.row {
             case 0:
-                routeScene("RecommendApp", segue: nil)
+                router?.presentActivityVC(source: self, sender: tableView.cellForRow(at: indexPath))
             case 1:
                 router?.openAppStoreToWriteReview()
             case 2:

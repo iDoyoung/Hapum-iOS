@@ -54,7 +54,7 @@ final class CreatePhotosWallViewController: UIViewController {
     @IBAction func tapShareButton(_ sender: UIBarButtonItem) {
         photosWallFrameView.hideEmptyFrameViews()
         let image = convertToImage(view: photosWallFrameView)
-        router?.presentActivityVC(photo: image)
+        router?.presentActivityVC(photo: image, sender: sender)
     }
     
     func savePhotosWallViewInAlbums() {
