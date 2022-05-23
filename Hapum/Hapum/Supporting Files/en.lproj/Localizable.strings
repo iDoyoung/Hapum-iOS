@@ -12,10 +12,10 @@
 "Privacy policy" = "Privacy policy";
 
 //AlertMessage
-"Manage to Access to Photos" = "Manage to Access to Photos";
-"Save in Photos" = "Save in Photos";
-"Failed to save image due to an unexpected error" = "Failed to save image due to an unexpected error";
-"Please allow Hapum to access photos" = "Please allow Hapum to access photos";
+"Manage to access to Photos." = "Manage to Access to Photos.";
+"Save in your Photos library." = "Save in your Photos library.";
+"Failed to save image due to an unexpected error." = "Failed to save image due to an unexpected error.";
+"Please allow Hapum to access photos." = "Please allow Hapum to access photos.";
 
 //AlertActionTitle
 "Change Settings" = "Change Settings";
