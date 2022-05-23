@@ -41,12 +41,14 @@
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUR-D8-UGN">
                                 <rect key="frame" x="0.0" y="44" width="414" height="798"/>
-                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="ccc-qK-AnT">
+                                <rect key="frame" x="197" y="433" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1DF-dX-XOb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -54,11 +56,14 @@
                             <constraint firstItem="uUR-D8-UGN" firstAttribute="leading" secondItem="1DF-dX-XOb" secondAttribute="leading" id="7Hu-JR-E2t"/>
                             <constraint firstItem="uUR-D8-UGN" firstAttribute="top" secondItem="1DF-dX-XOb" secondAttribute="top" id="Bxl-R1-nsV"/>
                             <constraint firstItem="1DF-dX-XOb" firstAttribute="bottom" secondItem="uUR-D8-UGN" secondAttribute="bottom" id="CZC-Is-Igb"/>
+                            <constraint firstItem="ccc-qK-AnT" firstAttribute="centerY" secondItem="uUR-D8-UGN" secondAttribute="centerY" id="IJV-fg-20O"/>
                             <constraint firstAttribute="trailing" secondItem="uUR-D8-UGN" secondAttribute="trailing" id="LKK-pM-Wx6"/>
+                            <constraint firstItem="ccc-qK-AnT" firstAttribute="centerX" secondItem="uUR-D8-UGN" secondAttribute="centerX" id="scT-X4-6xg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Privacy policy" id="TYv-Jk-DKI"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="ccc-qK-AnT" id="Ojz-6d-Bxh"/>
                         <outlet property="privacyPolicyWebView" destination="uUR-D8-UGN" id="8DL-uA-nAB"/>
                     </connections>
                 </viewController>
