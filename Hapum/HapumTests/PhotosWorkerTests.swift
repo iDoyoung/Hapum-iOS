@@ -30,7 +30,7 @@ class PhotosWorkerTests: XCTestCase {
     }
     
     class MockPhotosService: PhotoFetchable {
-        
+       
         var requestAccessStatusCalled = false
         var fetchPhotosCalled = false
         var fetchPhotosFromAlbumsCalled = false
@@ -51,7 +51,7 @@ class PhotosWorkerTests: XCTestCase {
             completion(PhotosWorkerTests.testAlbumsPhotos)
         }
         
-        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+        func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
             addAssetCalled = true
         }
     }

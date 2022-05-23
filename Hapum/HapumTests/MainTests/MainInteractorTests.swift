@@ -84,7 +84,7 @@ class MainInteractorTests: XCTestCase {
                        ])
         }
         
-        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+        func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
         }
         
         

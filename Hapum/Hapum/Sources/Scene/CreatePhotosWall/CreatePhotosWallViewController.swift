@@ -14,6 +14,7 @@ protocol CreatePhotosWallDisplayLogic: AnyObject {
     func displayDoneAlert()
     func displayCreatingSuccess()
     func displayCreatingFailure()
+    func displayRestrictedStatus()
 }
 
 final class CreatePhotosWallViewController: UIViewController {
@@ -212,6 +213,10 @@ extension CreatePhotosWallViewController: CreatePhotosWallDisplayLogic {
     
     func displayDoneAlert() {
         router?.presentDoneActionSheet()
+    }
+    
+    func displayRestrictedStatus() {
+        router?.presentRestrictedStatusAlert()
     }
     
     func displayCreatingSuccess() {

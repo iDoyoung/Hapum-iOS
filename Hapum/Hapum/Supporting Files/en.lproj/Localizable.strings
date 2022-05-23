@@ -14,7 +14,8 @@
 //AlertMessage
 "Manage to Access to Photos" = "Manage to Access to Photos";
 "Save in Photos" = "Save in Photos";
-"개발자에게 오류를 알려주시면 감사하겠습니다" = "개발자에게 오류를 알려주시면 감사하겠습니다";
+"Failed to save image due to an unexpected error" = "Failed to save image due to an unexpected error";
+"Please allow Hapum to access photos" = "Please allow Hapum to access photos";
 
 //AlertActionTitle
 "Change Settings" = "Change Settings";
@@ -22,6 +23,7 @@
 "OK" = "OK";
 "Cancel" = "Cancel";
 "Save" = "Save";
+"Open Setting" = "Open Setting";
 
 //PhotosAccessStatusMessage
 "Please Allow Access to Photos" = "Please Allow Access to Photos";

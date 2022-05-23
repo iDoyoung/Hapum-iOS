@@ -14,7 +14,13 @@ protocol PhotoFetchable {
     func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void)
     func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void)
     func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void)
-    func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void)
+    func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void)
+}
+
+enum AddPhotoAssetError: Error {
+    case restrictedAuthorizationStatus
+    case failed
+    case error
 }
 
 class PhotosService: PhotoFetchable {
@@ -56,7 +62,12 @@ class PhotosService: PhotoFetchable {
         completion(photos)
     }
     
-    func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
+    func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
+        guard PHPhotoLibrary.authorizationStatus() == .limited || PHPhotoLibrary.authorizationStatus() == .authorized else {
+            completion(.restrictedAuthorizationStatus)
+            return
+        }
+        
         guard let album = fetchResultCollection.firstObject else {
             createAlbum {
                 PHPhotoLibrary.shared().performChanges {
@@ -64,7 +75,15 @@ class PhotosService: PhotoFetchable {
                     guard let addAssetRequest = PHAssetCollectionChangeRequest(for: self.fetchResultCollection.firstObject!) else { return }
                     addAssetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
                 } completionHandler: { success, error in
-                    completion((success, error))
+                    guard error == nil else {
+                        completion(.error)
+                        return
+                    }
+                    if !success {
+                        completion(.failed)
+                    } else {
+                        completion(nil)
+                    }
                 }
             }
             return
@@ -75,7 +94,15 @@ class PhotosService: PhotoFetchable {
             guard let addAssetRequest = PHAssetCollectionChangeRequest(for: album) else { return }
             addAssetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
         } completionHandler: { success, error in
-            completion((success, error))
+            guard error == nil else {
+                completion(.error)
+                return
+            }
+            if !success {
+                completion(.failed)
+            } else {
+                completion(nil)
+            }
         }
     }
     

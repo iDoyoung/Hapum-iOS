@@ -31,6 +31,7 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         var showCreatingSuccessCalled = false
         var showCreatingFailureCalled = false
         var showDoneAlertCalled = false
+        var showAuthorizationStatusCalled = false
         
         func presentPhotos(resource: [Photos.Asset]) {
             presentPhotosCalled = true
@@ -51,19 +52,28 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         func showDoneAlert() {
             showDoneAlertCalled = true
         }
+        
+        func showAuthorizationStatus() {
+            showAuthorizationStatusCalled = true
+        }
+        
     }
     
     class MockPhotosWorker: PhotosWorker {
         
-        override func addPhotoAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
-            service.addAsset(photo: Photos.Photo(image: Seeds.ImageDummy.image!)) { (success, error) in
-                completion((success, error))
+        override func addPhotoAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
+            service.addAsset(photo: Photos.Photo(image: Seeds.ImageDummy.image!)) { error in
+                completion(error)
             }
         }
         
     }
     
     class MockSuccessPhotosService: PhotoFetchable {
+        
+        func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
+        }
+        
         func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
         }
         
@@ -79,6 +89,10 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
     }
     
     class MockFailurePhotosService: PhotoFetchable {
+        func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
+            completion(nil)
+        }
+        
         func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
         }
         
@@ -87,11 +101,7 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         
         func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
         }
-     
-        
-        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
-            completion((false, nil))
-        }
+
     }
     
     

@@ -44,12 +44,14 @@ enum AlertTitle {
     static let managingPhotosAccess = ""
     static let savingInPhotos = ""
     static let creatingFailure = ""
+    static let restrictedStatus = ""
 }
 
 enum AlertMessage {
     static let managingPhotosAccess = "Manage to Access to Photos".localized
     static let savingInPhotos = "Save in Photos".localized
     static let creatingFailure = "Failed to save image due to an unexpected error".localized
+    static let restrictedStatus = "Please allow Hapum to access photos".localized
 }
 
 enum AlertActionTitle {
@@ -58,6 +60,7 @@ enum AlertActionTitle {
     static let okay = "OK".localized
     static let cancel = "Cancel".localized
     static let save = "Save".localized
+    static let setting = "Open Setting".localized
 }
 
 enum PhotosAccessStatusMessage {

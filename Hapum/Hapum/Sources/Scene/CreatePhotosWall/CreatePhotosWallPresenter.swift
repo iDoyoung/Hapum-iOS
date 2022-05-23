@@ -13,6 +13,7 @@ protocol CreatePhotosWallPresentationLogic {
     func showDoneAlert() 
     func showCreatingSuccess()
     func showCreatingFailure()
+    func showAuthorizationStatus()
 }
 
 class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
@@ -37,6 +38,10 @@ class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
     
     func showCreatingFailure() {
         viewController?.displayCreatingFailure()
+    }
+    
+    func showAuthorizationStatus() {
+        viewController?.displayRestrictedStatus()
     }
     
 }

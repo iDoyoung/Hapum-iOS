@@ -33,9 +33,9 @@ class PhotosWorker {
         }
     }
     
-    func addPhotoAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
-        service.addAsset(photo: photo) { (success, error) in
-            completion((success, error))
+    func addPhotoAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
+        service.addAsset(photo: photo) { error in
+            completion(error)
         }
     }
 }

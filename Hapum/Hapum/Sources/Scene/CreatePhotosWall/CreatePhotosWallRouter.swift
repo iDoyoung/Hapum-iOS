@@ -16,6 +16,7 @@ protocol CreatePhotosWallRoutingLogic {
     func presentDoneActionSheet()
     func presentColorPickerView()
     func presentCreatingFailureAlert()
+    func presentRestrictedStatusAlert()
     func presentActivityVC(photo: UIImage, sender: UIBarButtonItem)
 }
 
@@ -108,6 +109,21 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         viewController.present(alert, animated: true)
     }
     
+    func presentRestrictedStatusAlert() {
+        guard let viewController = viewController else {
+            return
+        }
+        let alert = UIAlertController(title: AlertTitle.restrictedStatus, message: AlertMessage.restrictedStatus, preferredStyle: .alert)
+        let openSetting = UIAlertAction(title: AlertActionTitle.setting, style: .default) { [weak self] _ in
+            self?.openSetting()
+        }
+        let cancel = UIAlertAction(title: AlertActionTitle.cancel, style: .cancel)
+        alert.view.tintColor = .theme
+        alert.addAction(openSetting)
+        alert.addAction(cancel)
+        viewController.present(alert, animated: true)
+    }
+    
     func presentActivityVC(photo: UIImage, sender: UIBarButtonItem) {
         let items = [photo]
         guard let viewController = viewController else { return }
@@ -127,6 +143,15 @@ final class CreatePhotosWallRouter: NSObject, CreatePhotosWallRoutingLogic, Crea
         }
         
         viewController.present(activityVC, animated: true, completion: nil)
+    }
+    
+    private func openSetting() {
+        guard let url = URL(string: UIApplication.openSettingsURLString) else {
+           return
+        }
+        if UIApplication.shared.canOpenURL(url) {
+           UIApplication.shared.open(url, options: [:])
+        }
     }
     
 }

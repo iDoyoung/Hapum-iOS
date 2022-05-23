@@ -31,6 +31,7 @@ class CreatePhotosWallPresenterTests: XCTestCase {
         var displayCreatingSuccessCalled = false
         var displayCreatingFailureCalled = false
         var displayDoneAlertCalled = false
+        var displayRestrictedStatusCalled = false
         
         var viewModel: [Photos.Asset]!
         
@@ -49,6 +50,10 @@ class CreatePhotosWallPresenterTests: XCTestCase {
         
         func displayCreatingFailure() {
             displayCreatingFailureCalled = true
+        }
+        
+        func displayRestrictedStatus() {
+            displayRestrictedStatusCalled = true
         }
         
         func displayDoneAlert() {

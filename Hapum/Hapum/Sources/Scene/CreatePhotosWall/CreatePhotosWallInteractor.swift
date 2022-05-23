@@ -29,17 +29,18 @@ final class CreatePhotosWallInteractor: CreatePhotosWallBusinessLogic, CreatePho
     }
     
     func addPhoto(photo: Photos.Photo) {
-        photosWorker.addPhotoAsset(photo: photo) { [weak self] (success, error) in
-            guard error == nil else {
-                self?.presenter?.showCreatingFailure()
-                return
+        photosWorker.addPhotoAsset(photo: photo) { [weak self] (error) in
+            if let error = error {
+                switch error {
+                case .restrictedAuthorizationStatus:
+                    self?.presenter?.showAuthorizationStatus()
+                case .failed:
+                    self?.presenter?.showCreatingFailure()
+                case .error:
+                    self?.presenter?.showCreatingFailure()
+                }
             }
-            
-            if !success {
-                self?.presenter?.showCreatingFailure()
-            } else {
-                self?.presenter?.showCreatingSuccess()
-            }
+            self?.presenter?.showCreatingSuccess()
         }
     }
     

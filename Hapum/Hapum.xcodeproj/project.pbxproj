@@ -52,6 +52,8 @@
 		7FAA243C2833AC180014B8E5 /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FAA243E2833AC180014B8E5 /* Create.storyboard */; };
 		7FAA24442833C6F80014B8E5 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA24432833C6F80014B8E5 /* String+Extension.swift */; };
 		7FD1F8BA28083E7F0078849C /* CreatePhotosWallViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1F8B928083E7F0078849C /* CreatePhotosWallViewControllerTests.swift */; };
+		7FD8D384283B0FF9003229BE /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2749842837805100DDDA91 /* Namespace.swift */; };
+		7FD8D385283B103D003229BE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAA24432833C6F80014B8E5 /* String+Extension.swift */; };
 		7FEA944B2835F29F00EC872F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7FEA944D2835F29F00EC872F /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -555,12 +557,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F1A410327FE8CC9002BC9E0 /* PhotosWorkerTests.swift in Sources */,
+				7FD8D384283B0FF9003229BE /* Namespace.swift in Sources */,
 				7F375A61280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift in Sources */,
 				7F3759E527FFE77B00C6EE39 /* MainInteractorTests.swift in Sources */,
 				7F375A5F2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift in Sources */,
 				7F3759E127FF016D00C6EE39 /* Seeds.swift in Sources */,
 				7F3759E9280044BA00C6EE39 /* MainPresenterTests.swift in Sources */,
 				7F375A422803C3C200C6EE39 /* MainViewControllerTests.swift in Sources */,
+				7FD8D385283B103D003229BE /* String+Extension.swift in Sources */,
 				7FD1F8BA28083E7F0078849C /* CreatePhotosWallViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
