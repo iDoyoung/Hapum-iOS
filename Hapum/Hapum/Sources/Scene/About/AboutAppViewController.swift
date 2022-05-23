@@ -123,6 +123,8 @@ final class AboutAppViewController: UITableViewController {
                 break
             }
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
