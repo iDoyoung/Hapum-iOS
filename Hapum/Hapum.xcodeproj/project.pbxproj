@@ -226,8 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				7FA3191127F087F9003CAF9E /* Info.plist */,
-				7FEA944D2835F29F00EC872F /* Localizable.strings */,
 				7F59AB0B283767EF008BBEFA /* InfoPlist.strings */,
+				7FEA944D2835F29F00EC872F /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -779,9 +779,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hapum/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Hapum;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Hapum needs access to your device's cameras to take a pictures, then fill your photos wall.\"";
 				INFOPLIST_KEY_NSMainNibFile = Main;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Hapum needs access to your photo library to save photos wall and to show preview by your photos.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
@@ -814,9 +814,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hapum/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Hapum;
-				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Hapum needs access to your device's cameras to take a pictures, then fill your photos wall.\"";
 				INFOPLIST_KEY_NSMainNibFile = Main;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Hapum needs access to your photo library to save photos wall and to show preview by your photos.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";

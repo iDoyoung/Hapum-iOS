@@ -5,4 +5,6 @@
   Created by Doyoung on 2022/05/20.
   
 */
-"CFBundleDisplayName" = "CFBundleDisplayName";
+"CFBundleDisplayName" = "Hapum";
+"NSCameraUsageDescription" = "Hapum needs access to your photo library to save photos wall and to show preview by your photos.";
+"NSPhotoLibraryUsageDescription" = "Hapum needs access to your device's cameras to take a pictures, then fill your photos wall.";
