@@ -24,12 +24,12 @@
 		7F375A5F2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A5E2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift */; };
 		7F375A61280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A60280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift */; };
 		7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A622805264500C6EE39 /* CreatePhotosWallRouter.swift */; };
+		7F4187CD283BD47E001DB550 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190927F087F9003CAF9E /* Main.storyboard */; };
 		7F42EB0327F52E9100FF8FE1 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0227F52E9100FF8FE1 /* Photos.swift */; };
 		7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */; };
 		7F59AB09283767EF008BBEFA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F59AB0B283767EF008BBEFA /* InfoPlist.strings */; };
 		7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */; };
 		7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */; };
-		7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190927F087F9003CAF9E /* Main.storyboard */; };
 		7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190C27F087F9003CAF9E /* Assets.xcassets */; };
 		7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */; };
 		7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */; };
@@ -489,11 +489,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F4187CD283BD47E001DB550 /* Main.storyboard in Resources */,
 				7F3759FF28030C4C00C6EE39 /* PhotosWallView.xib in Resources */,
 				7FAA24392833AC130014B8E5 /* About.storyboard in Resources */,
 				7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */,
 				7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */,
-				7F70C9EC27F9D397001DEB43 /* Main.storyboard in Resources */,
 				7FEA944B2835F29F00EC872F /* Localizable.strings in Resources */,
 				7FAA243C2833AC180014B8E5 /* Create.storyboard in Resources */,
 				7F59AB09283767EF008BBEFA /* InfoPlist.strings in Resources */,
@@ -779,12 +779,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hapum/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Hapum;
-				INFOPLIST_KEY_NSCameraUsageDescription = "\"Hapum needs access to your device's cameras to take a pictures, then fill your photos wall.\"";
-				INFOPLIST_KEY_NSMainNibFile = Main;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Hapum needs access to your photo library to save photos wall and to show preview by your photos.\"";
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Hapum needs access to your photo library to save photos wall and to show preview by your photos.\"";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Hapum needs access to your device's cameras to take a pictures, then fill your photos wall.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -814,12 +814,12 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Hapum/Supporting Files/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Hapum;
-				INFOPLIST_KEY_NSCameraUsageDescription = "\"Hapum needs access to your device's cameras to take a pictures, then fill your photos wall.\"";
-				INFOPLIST_KEY_NSMainNibFile = Main;
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Hapum needs access to your photo library to save photos wall and to show preview by your photos.\"";
+				INFOPLIST_KEY_NSCameraUsageDescription = "\"Hapum needs access to your photo library to save photos wall and to show preview by your photos.\"";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "\"Hapum needs access to your device's cameras to take a pictures, then fill your photos wall.\"";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

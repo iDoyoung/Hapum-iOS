@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="q1h-ul-y0w">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -15,23 +15,23 @@
             <objects>
                 <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="Hapum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="uKU-oH-Ey0">
-                                <rect key="frame" x="0.0" y="88" width="390" height="712"/>
+                                <rect key="frame" x="0.0" y="74" width="1024" height="1262"/>
                                 <subviews>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="D7B-M1-9en">
-                                        <rect key="frame" x="20" y="-64" width="350" height="44"/>
+                                        <rect key="frame" x="20" y="-64" width="984" height="44"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K3u-A0-wBJ">
-                                                <rect key="frame" x="0.0" y="0.0" width="220" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="642.5" height="44"/>
                                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10I-BD-N0Z">
-                                                <rect key="frame" x="240" y="0.0" width="110" height="44"/>
+                                                <rect key="frame" x="662.5" y="0.0" width="321.5" height="44"/>
                                                 <color key="backgroundColor" name="Theme"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="cfz-E1-npF"/>
@@ -48,19 +48,19 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2nm-V5-xsv" customClass="PhotosWallView" customModule="Hapum" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
+                                        <rect key="frame" x="317" y="0.0" width="390" height="520"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="2nm-V5-xsv" secondAttribute="height" multiplier="3:4" id="J78-QF-Nmu"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is sample preview created by today photos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmC-Ru-keQ">
-                                        <rect key="frame" x="10" y="608.66666666666663" width="370" height="19.333333333333371"/>
+                                        <rect key="frame" x="10" y="1158.5" width="1004" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-9E-xTo">
-                                        <rect key="frame" x="10" y="668" width="370" height="44"/>
+                                        <rect key="frame" x="10" y="1218" width="1004" height="44"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="iqt-Kg-h3z"/>
@@ -122,7 +122,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="q1h-ul-y0w" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="M30-1F-00V">
-                        <rect key="frame" x="0.0" y="44" width="390" height="44"/>
+                        <rect key="frame" x="0.0" y="24" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" systemColor="labelColor"/>
                     </navigationBar>

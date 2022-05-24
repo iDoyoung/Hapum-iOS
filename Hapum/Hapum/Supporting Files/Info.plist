@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>&quot;Hapum needs access to your device&apos;s cameras to take a pictures, then fill your photos wall.&quot;</string>
-	<key>NSCameraUsageDescription</key>
-	<string>&quot;Hapum needs access to your photo library to save photos wall and to show preview by your photos.&quot;</string>
 	<key>LSHasLocalizedDisplayName</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
