@@ -8,7 +8,7 @@
 import UIKit
 import WebKit
 
-class PrivacyPolicyViewController: UIViewController, WKNavigationDelegate {
+final class PrivacyPolicyViewController: UIViewController, WKNavigationDelegate {
     
     @IBOutlet weak var privacyPolicyWebView: WKWebView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!

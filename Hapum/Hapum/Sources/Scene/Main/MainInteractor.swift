@@ -18,7 +18,7 @@ protocol MainDataStore {
     var albumsPhotos: [Photos.Asset]? { get }
 }
 
-class MainInteractor: MainBusinessLogic, MainDataStore {
+final class MainInteractor: MainBusinessLogic, MainDataStore {
 
     var presenter: MainPresentationLogic?
     var photosWorker = PhotosWorker(service: PhotosService())

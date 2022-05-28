@@ -16,7 +16,7 @@ protocol CreatePhotosWallPresentationLogic {
     func showAuthorizationStatus()
 }
 
-class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
+final class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
     
     weak var viewController: CreatePhotosWallDisplayLogic?
     

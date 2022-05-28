@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutAppTableViewCell: UITableViewCell {
+final class AboutAppTableViewCell: UITableViewCell {
 
     static let reuseID = "AboutAppTableViewCell"
     

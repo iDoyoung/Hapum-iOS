@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FrameViewCell: UICollectionViewCell {
+final class FrameViewCell: UICollectionViewCell {
     
     @IBOutlet weak var frameView: UIView!
     
