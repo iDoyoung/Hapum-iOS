@@ -9,148 +9,111 @@
 /// https://developer.apple.com/documentation/photokit/phphotolibrary/requesting_changes_to_the_photo_library
 
 import Photos
+import UIKit
 
-protocol PhotoFetchable {
-    func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void)
-    func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void)
-    func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void)
-    func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void)
-}
-
-enum AddPhotoAssetError: Error {
-    case restrictedAuthorizationStatus
+enum PhotosError: Error {
+    case error(status: PHAuthorizationStatus)
     case failed
-    case error
+    case unowned
 }
 
-class PhotosService: PhotoFetchable {
+protocol PhotosManaging {
+    typealias CompletionHandler = (PHFetchResult<PHAsset>) -> Void
     
-    private let imageManager: PHImageManager = PHImageManager.default()
+    func getStatus() -> PHAuthorizationStatus
+    func fetchAssetCollection(_ album: String) -> PHFetchResult<PHAssetCollection>
+    func fetchPhotos(options: PHFetchOptions, in album: PHAssetCollection?, completion: @escaping CompletionHandler)
+    func addAsset(of image: UIImage, in album: PHAssetCollection, completion: @escaping () -> Void)
+}
+
+class PhotosManager: PhotosManaging {
     
-    private var fetchOptions: PHFetchOptions = {
+    func getStatus() -> PHAuthorizationStatus {
+        return PHPhotoLibrary.authorizationStatus()
+    }
+    
+    func fetchAssetCollection(_ album: String) -> PHFetchResult<PHAssetCollection> {
         let options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        return options
-    }()
+        options.predicate = NSPredicate(format: "title = %@", album)
+        return PHAssetCollection.fetchAssetCollections(with: .album,
+                                                       subtype: .any,
+                                                       options: options)
+    }
     
-    func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-        let options = fetchOptions
-        let dateFrom: Date = Date().yesterday()
-        options.predicate = NSPredicate(format: "mediaType == %d && !(mediaSubtypes == %d) && creationDate > %@",
-                                        PHAssetMediaType.image.rawValue,
-                                        PHAssetMediaSubtype.photoScreenshot.rawValue,
-                                        dateFrom as NSDate)
-        options.fetchLimit = 14
-        let assets = PHAsset.fetchAssets(with: options)
-        let photos = requestPhotos(for: assets, to: CGSize(width: CGFloat(width), height: CGFloat(height)))
-        completion(photos)
+    func fetchPhotos(options: PHFetchOptions, in album: PHAssetCollection?, completion: @escaping CompletionHandler) {
+        let fetchedAssets: PHFetchResult<PHAsset>
+        guard let album = album else {
+            fetchedAssets = PHAsset.fetchAssets(with: options)
+            completion(fetchedAssets)
+            return
+        }
+        fetchedAssets = PHAsset.fetchAssets(in: album, options: options)
+        completion(fetchedAssets)
+    }
+    
+    func addAsset(of image: UIImage, in album: PHAssetCollection, completion: @escaping () -> Void) {
+        PHPhotoLibrary.shared().performChanges {
+            let createAssetRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
+            let assetPlaceholder = createAssetRequest.placeholderForCreatedAsset!
+            let albumChangeRequest = PHAssetCollectionChangeRequest(for: album)
+            albumChangeRequest?.addAssets([assetPlaceholder] as NSArray)
+        }
+        completion()
     }
    
-    private let fetchResultCollection: PHFetchResult<PHAssetCollection> = {
-        let options = PHFetchOptions()
-        options.predicate = NSPredicate(format: "title = %@", AlbumName.hapum)
-        return PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: options)
-    }()
+}
+
+final class PhotosService {
     
-    func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-        guard let album = fetchResultCollection.firstObject else {
-            return
-        }
-        let options = fetchOptions
-        let assets = PHAsset.fetchAssets(in: album, options: options)
-        let photos = requestPhotos(for: assets, to: CGSize(width: CGFloat(width), height: CGFloat(height)))
-        completion(photos)
+    let album: String
+    let photosManager: PhotosManaging
+    
+    init(album: String, photosManager: PhotosManaging) {
+        self.album = album
+        self.photosManager = photosManager
     }
     
-    func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
-        guard PHPhotoLibrary.authorizationStatus() == .limited || PHPhotoLibrary.authorizationStatus() == .authorized else {
-            completion(.restrictedAuthorizationStatus)
-            return
-        }
+    func fetchAllPhotos(options: PHFetchOptions, completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+        let status = photosManager.getStatus()
         
-        guard let album = fetchResultCollection.firstObject else {
-            createAlbum {
-                PHPhotoLibrary.shared().performChanges {
-                    let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: photo.image!)
-                    guard let addAssetRequest = PHAssetCollectionChangeRequest(for: self.fetchResultCollection.firstObject!) else { return }
-                    addAssetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
-                } completionHandler: { success, error in
-                    guard error == nil else {
-                        completion(.error)
-                        return
-                    }
-                    if !success {
-                        completion(.failed)
-                    } else {
-                        completion(nil)
-                    }
-                }
+        switch status {
+        case .notDetermined, .restricted, .denied:
+            completion(.failure(.error(status: status)))
+        case .authorized, .limited:
+            photosManager.fetchPhotos(options: options, in: nil) { result in
+                completion(.success(result))
             }
-            return
-        }
-        
-        PHPhotoLibrary.shared().performChanges {
-            let creationRequest = PHAssetChangeRequest.creationRequestForAsset(from: photo.image!)
-            guard let addAssetRequest = PHAssetCollectionChangeRequest(for: album) else { return }
-            addAssetRequest.addAssets([creationRequest.placeholderForCreatedAsset!] as NSArray)
-        } completionHandler: { success, error in
-            guard error == nil else {
-                completion(.error)
-                return
-            }
-            if !success {
-                completion(.failed)
-            } else {
-                completion(nil)
-            }
+        @unknown default:
+            completion(.failure(.unowned))
         }
     }
     
-    private func requestPhotos(for assets: PHFetchResult<PHAsset>, to size: CGSize) -> [Photos.Asset] {
-        var photos = [Photos.Asset]()
-        let requestOptions = PHImageRequestOptions()
-        requestOptions.isSynchronous = true
-        
-        for index in 0..<assets.count {
-            let asset = assets[index]
-            imageManager.requestImage(for: assets[index], targetSize: size, contentMode: .default, options: requestOptions) { image, _ in
-                photos.append(
-                    Photos.Asset(identifier: asset.localIdentifier,
-                                 image: image,
-                                 creationDate: asset.creationDate,
-                                 location: asset.location))
-            }
-        }
-        return photos
+    func fetchAlbumPhotos(options: PHFetchOptions, completion: @escaping (PHFetchResult<PHAsset>) -> Void) {
+        guard let album = photosManager.fetchAssetCollection(album).firstObject else { return }
+        photosManager.fetchPhotos(options: options, in: album, completion: completion)
     }
     
-    func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
-        var accessStatus: Photos.Status?
+    func addAsset(of image: UIImage, completion: @escaping () -> Void) {
+        var collection: PHAssetCollection
+        if photosManager.fetchAssetCollection(album).firstObject == nil {
+            createAlbum(album)
+        }
+        collection = photosManager.fetchAssetCollection(album).firstObject!
+        photosManager.addAsset(of: image, in: collection, completion: completion)
+    }
+
+    func requestAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
-            switch status {
-            case .notDetermined:
-                accessStatus = Photos.Status.notDetermined
-            case .restricted:
-                accessStatus = Photos.Status.restricted
-            case .denied:
-                accessStatus = Photos.Status.denied
-            case .authorized:
-                accessStatus = Photos.Status.authorized
-            case .limited:
-                accessStatus = Photos.Status.limited
-            @unknown default:
-                break
-            }
-            completion(accessStatus)
+           completion(status)
         }
     }
     
-    private func createAlbum(completion: @escaping () -> Void) {
+    private func createAlbum(_ album: String) {
         PHPhotoLibrary.shared().performChanges {
-            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: AlbumName.hapum)
+            PHAssetCollectionChangeRequest.creationRequestForAssetCollection(withTitle: album)
         }
     }
-    
+        
     deinit {
         print("Deinit photo service")
     }
