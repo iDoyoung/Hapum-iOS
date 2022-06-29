@@ -75,7 +75,7 @@ final class PhotosService: PhotoServicing {
     let album: String
     let photosManager: PhotosManaging
     
-    init(album: String, photosManager: PhotosManaging) {
+    init(album: String, photosManager: PhotosManaging = DefaultPhotosManager()) {
         self.album = album
         self.photosManager = photosManager
     }

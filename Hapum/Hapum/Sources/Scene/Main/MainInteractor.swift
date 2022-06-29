@@ -5,64 +5,63 @@
 //  Created by Doyoung on 2022/04/05.
 //
 
-import Foundation
+import Photos
 
 protocol MainBusinessLogic {
     func fetchPhotosAccessStatus()
-    func fetchPhotos(width: Float, height: Float)
-    func fetchAlbumsPhotos(width: Float, height: Float)
+    func fetchPhotos()
+    func fetchAlbumsPhotos()
 }
 
 protocol MainDataStore {
-    var photos: [Photos.Asset]? { get }
-    var albumsPhotos: [Photos.Asset]? { get }
+    var fetchAllResult: PHFetchResult<PHAsset>? { get }
+    var fetchAlbumsResult: PHFetchResult<PHAsset>? { get }
 }
 
 final class MainInteractor: MainBusinessLogic, MainDataStore {
 
     var presenter: MainPresentationLogic?
-    var photosWorker = PhotosWorker(service: PhotosService())
-    var photos: [Photos.Asset]?
-    var albumsPhotos: [Photos.Asset]?
+    var photosWorker = PhotosWorker(service: PhotosService(album: AlbumName.hapum))
+    var fetchAllResult: PHFetchResult<PHAsset>?
+    var fetchAlbumsResult: PHFetchResult<PHAsset>?
     
     func fetchPhotosAccessStatus() {
-        photosWorker.fetchAccessStatus { [weak self] status in
-            if let status = status {
-                var response: Photos.Status.Response
-                switch status {
-                case .notDetermined:
-                    response = Photos.Status.Response(message: PhotosAccessStatusMessage.needToSet,
-                                                      isLimited: nil)
-                case .restricted:
-                    response = Photos.Status.Response(message: PhotosAccessStatusMessage.needToSet,
-                                                      isLimited: false)
-                case .authorized:
-                    response = Photos.Status.Response(message: nil,
-                                                      isLimited: nil)
-                case .denied:
-                    response = Photos.Status.Response(message: PhotosAccessStatusMessage.needToSet,
-                                                      isLimited: false)
-                case .limited:
-                    response = Photos.Status.Response(message: PhotosAccessStatusMessage.limitedStatus,
-                                                      isLimited: true)
-                }
-                self?.presenter?.presentPhotosAccessStatus(response: response)
+        photosWorker.fetchAccessStatus { status in
+            switch status {
+            case .notDetermined:
+                break
+            case .restricted:
+                break
+            case .denied:
+                break
+            case .authorized:
+                break
+            case .limited:
+                break
             }
         }
     }
     
-    func fetchPhotos(width: Float, height: Float) {
-        photosWorker.fetchAllPhotos(width: width, height: height) { [weak self] photos in
-            self?.photos = photos
-            self?.presenter?.presentFetchedAllPhotos(resource: photos)
+    func fetchPhotos() {
+        photosWorker.fetchAllPhotos { [weak self] result in
+            switch result {
+            case .success(let fetched):
+                self?.fetchAllResult = fetched
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
-    func fetchAlbumsPhotos(width: Float, height: Float) {
-        photosWorker.fetchAlbumsPhotos(width: width, height: height) { [weak self] albumsPhotos in
-            self?.albumsPhotos = albumsPhotos
-            self?.presenter?.presentFetchedAlbums(resource: self?.albumsPhotos)
+    func fetchAlbumsPhotos() {
+        photosWorker.fetchAlbumsPhotos { [weak self] result in
+            switch result {
+            case .success(let fetched):
+                self?.fetchAlbumsResult = fetched
+            case .failure(let error):
+                print(error)
+            }
         }
     }
-    
+
 }
