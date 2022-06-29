@@ -69,7 +69,7 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         
     }
     
-    class MockSuccessPhotosService: PhotoFetchable {
+    class MockSuccessPhotosService: PhotoServicing {
         
         func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
         }
@@ -88,7 +88,7 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         }
     }
     
-    class MockFailurePhotosService: PhotoFetchable {
+    class MockFailurePhotosService: PhotoServicing {
         func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
             completion(nil)
         }

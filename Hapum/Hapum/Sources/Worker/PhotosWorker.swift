@@ -5,37 +5,33 @@
 //  Created by Doyoung on 2022/04/05.
 //
 
-import Foundation
+import Photos
+import UIKit
 
 class PhotosWorker {
     
-    var service: PhotoFetchable
+    typealias CompletionHandler = (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void
+    
+    var service: PhotoServicing
 
-    init(service: PhotoFetchable) {
+    init(service: PhotoServicing) {
         self.service = service
     }
     
-    func fetchAllPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-        service.fetchPhotos (width: width, height: height) { photos in
-            completion(photos)
-        }
+    func fetchAllPhotos(completion: @escaping CompletionHandler) {
+        service.fetchAllPhotos(completion: completion)
     }
     
-    func fetchAlbumsPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-        service.fetchPhotosFromAlbums(width: width, height: height){ photos in
-            completion(photos)
-        }
+    func fetchAlbumsPhotos(completion: @escaping CompletionHandler) {
+        service.fetchAlbumPhotos(completion: completion)
     }
     
-    func fetchAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
-        service.requestAccessStatus { status in
-            completion(status)
-        }
+    func fetchAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
+        service.requestAccessStatus(completion: completion)
     }
     
-    func addPhotoAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
-        service.addAsset(photo: photo) { error in
-            completion(error)
-        }
+    //TODO: photo parameter replace new model
+    func addPhotoAsset(_ photo: UIImage, completion: @escaping () -> Void) {
+        service.addAsset(of: photo, completion: completion)
     }
 }

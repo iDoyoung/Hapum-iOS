@@ -29,7 +29,7 @@ class PhotosWorkerTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    class MockPhotosService: PhotoFetchable {
+    class MockPhotosService: PhotoServicing {
        
         var requestAccessStatusCalled = false
         var fetchPhotosCalled = false

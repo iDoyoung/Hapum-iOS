@@ -70,7 +70,7 @@ class MainInteractorTests: XCTestCase {
         
     }
     
-    class MockPhotosService: PhotoFetchable {
+    class MockPhotosService: PhotoServicing {
         func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
             completion([Seeds.PhotosDummy.springPhoto,
                         Seeds.PhotosDummy.summerPhoto,

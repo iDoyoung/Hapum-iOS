@@ -26,7 +26,14 @@ protocol PhotosManaging {
     func addAsset(of image: UIImage, in album: PHAssetCollection, completion: @escaping () -> Void)
 }
 
-class PhotosManager: PhotosManaging {
+protocol PhotoServicing {
+    func fetchAllPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void)
+    func fetchAlbumPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void)
+    func addAsset(of image: UIImage, completion: @escaping () -> Void)
+    func requestAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void)
+}
+
+final class DefaultPhotosManager: PhotosManaging {
     
     func getStatus() -> PHAuthorizationStatus {
         return PHPhotoLibrary.authorizationStatus()
@@ -63,7 +70,7 @@ class PhotosManager: PhotosManaging {
    
 }
 
-final class PhotosService {
+final class PhotosService: PhotoServicing {
     
     let album: String
     let photosManager: PhotosManaging
@@ -73,7 +80,20 @@ final class PhotosService {
         self.photosManager = photosManager
     }
     
-    func fetchAllPhotos(options: PHFetchOptions, completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+    private var fetchOptions: PHFetchOptions = {
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        return options
+    }()
+    
+    func fetchAllPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+        let options = fetchOptions
+        let dateFrom: Date = Date().yesterday()
+        options.predicate = NSPredicate(format: "mediaType == %d && !(mediaSubtypes == %d) && creationDate > %@",
+                                        PHAssetMediaType.image.rawValue,
+                                        PHAssetMediaSubtype.photoScreenshot.rawValue,
+                                        dateFrom as NSDate)
+        options.fetchLimit = 14
         let status = photosManager.getStatus()
         
         switch status {
@@ -88,9 +108,14 @@ final class PhotosService {
         }
     }
     
-    func fetchAlbumPhotos(options: PHFetchOptions, completion: @escaping (PHFetchResult<PHAsset>) -> Void) {
-        guard let album = photosManager.fetchAssetCollection(album).firstObject else { return }
-        photosManager.fetchPhotos(options: options, in: album, completion: completion)
+    func fetchAlbumPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+        guard let album = photosManager.fetchAssetCollection(album).firstObject else {
+            completion(.failure(.failed))
+            return
+        }
+        photosManager.fetchPhotos(options: fetchOptions, in: album) { result in
+            completion(.success(result))
+        }
     }
     
     func addAsset(of image: UIImage, completion: @escaping () -> Void) {
