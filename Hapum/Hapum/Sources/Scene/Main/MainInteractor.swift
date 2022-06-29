@@ -26,18 +26,16 @@ final class MainInteractor: MainBusinessLogic, MainDataStore {
     var fetchAlbumsResult: PHFetchResult<PHAsset>?
     
     func fetchPhotosAccessStatus() {
-        photosWorker.fetchAccessStatus { status in
+        photosWorker.fetchAccessStatus { [weak self] status in
             switch status {
-            case .notDetermined:
-                break
-            case .restricted:
-                break
-            case .denied:
-                break
+            case .notDetermined, .denied, .restricted:
+                self?.presenter?.presentRestrictedPhotosAccessStatus()
             case .authorized:
-                break
+                self?.presenter?.presentAuthorizedPhotosAccessStatus()
             case .limited:
-                break
+                self?.presenter?.presentLimitedPhotosAccessStatus()
+            @unknown default:
+                fatalError("Find unexpected unknown error")
             }
         }
     }
@@ -47,6 +45,7 @@ final class MainInteractor: MainBusinessLogic, MainDataStore {
             switch result {
             case .success(let fetched):
                 self?.fetchAllResult = fetched
+                self?.presenter?.presentFetchedAllPhotos(resource: self?.fetchAllResult)
             case .failure(let error):
                 print(error)
             }
