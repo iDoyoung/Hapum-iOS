@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol MainDisplayLogic: AnyObject {
-    func displayPhotosAccessStatusMessage(viewModel: Photos.Status.Response)
-    func displayFetchedPhotos(viewModel: [Photos.Asset]?)
-    func displayFetchedAlbum(viewModel: [Photos.Asset]?)
-}
-
 final class MainViewController: UIViewController {
     
     var interactor: MainBusinessLogic?
@@ -46,7 +40,7 @@ final class MainViewController: UIViewController {
     @IBOutlet weak var photosWallView: PhotosWallView!
     @IBOutlet weak var createButton: UIButton!
     
-    private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Asset>! = nil
+    //private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Asset>! = nil
     
     @IBAction func tapRighBarItem(_ sender: UIBarButtonItem) {
         routeScene("AboutApp", segue: nil)
@@ -86,16 +80,16 @@ final class MainViewController: UIViewController {
     }
     
     //MARK: - Fetch Photos
-    var displayedPhotos: [Photos.Asset] = []
-    var displayedAlbumsPhotos: [Photos.Asset] = []
+    var displayedPhotos: [UIImage] = []
+    var displayedAlbumsPhotos: [UIImage] = []
 
     func fetchPhotos() {
-        interactor?.fetchPhotos(width: .zero, height: .zero)
+        interactor?.fetchPhotos()
         interactor?.fetchPhotosAccessStatus()
     }
     
     func fetchAlbum() {
-        interactor?.fetchAlbumsPhotos(width: Float(UIScreen.main.scale), height: Float(UIScreen.main.scale))
+        interactor?.fetchAlbumsPhotos()
     }
     
     //MARK: - ManagePhotosAccessButton action
@@ -113,48 +107,46 @@ final class MainViewController: UIViewController {
 
 extension MainViewController: MainDisplayLogic {
     
-    func displayPhotosAccessStatusMessage(viewModel: Photos.Status.Response) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            guard let message = viewModel.message,
-                  let isLimited = viewModel.isLimited else {
-                self.accessStatusView.isHidden = true
-                return
-            }
-            if isLimited {
-                self.accessStatusView.isHidden = false
-                self.setStatusMessageLabelUI(text: message, textColor: .secondaryLabel)
-                self.managePhotosAccessButton.addTarget(self, action: #selector(self.showManagePhotosAccessAlert), for: .touchUpInside)
-            } else {
-                self.accessStatusView.isHidden = false
-                self.setStatusMessageLabelUI(text: message, textColor: .systemPink)
-                self.managePhotosAccessButton.addTarget(self, action: #selector(self.showPhotosAccessSetting), for: .touchUpInside)
-            }
+    func loadWallPhotosImages() {
+        for (index, photo) in displayedPhotos.enumerated() {
+            photosWallView.photosFrameView[index].photoImageView.image = photo
         }
+        photosWallView.hideEmptyFrameViews()
     }
     
-    func displayFetchedPhotos(viewModel: [Photos.Asset]?) {
-        guard let viewModel = viewModel else {
-            return
-        }
+    func displayFetchedPhotos(viewModel: [UIImage]) {
         displayedPhotos = viewModel
         DispatchQueue.main.async {
             self.loadWallPhotosImages()
         }
     }
     
-    func displayFetchedAlbum(viewModel: [Photos.Asset]?) {
-        guard let viewModel = viewModel else {
-            return
-        }
+    func displayFetchedAlbum(viewModel: [UIImage]) {
         displayedAlbumsPhotos = viewModel
     }
     
-    func loadWallPhotosImages() {
-        for (index, photo) in displayedPhotos.enumerated() {
-            photosWallView.photosFrameView[index].photoImageView.image = photo.image
-        }
-        photosWallView.hideEmptyFrameViews()
+    func displayAuthorizedPhotosAccessStatusMessage() {
+        accessStatusView.isHidden = true
     }
     
+    func displayRestrictedPhotosAccessStatusMessage() {
+        self.accessStatusView.isHidden = false
+        self.setStatusMessageLabelUI(text: PhotosAccessStatusMessage.restricted, textColor: .systemPink)
+        self.managePhotosAccessButton.addTarget(self, action: #selector(self.showPhotosAccessSetting), for: .touchUpInside)
+    }
+    
+    func displayLimitedPhotosAccessStatusMessage() {
+        accessStatusView.isHidden = false
+        setStatusMessageLabelUI(text: PhotosAccessStatusMessage.limited, textColor: .secondaryLabel)
+        managePhotosAccessButton.addTarget(self, action: #selector(showManagePhotosAccessAlert), for: .touchUpInside)
+    }
+    
+}
+
+protocol MainDisplayLogic: AnyObject {
+    func displayFetchedPhotos(viewModel: [UIImage])
+    func displayFetchedAlbum(viewModel: [UIImage])
+    func displayAuthorizedPhotosAccessStatusMessage()
+    func displayRestrictedPhotosAccessStatusMessage()
+    func displayLimitedPhotosAccessStatusMessage()
 }

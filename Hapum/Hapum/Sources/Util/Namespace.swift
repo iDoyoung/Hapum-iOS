@@ -64,8 +64,8 @@ enum AlertActionTitle {
 }
 
 enum PhotosAccessStatusMessage {
-    static let needToSet = "Please Allow Access to Photos".localized
-    static let limitedStatus = "You allow access to selected only".localized
+    static let restricted = "Please Allow Access to Photos".localized
+    static let limited = "You allow access to selected only".localized
 }
 
 //MARK: - Menu
