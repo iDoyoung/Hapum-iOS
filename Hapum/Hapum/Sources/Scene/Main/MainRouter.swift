@@ -106,7 +106,7 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     }
     
     func passDataToCreatePhotosWall(source: MainDataStore, destination: inout CreatePhotosDataStore) {
-        destination.photos = source.photos
+        destination.fetchResult = source.fetchAllResult
     }
     
     func presentAboutApp(source: MainViewController, destination: UIViewController) {

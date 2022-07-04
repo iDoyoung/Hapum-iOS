@@ -17,17 +17,17 @@ protocol CreatePhotosWallBusinessLogic {
 }
 
 protocol CreatePhotosDataStore {
-    var photos: PHFetchResult<PHAsset>? { get set }
+    var fetchResult: PHFetchResult<PHAsset>? { get set }
 }
 
 final class CreatePhotosWallInteractor: CreatePhotosWallBusinessLogic, CreatePhotosDataStore {
     
     var photosWorker = PhotosWorker(service: PhotosService(album: AlbumName.hapum))
     var presenter: CreatePhotosWallPresentationLogic?
-    var photos: PHFetchResult<PHAsset>?
+    var fetchResult: PHFetchResult<PHAsset>?
     
     func getPhotos() {
-        presenter?.presentPhotos(resource: photos)
+        presenter?.presentPhotos(resource: fetchResult)
     }
     
     //TODO: - Make model and parameter type
