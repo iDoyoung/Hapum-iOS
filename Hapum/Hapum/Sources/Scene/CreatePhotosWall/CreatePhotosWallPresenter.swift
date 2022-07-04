@@ -45,7 +45,7 @@ final class CreatePhotosWallPresenter: CreatePhotosWallPresentationLogic {
             return
         }
         let images = requestImages(for: resource)
-        viewController?.displayPhotos(viewModel: resource)
+        viewController?.displayPhotos(viewModel: images)
     }
     
     func showCameraTypeImagePicker() {
