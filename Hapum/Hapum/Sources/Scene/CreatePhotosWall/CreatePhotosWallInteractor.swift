@@ -5,42 +5,37 @@
 //  Created by Doyoung on 2022/04/11.
 //
 
+import UIKit
+import Photos
 import AVFoundation
 
 protocol CreatePhotosWallBusinessLogic {
     func getPhotos()
-    func addPhoto(photo: Photos.Photo)
+    func addPhoto(_ photo: UIImage)
     func requestAccessCamera()
     func trySavePhotosWallView()
 }
 
 protocol CreatePhotosDataStore {
-    var photos: [Photos.Asset]! { get set }
+    var photos: PHFetchResult<PHAsset>? { get set }
 }
 
 final class CreatePhotosWallInteractor: CreatePhotosWallBusinessLogic, CreatePhotosDataStore {
     
-    var photosWorker = PhotosWorker(service: PhotosService())
+    var photosWorker = PhotosWorker(service: PhotosService(album: AlbumName.hapum))
     var presenter: CreatePhotosWallPresentationLogic?
-    var photos: [Photos.Asset]!
+    var photos: PHFetchResult<PHAsset>?
     
     func getPhotos() {
         presenter?.presentPhotos(resource: photos)
     }
     
-    func addPhoto(photo: Photos.Photo) {
-        photosWorker.addPhotoAsset(photo: photo) { [weak self] (error) in
-            if let error = error {
-                switch error {
-                case .restrictedAuthorizationStatus:
-                    self?.presenter?.showAuthorizationStatus()
-                case .failed:
-                    self?.presenter?.showCreatingFailure()
-                case .error:
-                    self?.presenter?.showCreatingFailure()
-                }
+    //TODO: - Make model and parameter type
+    func addPhoto(_ photo: UIImage) {
+        photosWorker.addPhotoAsset(photo) { [weak self] in
+            self?.photosWorker.addPhotoAsset(photo) {
+                
             }
-            self?.presenter?.showCreatingSuccess()
         }
     }
     
