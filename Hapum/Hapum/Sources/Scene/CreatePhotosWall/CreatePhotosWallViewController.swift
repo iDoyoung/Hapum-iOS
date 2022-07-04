@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 
 protocol CreatePhotosWallDisplayLogic: AnyObject {
-    func displayPhotos(viewModel: [Photos.Asset]?)
+    func displayPhotos(viewModel: [UIImage])
     func displayCamera()
     func displayDoneAlert()
     func displayCreatingSuccess()
@@ -60,10 +60,10 @@ final class CreatePhotosWallViewController: UIViewController {
     
     func savePhotosWallViewInAlbums() {
         let image = convertToImage(view: photosWallFrameView)
-        let photo = Photos.Photo(image: image)
-        interactor?.addPhoto(photo: photo)
+        interactor?.addPhoto(image)
     }
     
+    //MARK: -Consider move method to interactor
     private func convertToImage(view: UIView) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: view.bounds.width,
                                                             height: view.bounds.height))
@@ -86,7 +86,7 @@ final class CreatePhotosWallViewController: UIViewController {
         getPhotos()
     }
     
-    private var displayedPhotos: [Photos.Asset] = []
+    private var displayedPhotos: [UIImage] = []
     private var selectedPhotosIndex: Int?
     
     private func getPhotos() {
@@ -115,7 +115,7 @@ final class CreatePhotosWallViewController: UIViewController {
     private func configurePhotosWall() {
         let view = PhotosWallView(frame: .zero)
         for (index, photo) in displayedPhotos.enumerated() {
-            view.photosFrameView[index].photoImageView.image = photo.image
+            view.photosFrameView[index].photoImageView.image = photo
         }
         view.translatesAutoresizingMaskIntoConstraints = false
         photosWallView.addSubview(view)
@@ -195,8 +195,7 @@ final class CreatePhotosWallViewController: UIViewController {
 
 extension CreatePhotosWallViewController: CreatePhotosWallDisplayLogic {
     
-    func displayPhotos(viewModel: [Photos.Asset]?) {
-        guard let viewModel = viewModel else { return }
+    func displayPhotos(viewModel: [UIImage]) {
         displayedPhotos = viewModel
         DispatchQueue.main.async {
             self.configurePhotosWall()
