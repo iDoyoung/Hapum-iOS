@@ -6,22 +6,21 @@
 //
 
 import XCTest
+import Photos
 
 @testable import Hapum
 
 class PhotosWorkerTests: XCTestCase {
 
+    //MARK: - System under test
     var sut: PhotosWorker!
-    static var testAccessStatus: Photos.Status!
-    static var testPhotos: [Photos.Asset]!
-    static var testAlbumsPhotos: [Photos.Asset]!
+
+    static var testPhotoFetchResult: Result<PHFetchResult<PHAsset>, PhotosError>!
+    static var testPhotoAuthorizationStatus: PHAuthorizationStatus!
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = PhotosWorker(service: MockPhotosService())
-        PhotosWorkerTests.testAccessStatus = .limited
-        PhotosWorkerTests.testPhotos = [Seeds.PhotosDummy.springPhoto, Seeds.PhotosDummy.summerPhoto, Seeds.PhotosDummy.fallsPhoto, Seeds.PhotosDummy.winterPhoto]
-        PhotosWorkerTests.testAlbumsPhotos = [Seeds.PhotosDummy.winterPhoto, Seeds.PhotosDummy.springPhoto]
+        sut = PhotosWorker(service: PhotosServiceSpy())
     }
 
     override func tearDownWithError() throws {
@@ -29,98 +28,91 @@ class PhotosWorkerTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    class MockPhotosService: PhotoServicing {
+    //MARK: Test doubles
+    class PhotosServiceSpy: PhotoServicing {
        
-        var requestAccessStatusCalled = false
-        var fetchPhotosCalled = false
-        var fetchPhotosFromAlbumsCalled = false
+        var fetchAllPhotosCalled = false
+        var fetchAlbumPhotosCalled = false
         var addAssetCalled = false
+        var requestAccessStatusCalled = false
         
-        func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
-            requestAccessStatusCalled = true
-            completion(PhotosWorkerTests.testAccessStatus)
+        func fetchAllPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+            fetchAllPhotosCalled = true
+            completion(PhotosWorkerTests.testPhotoFetchResult)
         }
         
-        func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-            fetchPhotosCalled = true
-            completion(PhotosWorkerTests.testPhotos)
+        func fetchAlbumPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+            fetchAlbumPhotosCalled = true
+            completion(PhotosWorkerTests.testPhotoFetchResult)
         }
         
-        func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-            fetchPhotosFromAlbumsCalled = true
-            completion(PhotosWorkerTests.testAlbumsPhotos)
-        }
-        
-        func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
+        func addAsset(of image: UIImage, completion: @escaping () -> Void) {
             addAssetCalled = true
+            completion()
         }
+        
+        func requestAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
+            requestAccessStatusCalled = true
+            completion(PhotosWorkerTests.testPhotoAuthorizationStatus)
+        }
+
     }
 
     //MARK: - Test
-    func test_requestAccessStatusShouldReturnStatus() {
-        ///given
-        let mockPhotosService = sut.service as! MockPhotosService
-        ///when
-        var accessStatus: Photos.Status = .notDetermined
+    func test_requestAccessStatusShouldAskPhotosServiceAndReturnStatus() {
+        //given
+        PhotosWorkerTests.testPhotoAuthorizationStatus = .authorized
+        let accessStatus: PHAuthorizationStatus = .authorized
+        let mockPhotosService = sut.service as! PhotosServiceSpy
         let expect = expectation(description: "Wait for requestAccessStatus() to return")
+        //when
         sut.service.requestAccessStatus { status in
-            guard let status = status else {
-                return
-            }
-            accessStatus = status
             expect.fulfill()
         }
         waitForExpectations(timeout: 1.0)
         ///then
-        XCTAssert(mockPhotosService.requestAccessStatusCalled, "Calling requestAccessStatus() should ask the fetchable for access photos")
-        XCTAssertEqual(accessStatus, PhotosWorkerTests.testAccessStatus, "Requested access status match the status in the test")
+        XCTAssert(mockPhotosService.requestAccessStatusCalled, "Calling requestAccessStatus() should ask the Photo Service for access photos")
+        XCTAssertEqual(accessStatus, PhotosWorkerTests.testPhotoAuthorizationStatus, "Requested access status match the status in the test")
     }
     
     func test_addAssetsShouldAskPhotosService() {
-        ///given
-        let mockPhotosService = sut.service as! MockPhotosService
-        ///when
-        sut.addPhotoAsset(photo: Photos.Photo(image: Seeds.ImageDummy.image!)) { _ in
+        //given
+        let mockPhotosService = sut.service as! PhotosServiceSpy
+        //when
+        sut.addPhotoAsset(Seeds.ImageDummy.image!) {
         }
-        ///then
-        XCTAssert(mockPhotosService.addAssetCalled)
+        //then
+        XCTAssert(mockPhotosService.addAssetCalled, "Calling addPhotoAsset() should ask the Photo Service for add photo")
     }
     
-    func test_fetchPhotosShouldReturnPhotos() {
-        ///given
-        let mockPhotosService = sut.service as! MockPhotosService
-        ///when
-        var fetchedPhotos = [Photos.Asset]()
-        let expect = expectation(description: "Wait for fetchPhotos() to return")
-        sut.fetchAllPhotos(width: 0, height: 0) { photos in
-            fetchedPhotos = photos
-            expect.fulfill()
+    func test_fetchAllPhotosShouldAskPhotosServiceAndBeSuccessFetched() {
+        //given
+        PhotosWorkerTests.testPhotoFetchResult = .success(Seeds.PhotoResultAssetDummy.fetched)
+        let mockPhotosService = sut.service as! PhotosServiceSpy
+        var fetchedPhotos: PHFetchResult<PHAsset>!
+        //when
+        let expectedResult = try! PhotosWorkerTests.testPhotoFetchResult.get()
+        sut.fetchAllPhotos { result in
+            fetchedPhotos = try! result.get()
         }
-        waitForExpectations(timeout: 1.0)
-        ///then
-        XCTAssert(mockPhotosService.fetchPhotosCalled, "Calling fetchPhotos() should ask the fetchable for all of photos")
-        XCTAssertEqual(fetchedPhotos.count, PhotosWorkerTests.testPhotos.count, "fetchPhotos() should return all of photos")
-        for photo in fetchedPhotos {
-            XCTAssert(PhotosWorkerTests.testPhotos.contains(photo), "Fetched photo should match the photos in the test")
-        }
+        //then
+        XCTAssert(mockPhotosService.fetchAllPhotosCalled, "Calling fetchPhotos() should ask the Photo Service for all of photos")
+        XCTAssertEqual(fetchedPhotos, expectedResult, "Requested fetch photo asset match the asset in the test")
     }
     
-    func test_fetchPhotosFromAlbumsShouldReturnAlbumsPhotos() {
-        ///given
-        let mockPhotosService = sut.service as! MockPhotosService
-        ///when
-        var fetchedAlbums = [Photos.Asset]()
-        let expect = expectation(description: "Wait for fetchAlbumsPhotos() to return")
-        sut.fetchAlbumsPhotos(width: 0, height: 0) { photos in
-            fetchedAlbums = photos
-            expect.fulfill()
+    func test_fetchAlbumPhotosShoulAskPhotosServiceAndBeSuccessFetched() {
+        //given
+        PhotosWorkerTests.testPhotoFetchResult = .success(Seeds.PhotoResultAssetDummy.fetched)
+        let mockPhotosService = sut.service as! PhotosServiceSpy
+        var fetchedPhotos: PHFetchResult<PHAsset>!
+        //when
+        let expectedResult = try! PhotosWorkerTests.testPhotoFetchResult.get()
+        sut.fetchAlbumsPhotos { result in
+            fetchedPhotos = try! result.get()
         }
-        waitForExpectations(timeout: 1.0)
-        ///then
-        XCTAssert(mockPhotosService.fetchPhotosFromAlbumsCalled, "Calling fetchAlbumsPhotos() should ask the fetchable for a album's photos")
-        XCTAssertEqual(fetchedAlbums.count, PhotosWorkerTests.testAlbumsPhotos.count, "fetchAlbums() should return a album's photos")
-        for photo in fetchedAlbums {
-            XCTAssert(PhotosWorkerTests.testAlbumsPhotos.contains(photo), "Fetched photo should match the album's photos in the test")
-        }
+        //then
+        XCTAssert(mockPhotosService.fetchAlbumPhotosCalled, "Calling fetchAlbumPhotos() should ask the Photo Service for a album's photos")
+        XCTAssertEqual(fetchedPhotos, expectedResult, "Requested fetch photo asset match the asset in the test")
     }
+    
 }
