@@ -6,11 +6,13 @@
 //
 
 import XCTest
+import Photos
 
 @testable import Hapum
 
 class MainInteractorTests: XCTestCase {
 
+    //MARK: - System under test
     var sut: MainInteractor!
     
     override func setUpWithError() throws {
@@ -23,118 +25,196 @@ class MainInteractorTests: XCTestCase {
         try super.tearDownWithError()
     }
 
-    //MARK: - Mock
-    class MockMainPresentationLogic: MainPresentationLogic {
+    //MARK: - Test doubles
+    class MainPresentationLogicSpy: MainPresentationLogic {
+        
         var presentFetchedAllPhotosCalled = false
         var presentFetchedAlbumsCalled = false
-        var presentPhotosAccessStatusCalled = false
+        var presentAuthorizedPhotosAccessStatusCalled = false
+        var presentLimitedPhotosAccessStatusCalled = false
+        var presentRestrictedPhotosAccessStatusCalled = false
         
-        func presentFetchedAllPhotos(resource: [Photos.Asset]?) {
+        func presentFetchedAllPhotos(resource: PHFetchResult<PHAsset>?) {
             presentFetchedAllPhotosCalled = true
         }
         
-        func presentFetchedAlbums(resource: [Photos.Asset]?) {
+        func presentFetchedAlbums(resource: PHFetchResult<PHAsset>?) {
             presentFetchedAlbumsCalled = true
         }
         
-        func presentPhotosAccessStatus(response: Photos.Status.Response) {
-            presentPhotosAccessStatusCalled = true
+        func presentAuthorizedPhotosAccessStatus() {
+            presentAuthorizedPhotosAccessStatusCalled = true
+        }
+        
+        func presentLimitedPhotosAccessStatus() {
+            presentLimitedPhotosAccessStatusCalled = true
+        }
+        
+        func presentRestrictedPhotosAccessStatus() {
+            presentRestrictedPhotosAccessStatusCalled = true
         }
         
     }
     
-    class MockPhotosWorker: PhotosWorker {
+    class PhotosWorkerSpy: PhotosWorker {
         
         var fetchAllPhotosCalled = false
         var fetchAlbumsPhotosCalled = false
         var fetchAccessStatusCalled = false
+        var addPhotoAssetCalled = false
         
-        override func fetchAllPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-            fetchAllPhotosCalled = true
-            completion([Seeds.PhotosDummy.springPhoto,
-                        Seeds.PhotosDummy.summerPhoto,
-                        Seeds.PhotosDummy.fallsPhoto,
-                        Seeds.PhotosDummy.winterPhoto])
-        }
+        var fetchedResult: Result<PHFetchResult<PHAsset>, PhotosError>?
+        var authorizationStatus: PHAuthorizationStatus?
+        
        
-        override func fetchAlbumsPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        override func fetchAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
+            fetchAccessStatusCalled = true
+            completion(authorizationStatus!)
+        }
+        
+        override func fetchAllPhotos(completion: @escaping PhotosWorker.CompletionHandler) {
+            fetchAllPhotosCalled = true
+            completion(fetchedResult!)
+        }
+        override func fetchAlbumsPhotos(completion: @escaping PhotosWorker.CompletionHandler) {
             fetchAlbumsPhotosCalled = true
-            completion([Seeds.PhotosDummy.winterPhoto,
-                        Seeds.PhotosDummy.springPhoto])
+            completion(fetchedResult!)
+        }
+        
+        override func addPhotoAsset(_ photo: UIImage, completion: @escaping () -> Void) {
+            addPhotoAssetCalled = true
+        }
+        
+    }
+    
+    class PhotosServiceSpy: PhotoServicing {
+       
+        var fetchReulst: Result<PHFetchResult<PHAsset>, PhotosError>?
+        
+        var fetchAllPhotosCalled = false
+        var fetchAlbumPhotosCalled = false
+        var addAssetCalled = false
+        var requestAccessStatusCalled = false
+        
+        func fetchAllPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+            fetchAllPhotosCalled = true
+        }
+        
+        func fetchAlbumPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+            fetchAlbumPhotosCalled = true
+        }
+        
+        func addAsset(of image: UIImage, completion: @escaping () -> Void) {
+            addAssetCalled = true
+        }
+        
+        func requestAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
+            requestAccessStatusCalled = true
         }
 
-        override func fetchAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
-            fetchAccessStatusCalled = true
-            completion(.authorized)
-        }
-        
     }
-    
-    class MockPhotosService: PhotoServicing {
-        func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-            completion([Seeds.PhotosDummy.springPhoto,
-                        Seeds.PhotosDummy.summerPhoto,
-                        Seeds.PhotosDummy.fallsPhoto,
-                        Seeds.PhotosDummy.winterPhoto])
-        }
         
-        func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-            completion([Seeds.PhotosDummy.winterPhoto,
-                        Seeds.PhotosDummy.springPhoto
-                       ])
-        }
-        
-        func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
-        }
-        
-        
-        func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
-            completion(.limited)
-        }
-        
-    }
-    
     //MARK: - Test
-    func test_fetchPhotosAccessStatusAsksPhotosWorkerAndPresenterToFromat() {
-        ///given
-        let mockMainPresentationLogic = MockMainPresentationLogic()
-        let mockPhotoWorker = MockPhotosWorker(service: MockPhotosService())
-        sut.presenter = mockMainPresentationLogic
-        sut.photosWorker = mockPhotoWorker
-        ///when
+    func test_shouldCallPresentLimitedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedLimitedStatus() {
+        //given
+        let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
+        let mainPresentationLogicSpy = MainPresentationLogicSpy()
+        photosWorkerSpy.authorizationStatus = .limited
+        sut.photosWorker = photosWorkerSpy
+        sut.presenter = mainPresentationLogicSpy
+        //when
         sut.fetchPhotosAccessStatus()
-        ///then
-        XCTAssert(mockMainPresentationLogic.presentPhotosAccessStatusCalled)
-        XCTAssert(mockPhotoWorker.fetchAccessStatusCalled)
+        //then
+        XCTAssert(mainPresentationLogicSpy.presentLimitedPhotosAccessStatusCalled)
+        XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
     }
-    func test_fetchPhotosShouldAsksPhotosWorkerToFetchPhotosAndPresenterToFormat() {
-        ///given
-        let mockMainPresentationLogic = MockMainPresentationLogic()
-        let mockPhotosWorker = MockPhotosWorker(service: MockPhotosService())
-        sut.presenter = mockMainPresentationLogic
-        sut.photosWorker = mockPhotosWorker
-        
-        ///when
-        sut.fetchPhotos(width: 0, height: 0)
-        
-        ///then
-        XCTAssert(mockMainPresentationLogic.presentFetchedAllPhotosCalled, "FetchPhotos() should ask presenter to format photos")
-        XCTAssert(mockPhotosWorker.fetchAllPhotosCalled, "FetchPhotos() should ask PhotosWorker to fetch photos")
+    
+    func test_shouldCallPresentAuthorizedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedAuthorizedStatus() {
+        //given
+        let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
+        let mainPresentationLogicSpy = MainPresentationLogicSpy()
+        photosWorkerSpy.authorizationStatus = .authorized
+        sut.photosWorker = photosWorkerSpy
+        sut.presenter = mainPresentationLogicSpy
+        //when
+        sut.fetchPhotosAccessStatus()
+        //then
+        XCTAssert(mainPresentationLogicSpy.presentAuthorizedPhotosAccessStatusCalled)
+        XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
     }
-   
-    func test_AlbumsPhotos() {
-        ///given
-        let mockMainPresentationLogic = MockMainPresentationLogic()
-        let mockPhotosWorker = MockPhotosWorker(service: MockPhotosService())
-        sut.presenter = mockMainPresentationLogic
-        sut.photosWorker = mockPhotosWorker
-        
-        ///when
-        sut.fetchAlbumsPhotos(width: 0, height: 0)
-        
-        ///then
-        XCTAssert(mockMainPresentationLogic.presentFetchedAlbumsCalled, "FetchAlbumsPhotos() should ask presenter to format photos")
-        XCTAssert(mockPhotosWorker.fetchAlbumsPhotosCalled, "FetchAlbumsPhotos() should ask PhotosWorker to fetch photos")
+    
+    func test_shouldCallPresentRestrictedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedRestrictedStatus() {
+        //given
+        let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
+        let mainPresentationLogicSpy = MainPresentationLogicSpy()
+        photosWorkerSpy.authorizationStatus = .restricted
+        sut.photosWorker = photosWorkerSpy
+        sut.presenter = mainPresentationLogicSpy
+        //when
+        sut.fetchPhotosAccessStatus()
+        //then
+        XCTAssert(mainPresentationLogicSpy.presentRestrictedPhotosAccessStatusCalled)
+        XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
+    }
+    
+    func test_shouldCallPresentRestrictedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedDeniedStatus() {
+        //given
+        let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
+        let mainPresentationLogicSpy = MainPresentationLogicSpy()
+        photosWorkerSpy.authorizationStatus = .denied
+        sut.photosWorker = photosWorkerSpy
+        sut.presenter = mainPresentationLogicSpy
+        //when
+        sut.fetchPhotosAccessStatus()
+        //then
+        XCTAssert(mainPresentationLogicSpy.presentRestrictedPhotosAccessStatusCalled)
+        XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
+    }
+    
+    func test_shouldCallPresentRestrictedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedNotDeterminedStatus() {
+        //given
+        let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
+        let mainPresentationLogicSpy = MainPresentationLogicSpy()
+        photosWorkerSpy.authorizationStatus = .notDetermined
+        sut.photosWorker = photosWorkerSpy
+        sut.presenter = mainPresentationLogicSpy
+        //when
+        sut.fetchPhotosAccessStatus()
+        //then
+        XCTAssert(mainPresentationLogicSpy.presentRestrictedPhotosAccessStatusCalled)
+        XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
+    }
+    
+    func test_shouldAskPhotosWorkerAndCallPresentFetchedAllPhotosAndResultIsSuccessWhenSuccessToFetchResult() {
+        //given
+        let expectResult = Seeds.PhotoResultAssetDummy.fetched
+        let photoWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())// as! PhotosWorkerSpy
+        let mainPresentationLogicSpy = MainPresentationLogicSpy()
+        photoWorkerSpy.fetchedResult = .success(Seeds.PhotoResultAssetDummy.fetched)
+        sut.photosWorker = photoWorkerSpy
+        sut.presenter = mainPresentationLogicSpy
+        //when
+        sut.fetchPhotos()
+        //then
+        XCTAssertEqual(sut.fetchAllResult, expectResult, "FetchAllResult should equal expect")
+        XCTAssert(photoWorkerSpy.fetchAllPhotosCalled, "FetchPhotos() should ask PhotosWorker to fetch photos")
+        XCTAssert(mainPresentationLogicSpy.presentFetchedAllPhotosCalled, "FetchPhotos() should ask presenter to format photos")
+    }
+    
+    func test_shouldAskPhotosWorkerAndCallPresentFetchedAlbumPhotosAndResultIsSuccessWhenSuccessToFetchResult() {
+        //given
+        let expectResult = Seeds.PhotoResultAssetDummy.fetched
+        let photoWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())// as! PhotosWorkerSpy
+        let mainPresentationLogicSpy = MainPresentationLogicSpy()
+        photoWorkerSpy.fetchedResult = .success(Seeds.PhotoResultAssetDummy.fetched)
+        sut.photosWorker = photoWorkerSpy
+        sut.presenter = mainPresentationLogicSpy
+        //when
+        sut.fetchAlbumsPhotos()
+        //then
+        XCTAssertEqual(sut.fetchAlbumsResult, expectResult, "FetchAlbumsResult should equal expect")
+        XCTAssert(photoWorkerSpy.fetchAlbumsPhotosCalled, "FetchAlbumsPhotos() should ask PhotosWorker to fetch photos")
+        //XCTAssert(mainPresentationLogicSpy.presentFetchedAlbumsCalled, "FetchAlbumsPhotos() should ask presenter to format photos")
     }
     
 }
