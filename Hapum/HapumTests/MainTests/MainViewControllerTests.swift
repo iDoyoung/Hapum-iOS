@@ -11,6 +11,7 @@ import XCTest
 
 class MainViewControllerTests: XCTestCase {
 
+    //MARK: - System under test
     var sut: MainViewController!
     var window: UIWindow!
     
@@ -31,41 +32,52 @@ class MainViewControllerTests: XCTestCase {
         window.addSubview(sut.view)
     }
     
-    //MARK: - Mock
-    class MockBusinessLogic: MainBusinessLogic {
+    //MARK: - Test doubles
+    class MainBusinessLogicSpy: MainBusinessLogic {
+        
+        var fetchPhotosCalled = false
+        var fetchAlbumsPhotosCalled = false
+        var fetchPhotosAccessStatusCalled = false
+        
+        func fetchPhotos() {
+            fetchPhotosCalled = true
+        }
+        
+        func fetchAlbumsPhotos() {
+            fetchAlbumsPhotosCalled = true
+        }
+        
         func fetchPhotos(width: Float, height: Float) {
             fetchPhotosCalled = true
         }
         
-        func fetchAlbumsPhotos(width: Float, height: Float) {
-        }
-        
-        var fetchPhotosCalled = false
-       
         func fetchPhotosAccessStatus() {
+            fetchPhotosAccessStatusCalled = true
         }
        
     }
     
-    //MARK: - Test
-    func test_shouldFetchOrderWhenViewDidLoad() {
-        ///given
-        let mockBusinessLogic = MockBusinessLogic()
-        sut.interactor = mockBusinessLogic
+    //MARK: - Tests
+    func test_shouldFetchPhotosByInteractor_whenViewWillAppear() {
+        //given
+        let mainBusinessLogicSpy = MainBusinessLogicSpy()
+        sut.interactor = mainBusinessLogicSpy
         loadView()
-        ///when
-        sut.viewDidLoad()
-        ///then
-        XCTAssert(mockBusinessLogic.fetchPhotosCalled, "Should fetch photos right after the view did load")
+        //when
+        sut.viewWillAppear(true)
+        //then
+        XCTAssert(mainBusinessLogicSpy.fetchPhotosCalled, "Should fetch photos right after the view will appear")
     }
     
-    func test_sholdDisplayFetchedPhotos() {
-        ///given
-        
-        ///when
-        
-        ///then
-        
+    func test_sholdFetchPhotosAccessStatusCalled_whenViewWillApear() {
+        //given
+        let mainBusinessLogicSpy = MainBusinessLogicSpy()
+        sut.interactor = mainBusinessLogicSpy
+        loadView()
+        //when
+        sut.viewWillAppear(true)
+        //then
+        XCTAssert(mainBusinessLogicSpy.fetchPhotosAccessStatusCalled, "Should request photos access status right after the view will appear")
     }
     
 }
