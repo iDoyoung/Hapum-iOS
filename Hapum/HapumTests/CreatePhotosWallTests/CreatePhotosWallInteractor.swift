@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Photos
 
 @testable import Hapum
 
@@ -23,22 +24,26 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
         try super.tearDownWithError()
     }
     
-    //MARK: - Mock
-    class MockCreatePhotosWallPresentation: CreatePhotosWallPresentationLogic {
+    //MARK: - Test double
+    class CreatePhotosWallPresentationSpy: CreatePhotosWallPresentationLogic {
         
         var presentPhotosCalled = false
         var showCameraTypeImagePickerCalled = false
+        var showDoneAlertCalled = false
         var showCreatingSuccessCalled = false
         var showCreatingFailureCalled = false
-        var showDoneAlertCalled = false
         var showAuthorizationStatusCalled = false
         
-        func presentPhotos(resource: [Photos.Asset]) {
+        func presentPhotos(resource: PHFetchResult<PHAsset>?) {
             presentPhotosCalled = true
         }
         
         func showCameraTypeImagePicker() {
             showCameraTypeImagePickerCalled = true
+        }
+        
+        func showDoneAlert() {
+            showDoneAlertCalled = true
         }
         
         func showCreatingSuccess() {
@@ -49,92 +54,59 @@ class CreatePhotosWallInteractorTestes: XCTestCase {
             showCreatingFailureCalled = true
         }
         
-        func showDoneAlert() {
-            showDoneAlertCalled = true
-        }
-        
         func showAuthorizationStatus() {
             showAuthorizationStatusCalled = true
         }
         
     }
     
-    class MockPhotosWorker: PhotosWorker {
+    class PhotosWorkerSpy: PhotosWorker {
         
-        override func addPhotoAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
-            service.addAsset(photo: Photos.Photo(image: Seeds.ImageDummy.image!)) { error in
-                completion(error)
-            }
+        var addPhotoAssetCalled = false
+        
+        override func addPhotoAsset(_ photo: UIImage, completion: @escaping () -> Void) {
+            addPhotoAssetCalled = true
         }
         
     }
     
-    class MockSuccessPhotosService: PhotoServicing {
+    class PhotosServiceSpy: PhotoServicing {
+       
+        var fetchReulst: Result<PHFetchResult<PHAsset>, PhotosError>?
         
-        func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
+        var fetchAllPhotosCalled = false
+        var fetchAlbumPhotosCalled = false
+        var addAssetCalled = false
+        var requestAccessStatusCalled = false
+        
+        func fetchAllPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+            fetchAllPhotosCalled = true
         }
         
-        func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        func fetchAlbumPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
+            fetchAlbumPhotosCalled = true
         }
         
-        func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
+        func addAsset(of image: UIImage, completion: @escaping () -> Void) {
+            addAssetCalled = true
         }
         
-        func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
-        }
-        
-        func addAsset(photo: Photos.Photo, completion: @escaping ((Bool, Error?)) -> Void) {
-            completion((true, nil))
-        }
-    }
-    
-    class MockFailurePhotosService: PhotoServicing {
-        func addAsset(photo: Photos.Photo, completion: @escaping (AddPhotoAssetError?) -> Void) {
-            completion(nil)
-        }
-        
-        func fetchPhotos(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-        }
-        
-        func fetchPhotosFromAlbums(width: Float, height: Float, completion: @escaping ([Photos.Asset]) -> Void) {
-        }
-        
-        func requestAccessStatus(completion: @escaping (Photos.Status?) -> Void) {
+        func requestAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
+            requestAccessStatusCalled = true
         }
 
     }
     
     
-    //MARK: - Test
-    func test_whenFailAddPhotoAskPhotosWorkerToAddPhotoAndPresenterShowCreatingFailure () {
-        ///given
-        let mockPresenter = MockCreatePhotosWallPresentation()
-        let mockPhotosWorker = MockPhotosWorker(service: MockFailurePhotosService())
-        sut.presenter = mockPresenter
-        sut.photosWorker = mockPhotosWorker
-        ///when
-        sut.addPhoto(photo: Photos.Photo(image: Seeds.ImageDummy.image!))
-        ///then
-        XCTAssert(mockPresenter.showCreatingFailureCalled)
-    }
-    
-    func test_whenSuccessAddPhotoAskPhotosWorkerToAddPhotoAndPresenterShowCreatingSuccess() {
-        ///given
-        let mockPresenter = MockCreatePhotosWallPresentation()
-        let mockPhotosWorker = MockPhotosWorker(service: MockSuccessPhotosService())
-        sut.presenter = mockPresenter
-        sut.photosWorker = mockPhotosWorker
-        ///when
-        sut.addPhoto(photo: Photos.Photo(image: Seeds.ImageDummy.image!))
-        ///then
-        XCTAssert(mockPresenter.showCreatingSuccessCalled)
-    }
-    
-    func test_whenTrySavePhotosWallViewPresenterShowAlert() {
-        let mockPresenter = MockCreatePhotosWallPresentation()
-        sut.presenter = mockPresenter
-        sut.trySavePhotosWallView()
-        XCTAssert(mockPresenter.showDoneAlertCalled)
+    //MARK: - Tests
+    func test_shouldCallPresentPhotosInPresenter_whenGetPhotos() {
+        //given
+        let createPhotosWallPresentationSpy = CreatePhotosWallPresentationSpy()
+        sut.presenter = createPhotosWallPresentationSpy
+        //when
+        sut.getPhotos()
+        //then
+        XCTAssert(createPhotosWallPresentationSpy.presentPhotosCalled, "Should call Presenter")
     }
     
 }
