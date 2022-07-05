@@ -11,8 +11,9 @@ import XCTest
 
 class CreatePhotosWallPresenterTests: XCTestCase {
 
+    //MARK: - System under system
     var sut: CreatePhotosWallPresenter!
-    
+
     override func setUpWithError() throws {
         try super.setUpWithError()
         sut = CreatePhotosWallPresenter()
@@ -22,81 +23,42 @@ class CreatePhotosWallPresenterTests: XCTestCase {
         sut = nil
         try super.tearDownWithError()
     }
-    
-    //MARK: - Mock
-    class MockCreatePhotosWallDisplayLogic: CreatePhotosWallDisplayLogic {
+
+    //MARK: - Test doubles
+    class CreatePhotosWallDisplayLogicSpy: CreatePhotosWallDisplayLogic {
         
         var displayPhotosCalled = false
-        var displayCameraCalled = false
-        var displayCreatingSuccessCalled = false
-        var displayCreatingFailureCalled = false
-        var displayDoneAlertCalled = false
-        var displayRestrictedStatusCalled = false
         
-        var viewModel: [Photos.Asset]!
-        
-        func displayPhotos(viewModel: [Photos.Asset]?) {
+        func displayPhotos(viewModel: [UIImage]) {
             displayPhotosCalled = true
-            self.viewModel = viewModel
         }
         
         func displayCamera() {
-            displayCameraCalled = true
-        }
-        
-        func displayCreatingSuccess() {
-            displayCreatingSuccessCalled = true
-        }
-        
-        func displayCreatingFailure() {
-            displayCreatingFailureCalled = true
-        }
-        
-        func displayRestrictedStatus() {
-            displayRestrictedStatusCalled = true
         }
         
         func displayDoneAlert() {
-            displayDoneAlertCalled = true
+        }
+        
+        func displayCreatingSuccess() {
+        }
+        
+        func displayCreatingFailure() {
+        }
+        
+        func displayRestrictedStatus() {
         }
         
     }
-    
-    //MARK: - Test
-    func test_presentPhotosShouldAskViewControllertoDisplayPhotos() {
-        ///given
-        let mockDisplayLogic = MockCreatePhotosWallDisplayLogic()
-        sut.viewController = mockDisplayLogic
-        ///when
-        sut.presentPhotos(resource: [])
-        ///then
-        XCTAssert(mockDisplayLogic.displayPhotosCalled, "Presenting photos should ask view controller to display that")
+
+    //MARK: - Tests
+    func test_shouldCallDisplayPhotosInViewController_whenPresentPhotos() {
+        //given
+        let createPhotosWallDisplayLogicSpy = CreatePhotosWallDisplayLogicSpy()
+        sut.viewController = createPhotosWallDisplayLogicSpy
+        //when
+        sut.presentPhotos(resource: Seeds.PhotoResultAssetDummy.fetched)
+        //then
+        XCTAssert(createPhotosWallDisplayLogicSpy.displayPhotosCalled, "Should call display method in View controller")
     }
     
-    func test_showCreatingSuccessShouldAskViewController() {
-        ///given
-        let mockDisplayLogic = MockCreatePhotosWallDisplayLogic()
-        sut.viewController = mockDisplayLogic
-        ///when
-        sut.showCreatingSuccess()
-        ///then
-        XCTAssert(mockDisplayLogic.displayCreatingSuccessCalled)
-    }
-    
-    func test_showCreatingFailureShouldAskViewController() {
-        ///given
-        let mockDisplayLogic = MockCreatePhotosWallDisplayLogic()
-        sut.viewController = mockDisplayLogic
-        ///when
-        sut.showCreatingFailure()
-        ///then
-        XCTAssert(mockDisplayLogic.displayCreatingFailureCalled)
-    }
-    
-    func test_whenShowDoneAlertShouldAskViewController() {
-        let mockDisplayLogic = MockCreatePhotosWallDisplayLogic()
-        sut.viewController = mockDisplayLogic
-        sut.showDoneAlert()
-        XCTAssert(mockDisplayLogic.displayDoneAlertCalled)
-    }
 }
