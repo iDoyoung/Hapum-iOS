@@ -11,6 +11,7 @@ import XCTest
 
 class MainPresenterTests: XCTestCase {
 
+    //MARK: - System under test
     var sut: MainPresenter!
     
     override func setUpWithError() throws {
@@ -23,59 +24,89 @@ class MainPresenterTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    //MARK: - Mock
-    class MockMainDisplayLogic: MainDisplayLogic {
-        
-        var displayPhotosAccessStatusMessageCalled = false
-        var displayFetchedPhotosCalled = false
-        var displayFetchedAlbumCalled = false
-        
-        var viewModel: [Photos.Asset]!
-        var message: String?
-        
-        func displayPhotosAccessStatusMessage(viewModel: Photos.Status.Response) {
-            displayPhotosAccessStatusMessageCalled = true
-            self.message = viewModel.message
-        }
-        
-        func displayFetchedPhotos(viewModel: [Photos.Asset]?) {
+    //MARK: - Test doubles
+    class MainDisplayLogicSpy: MainDisplayLogic {
+       
+        var displayFetchedPhotosCalled = true
+        var displayFetchedAlbumCalled = true
+        var displayAuthorizedPhotosAccessStatusMessageCalled = false
+        var displayRestrictedPhotosAccessStatusMessageCalled = false
+        var displayLimitedPhotosAccessStatusMessageCalled = false
+       
+        func displayFetchedPhotos(viewModel: [UIImage]) {
             displayFetchedPhotosCalled = true
-            self.viewModel = viewModel
         }
         
-        func displayFetchedAlbum(viewModel: [Photos.Asset]?) {
+        func displayFetchedAlbum(viewModel: [UIImage]) {
             displayFetchedAlbumCalled = true
-            self.viewModel = viewModel
+        }
+        
+        func displayAuthorizedPhotosAccessStatusMessage() {
+            displayAuthorizedPhotosAccessStatusMessageCalled = true
+        }
+        
+        func displayRestrictedPhotosAccessStatusMessage() {
+            displayRestrictedPhotosAccessStatusMessageCalled = true
+        }
+        
+        func displayLimitedPhotosAccessStatusMessage() {
+            displayLimitedPhotosAccessStatusMessageCalled = true
         }
         
     }
     //MARK: - Test
-    func test_presentFetchedPhotos() {
-        let mockMainDisplayLogic = MockMainDisplayLogic()
-        sut.viewController = mockMainDisplayLogic
-        sut.presentPhotosAccessStatus(response: Photos.Status.Response(message: nil,
-                                                                       isLimited: nil))
-        XCTAssert(mockMainDisplayLogic.displayPhotosAccessStatusMessageCalled)
+    func test_shouldCallDisplayFetchedPhotosInViewControllerWhenPresentFetchedAllPhotos() {
+        //given
+        let mainDisplayLogicSpy = MainDisplayLogicSpy()
+        sut.viewController = mainDisplayLogicSpy
+        //when
+        sut.presentFetchedAllPhotos(resource: Seeds.PhotoResultAssetDummy.fetched)
+        //then
+        XCTAssert(mainDisplayLogicSpy.displayFetchedPhotosCalled, "Call view controller to display fetched photos")
     }
     
-    func test_presentFetchedPhotosShouldAskViewControllerToDisplayFetchedPhotos() {
-        ///given
-        let mockMainDisplayLogic = MockMainDisplayLogic()
-        sut.viewController = mockMainDisplayLogic
-        ///when
-        sut.presentFetchedAllPhotos(resource: [])
-        ///then
-        XCTAssert(mockMainDisplayLogic.displayFetchedPhotosCalled, "Presenting fetched photos should ask view controller to display them")
+    func test_shouldCallDisplayFetchedAlbumInViewControllerWhenPresentFetchedAllPhotos() {
+        //given
+        let mainDisplayLogicSpy = MainDisplayLogicSpy()
+        sut.viewController = mainDisplayLogicSpy
+        //when
+        sut.presentFetchedAlbums(resource: Seeds.PhotoResultAssetDummy.fetched)
+        //then
+        XCTAssert(mainDisplayLogicSpy.displayFetchedAlbumCalled, "Call view controller to display fetched photos")
     }
     
-    func test_presentFetchedAlbumsShouldFormatedPhotosForDisplay() {
-        ///given
-        let mockMainDisplayLogic = MockMainDisplayLogic()
-        sut.viewController = mockMainDisplayLogic
-        ///when
-        sut.presentFetchedAlbums(resource: [])
-        ///then
-        XCTAssert(mockMainDisplayLogic.displayFetchedAlbumCalled, "Presenting fetched album should ask view controller to display them")
+    var displayAuthorizedPhotosAccessStatusMessageCalled = false
+    var displayRestrictedPhotosAccessStatusMessageCalled = false
+    var displayLimitedPhotosAccessStatusMessageCalled = false
+    
+    func test_shouldCallDisplayAuthorizedPhotosAccessStatusMessageInViewController_whenPresentAuthorizedPhotosAccessStatus() {
+        //given
+        let mainDisplayLogicSpy = MainDisplayLogicSpy()
+        sut.viewController = mainDisplayLogicSpy
+        //when
+        sut.presentAuthorizedPhotosAccessStatus()
+        //then
+        XCTAssert(mainDisplayLogicSpy.displayAuthorizedPhotosAccessStatusMessageCalled, "Call suitable display method by access status in Main View controlelr")
+    }
+    
+    func test_shouldCallDisplayLimitedPhotosAccessStatusMessageInViewController_whenPresentLimitedPhotosAccessStatus() {
+        //given
+        let mainDisplayLogicSpy = MainDisplayLogicSpy()
+        sut.viewController = mainDisplayLogicSpy
+        //when
+        sut.presentLimitedPhotosAccessStatus()
+        //then
+        XCTAssert(mainDisplayLogicSpy.displayLimitedPhotosAccessStatusMessageCalled, "Call suitable display method by access status in Main View controlelr")
+    }
+
+    func test_shouldCallDisplayRestrictedPhotosAccessStatusMessage_whenPresentRestrictedPhotosAccessStatus() {
+        //given
+        let mainDisplayLogicSpy = MainDisplayLogicSpy()
+        sut.viewController = mainDisplayLogicSpy
+        //when
+        sut.presentRestrictedPhotosAccessStatus()
+        //then
+        XCTAssert(mainDisplayLogicSpy.displayRestrictedPhotosAccessStatusMessageCalled, "Call suitable display method by access status in Main View controlelr")
     }
     
 }
