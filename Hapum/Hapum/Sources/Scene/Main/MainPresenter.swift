@@ -45,7 +45,9 @@ final class MainPresenter: MainPresentationLogic {
             return
         }
         let images = requestImages(for: resource)
-        viewController?.displayFetchedPhotos(viewModel: images)
+        DispatchQueue.main.async {
+            self.viewController?.displayFetchedPhotos(viewModel: images)
+        }
     }
     
     func presentFetchedAlbums(resource: PHFetchResult<PHAsset>?) {
@@ -53,18 +55,26 @@ final class MainPresenter: MainPresentationLogic {
             return
         }
         let images = requestImages(for: resource)
-        viewController?.displayFetchedAlbum(viewModel: images)
+        DispatchQueue.main.async {
+            self.viewController?.displayFetchedAlbum(viewModel: images)
+        }
     }
     
     func presentAuthorizedPhotosAccessStatus() {
-        viewController?.displayAuthorizedPhotosAccessStatusMessage()
+        DispatchQueue.main.async {
+            self.viewController?.displayAuthorizedPhotosAccessStatusMessage()
+        }
     }
    
     func presentLimitedPhotosAccessStatus() {
-        viewController?.displayLimitedPhotosAccessStatusMessage()
+        DispatchQueue.main.async {
+            self.viewController?.displayLimitedPhotosAccessStatusMessage()
+        }
     }
     
     func presentRestrictedPhotosAccessStatus() {
-        viewController?.displayRestrictedPhotosAccessStatusMessage()
+        DispatchQueue.main.async {
+            self.viewController?.displayRestrictedPhotosAccessStatusMessage()
+        }
     }
 }
