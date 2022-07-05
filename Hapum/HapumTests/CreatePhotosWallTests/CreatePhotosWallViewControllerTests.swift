@@ -13,48 +13,45 @@ class CreatePhotosWallViewControllerTests: XCTestCase {
 
     var sut: CreatePhotosWallViewController!
     var window: UIWindow!
-    
+
     override func setUpWithError() throws {
         try super.setUpWithError()
         window = UIWindow()
-        let storyboad = UIStoryboard(name: StoryboardName.main, bundle: Bundle.main)
+        let storyboad = UIStoryboard(name: StoryboardName.createPhotosWall, bundle: Bundle.main)
         sut = storyboad.instantiateViewController(withIdentifier: ViewControllerID.createPhotosWall) as? CreatePhotosWallViewController
     }
-    
+
     override func tearDownWithError() throws {
         sut = nil
         window = nil
         try super.tearDownWithError()
     }
-    
+
     func loadView() {
         window.addSubview(sut.view)
     }
-    
-    //MARK: - Mock
+
+    //MARK: - Test Doubles
     class MockBusinessLogic: CreatePhotosWallBusinessLogic {
-        
         var getPhotosCalled = false
-        var trySavePhotosWallViewCalled = false
-        
-        func trySavePhotosWallView() {
-            trySavePhotosWallViewCalled = true
-        }
         
         func getPhotos() {
             getPhotosCalled = true
         }
         
+        func addPhoto(_ photo: UIImage) {
+        }
+        
         func requestAccessCamera() {
         }
         
-        func addPhoto(photo: Photos.Photo) {
+        func trySavePhotosWallView() {
         }
-        
+
     }
-    
+
     //MARK: - Test
-    func test_shouldGetPhotosWhenViewDidLoad() {
+    func test_shouldGetPhotos_whenViewDidLoad() {
         ///given
         let mockBusinessLogic = MockBusinessLogic()
         sut.interactor = mockBusinessLogic
@@ -64,5 +61,5 @@ class CreatePhotosWallViewControllerTests: XCTestCase {
         ///then
         XCTAssert(mockBusinessLogic.getPhotosCalled, "Should get photos right after the view did load")
     }
-    
+
 }
