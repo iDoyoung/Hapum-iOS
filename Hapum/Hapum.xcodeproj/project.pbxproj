@@ -14,6 +14,7 @@
 		7F357D24287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D23287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift */; };
 		7F357D28287AD2570063E5E6 /* PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D27287AD2570063E5E6 /* PhotoFrame.swift */; };
 		7F357D2A287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D29287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift */; };
+		7F357D2E287ADC700063E5E6 /* CreatePhotosWallTemplatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D2D287ADC700063E5E6 /* CreatePhotosWallTemplatePresenter.swift */; };
 		7F3759E127FF016D00C6EE39 /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759E027FF016D00C6EE39 /* Seeds.swift */; };
 		7F3759E527FFE77B00C6EE39 /* MainInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759E427FFE77B00C6EE39 /* MainInteractorTests.swift */; };
 		7F3759E9280044BA00C6EE39 /* MainPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759E8280044BA00C6EE39 /* MainPresenterTests.swift */; };
@@ -84,6 +85,7 @@
 		7F357D23287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplateViewController.swift; sourceTree = "<group>"; };
 		7F357D27287AD2570063E5E6 /* PhotoFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrame.swift; sourceTree = "<group>"; };
 		7F357D29287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplateInteractor.swift; sourceTree = "<group>"; };
+		7F357D2D287ADC700063E5E6 /* CreatePhotosWallTemplatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplatePresenter.swift; sourceTree = "<group>"; };
 		7F3759E027FF016D00C6EE39 /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		7F3759E427FFE77B00C6EE39 /* MainInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractorTests.swift; sourceTree = "<group>"; };
 		7F3759E8280044BA00C6EE39 /* MainPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterTests.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				7F357D23287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift */,
 				7F357D29287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift */,
+				7F357D2D287ADC700063E5E6 /* CreatePhotosWallTemplatePresenter.swift */,
 			);
 			path = CreatePhotosWallTemplate;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */,
 				7F357D2A287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift in Sources */,
 				7F739AC927FBED9200253C55 /* MainRouter.swift in Sources */,
+				7F357D2E287ADC700063E5E6 /* CreatePhotosWallTemplatePresenter.swift in Sources */,
 				7F375A562804406800C6EE39 /* CreatePhotosWallViewController.swift in Sources */,
 				7F739AC727FBED6E00253C55 /* MainPresenter.swift in Sources */,
 				7F375A5A280472CA00C6EE39 /* CreatePhotosWallInteractor.swift in Sources */,

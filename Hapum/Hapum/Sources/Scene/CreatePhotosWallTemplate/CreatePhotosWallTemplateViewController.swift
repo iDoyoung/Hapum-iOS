@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol CreatePhotosWallTemplateDisplayLogic: AnyObject {
+    func displayUpdatedPhotosWallView()
+    func displaySuccessAddPhotosWallTemplate()
+    func displayFailureAddPhotosWallTemplate()
+}
+
 class CreatePhotosWallTemplateViewController: UIViewController {
 
     @IBOutlet weak var wallBackgroundView: UIView!
@@ -17,6 +23,19 @@ class CreatePhotosWallTemplateViewController: UIViewController {
     }
   
     @IBAction func addFrame(_ sender: UIButton) {
+    }
+    
+}
+
+extension CreatePhotosWallTemplateViewController: CreatePhotosWallTemplateDisplayLogic {
+    
+    func displayUpdatedPhotosWallView() {
+    }
+    
+    func displaySuccessAddPhotosWallTemplate() {
+    }
+    
+    func displayFailureAddPhotosWallTemplate() {
     }
     
 }
