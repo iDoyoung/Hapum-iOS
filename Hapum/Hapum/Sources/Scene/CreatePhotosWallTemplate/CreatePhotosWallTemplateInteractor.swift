@@ -22,6 +22,8 @@ final class CreatePhotosWallTemplateInteractor: CreatePhotosWallTemplateBusiness
     var presenter: CreatePhotosWallTemplatePresentationLogic?
     
     func addPhotoFrame(_ photoFrame: PhotoFrame) {
+        photoFrames.append(photoFrame)
+        presenter?.presentUpdatedWallView(response: photoFrame)
     }
     
     func createPhotosWallTemplate() {

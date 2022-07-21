@@ -12,9 +12,11 @@
 		7F2749852837805100DDDA91 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2749842837805100DDDA91 /* Namespace.swift */; };
 		7F2E115C282F9184006E7A30 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2E115B282F9184006E7A30 /* UIColor+Extension.swift */; };
 		7F357D24287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D23287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift */; };
-		7F357D28287AD2570063E5E6 /* PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D27287AD2570063E5E6 /* PhotoFrame.swift */; };
+		7F357D28287AD2570063E5E6 /* PhotoWall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D27287AD2570063E5E6 /* PhotoWall.swift */; };
 		7F357D2A287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D29287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift */; };
 		7F357D2E287ADC700063E5E6 /* CreatePhotosWallTemplatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D2D287ADC700063E5E6 /* CreatePhotosWallTemplatePresenter.swift */; };
+		7F357D31287AE6880063E5E6 /* CreatePhotosWallTemplateInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D30287AE6880063E5E6 /* CreatePhotosWallTemplateInteractorTests.swift */; };
+		7F357D33287AEDE30063E5E6 /* CreatePhotosWallTemplatePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F357D32287AEDE30063E5E6 /* CreatePhotosWallTemplatePresenterTests.swift */; };
 		7F3759E127FF016D00C6EE39 /* Seeds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759E027FF016D00C6EE39 /* Seeds.swift */; };
 		7F3759E527FFE77B00C6EE39 /* MainInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759E427FFE77B00C6EE39 /* MainInteractorTests.swift */; };
 		7F3759E9280044BA00C6EE39 /* MainPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3759E8280044BA00C6EE39 /* MainPresenterTests.swift */; };
@@ -30,6 +32,11 @@
 		7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A622805264500C6EE39 /* CreatePhotosWallRouter.swift */; };
 		7F4187CD283BD47E001DB550 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190927F087F9003CAF9E /* Main.storyboard */; };
 		7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */; };
+		7F55777528883AAC005A9E30 /* HapumDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F55777328883AAC005A9E30 /* HapumDataModel.xcdatamodeld */; };
+		7F5577962888426C005A9E30 /* ManagedPhotoWall+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5577922888426C005A9E30 /* ManagedPhotoWall+CoreDataClass.swift */; };
+		7F5577972888426C005A9E30 /* ManagedPhotoWall+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5577932888426C005A9E30 /* ManagedPhotoWall+CoreDataProperties.swift */; };
+		7F5577982888426C005A9E30 /* ManagedPhotoFrame+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5577942888426C005A9E30 /* ManagedPhotoFrame+CoreDataClass.swift */; };
+		7F5577992888426C005A9E30 /* ManagedPhotoFrame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5577952888426C005A9E30 /* ManagedPhotoFrame+CoreDataProperties.swift */; };
 		7F59AB09283767EF008BBEFA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F59AB0B283767EF008BBEFA /* InfoPlist.strings */; };
 		7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */; };
 		7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */; };
@@ -83,9 +90,11 @@
 		7F2749842837805100DDDA91 /* Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
 		7F2E115B282F9184006E7A30 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		7F357D23287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplateViewController.swift; sourceTree = "<group>"; };
-		7F357D27287AD2570063E5E6 /* PhotoFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrame.swift; sourceTree = "<group>"; };
+		7F357D27287AD2570063E5E6 /* PhotoWall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoWall.swift; sourceTree = "<group>"; };
 		7F357D29287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplateInteractor.swift; sourceTree = "<group>"; };
 		7F357D2D287ADC700063E5E6 /* CreatePhotosWallTemplatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplatePresenter.swift; sourceTree = "<group>"; };
+		7F357D30287AE6880063E5E6 /* CreatePhotosWallTemplateInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplateInteractorTests.swift; sourceTree = "<group>"; };
+		7F357D32287AEDE30063E5E6 /* CreatePhotosWallTemplatePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplatePresenterTests.swift; sourceTree = "<group>"; };
 		7F3759E027FF016D00C6EE39 /* Seeds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seeds.swift; sourceTree = "<group>"; };
 		7F3759E427FFE77B00C6EE39 /* MainInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractorTests.swift; sourceTree = "<group>"; };
 		7F3759E8280044BA00C6EE39 /* MainPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenterTests.swift; sourceTree = "<group>"; };
@@ -100,6 +109,11 @@
 		7F375A60280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallPresenterTests.swift; sourceTree = "<group>"; };
 		7F375A622805264500C6EE39 /* CreatePhotosWallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallRouter.swift; sourceTree = "<group>"; };
 		7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		7F55777428883AAC005A9E30 /* HapumDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HapumDataModel.xcdatamodel; sourceTree = "<group>"; };
+		7F5577922888426C005A9E30 /* ManagedPhotoWall+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedPhotoWall+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7F5577932888426C005A9E30 /* ManagedPhotoWall+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedPhotoWall+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7F5577942888426C005A9E30 /* ManagedPhotoFrame+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedPhotoFrame+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7F5577952888426C005A9E30 /* ManagedPhotoFrame+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedPhotoFrame+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7F59AB0A283767EF008BBEFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7F59AB0C283767F1008BBEFA /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewCell.swift; sourceTree = "<group>"; };
@@ -175,6 +189,15 @@
 			path = CreatePhotosWallTemplate;
 			sourceTree = "<group>";
 		};
+		7F357D2F287AE6310063E5E6 /* CreatePhotosWallTemplateTests */ = {
+			isa = PBXGroup;
+			children = (
+				7F357D30287AE6880063E5E6 /* CreatePhotosWallTemplateInteractorTests.swift */,
+				7F357D32287AEDE30063E5E6 /* CreatePhotosWallTemplatePresenterTests.swift */,
+			);
+			path = CreatePhotosWallTemplateTests;
+			sourceTree = "<group>";
+		};
 		7F3759E627FFE78300C6EE39 /* MainTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +265,7 @@
 		7F42EB0C27F7F19E00FF8FE1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7F55777328883AAC005A9E30 /* HapumDataModel.xcdatamodeld */,
 				7FA3191127F087F9003CAF9E /* Info.plist */,
 				7F59AB0B283767EF008BBEFA /* InfoPlist.strings */,
 				7FEA944D2835F29F00EC872F /* Localizable.strings */,
@@ -294,7 +318,11 @@
 		7F42EB1227F8233500FF8FE1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				7F357D27287AD2570063E5E6 /* PhotoFrame.swift */,
+				7F357D27287AD2570063E5E6 /* PhotoWall.swift */,
+				7F5577922888426C005A9E30 /* ManagedPhotoWall+CoreDataClass.swift */,
+				7F5577932888426C005A9E30 /* ManagedPhotoWall+CoreDataProperties.swift */,
+				7F5577942888426C005A9E30 /* ManagedPhotoFrame+CoreDataClass.swift */,
+				7F5577952888426C005A9E30 /* ManagedPhotoFrame+CoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -375,6 +403,7 @@
 				7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */,
 				7F3759E627FFE78300C6EE39 /* MainTests */,
 				7F375A5D2804FAEB00C6EE39 /* CreatePhotosWallTests */,
+				7F357D2F287AE6310063E5E6 /* CreatePhotosWallTemplateTests */,
 			);
 			path = HapumTests;
 			sourceTree = "<group>";
@@ -539,15 +568,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F55777528883AAC005A9E30 /* HapumDataModel.xcdatamodeld in Sources */,
 				7FA874F42830FDC8006644B3 /* AboutAppViewController.swift in Sources */,
 				7F2E115C282F9184006E7A30 /* UIColor+Extension.swift in Sources */,
 				7F375A5C2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift in Sources */,
 				7F357D24287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift in Sources */,
+				7F5577972888426C005A9E30 /* ManagedPhotoWall+CoreDataProperties.swift in Sources */,
+				7F5577982888426C005A9E30 /* ManagedPhotoFrame+CoreDataClass.swift in Sources */,
 				7F3759F42802C90900C6EE39 /* FrameView.swift in Sources */,
 				7FA874F828310C40006644B3 /* AboutAppTableViewCell.swift in Sources */,
 				7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */,
 				7FA874F62831046E006644B3 /* AppInfoTableViewCell.swift in Sources */,
-				7F357D28287AD2570063E5E6 /* PhotoFrame.swift in Sources */,
+				7F357D28287AD2570063E5E6 /* PhotoWall.swift in Sources */,
+				7F5577962888426C005A9E30 /* ManagedPhotoWall+CoreDataClass.swift in Sources */,
 				7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */,
 				7FA3193427F142DC003CAF9E /* PhotosService.swift in Sources */,
 				7F357D2A287AD60F0063E5E6 /* CreatePhotosWallTemplateInteractor.swift in Sources */,
@@ -564,6 +597,7 @@
 				7F2749852837805100DDDA91 /* Namespace.swift in Sources */,
 				7FAA24442833C6F80014B8E5 /* String+Extension.swift in Sources */,
 				7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */,
+				7F5577992888426C005A9E30 /* ManagedPhotoFrame+CoreDataProperties.swift in Sources */,
 				7FA874FA2833516E006644B3 /* AboutAppRouter.swift in Sources */,
 				7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */,
 				7FA3190627F087F9003CAF9E /* SceneDelegate.swift in Sources */,
@@ -577,6 +611,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F1A410327FE8CC9002BC9E0 /* PhotosWorkerTests.swift in Sources */,
+				7F357D31287AE6880063E5E6 /* CreatePhotosWallTemplateInteractorTests.swift in Sources */,
 				7FD8D384283B0FF9003229BE /* Namespace.swift in Sources */,
 				7F375A61280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift in Sources */,
 				7F3759E527FFE77B00C6EE39 /* MainInteractorTests.swift in Sources */,
@@ -586,6 +621,7 @@
 				7F375A422803C3C200C6EE39 /* MainViewControllerTests.swift in Sources */,
 				7FD8D385283B103D003229BE /* String+Extension.swift in Sources */,
 				7FD1F8BA28083E7F0078849C /* CreatePhotosWallViewControllerTests.swift in Sources */,
+				7F357D33287AEDE30063E5E6 /* CreatePhotosWallTemplatePresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -973,6 +1009,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7F55777328883AAC005A9E30 /* HapumDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7F55777428883AAC005A9E30 /* HapumDataModel.xcdatamodel */,
+			);
+			currentVersion = 7F55777428883AAC005A9E30 /* HapumDataModel.xcdatamodel */;
+			path = HapumDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 7FA318F827F087F9003CAF9E /* Project object */;
 }

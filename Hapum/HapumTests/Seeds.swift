@@ -19,4 +19,7 @@ struct Seeds {
     struct ImageDummy {
         static let image = UIImage(systemName: "checkmark.seal.fill")
     }
+    
+    static let photoFrame = PhotoFrame(id: UUID(), frame: .zero, borderWidth: 1, space: true)
+    
 }

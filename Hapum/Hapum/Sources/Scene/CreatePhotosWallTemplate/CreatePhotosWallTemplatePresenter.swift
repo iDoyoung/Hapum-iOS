@@ -5,10 +5,10 @@
 //  Created by Doyoung on 2022/07/10.
 //
 
-import Foundation
+import UIKit
 
 protocol CreatePhotosWallTemplatePresentationLogic {
-    func presentUpdatedWallView(response: [PhotoFrame])
+    func presentUpdatedWallView(response: PhotoFrame)
     func presentSuccessCreatePhotosWallTemplate()
     func presentFailureCreatePhotosWallTemplate()
 }
@@ -17,7 +17,11 @@ final class CreatePhotosWallTemplatePresenter: CreatePhotosWallTemplatePresentat
     
     weak var viewController: CreatePhotosWallTemplateDisplayLogic?
     
-    func presentUpdatedWallView(response: [PhotoFrame]) {
+    func presentUpdatedWallView(response: PhotoFrame) {
+        let framView = FrameView(frame: response.frame)
+        framView.layer.borderWidth = response.borderWidth
+        framView.layer.borderColor = UIColor.black.cgColor
+        viewController?.displayUpdatedPhotosWallView(viewModel: framView)
     }
     
     func presentSuccessCreatePhotosWallTemplate() {

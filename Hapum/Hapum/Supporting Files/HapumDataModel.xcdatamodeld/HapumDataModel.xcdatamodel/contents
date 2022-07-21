@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ManagedPhotoFrame" representedClassName=".ManagedPhotoFrame" syncable="YES">
+        <attribute name="border" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="borderWidth" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="height" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="space" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="width" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="x" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="y" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ManagedPhotoWall" inverseName="frames" inverseEntity="ManagedPhotoWall"/>
+    </entity>
+    <entity name="ManagedPhotoWall" representedClassName=".ManagedPhotoWall" syncable="YES">
+        <attribute name="createdDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <relationship name="frames" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ManagedPhotoFrame" inverseName="parent" inverseEntity="ManagedPhotoFrame"/>
+    </entity>
+    <elements>
+        <element name="ManagedPhotoFrame" positionX="-54" positionY="-9" width="128" height="149"/>
+        <element name="ManagedPhotoWall" positionX="-48.01171875" positionY="-165.66796875" width="128" height="74"/>
+    </elements>
+</model>
