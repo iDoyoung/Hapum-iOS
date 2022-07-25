@@ -31,7 +31,7 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
             managedPhotoWall.fromPhotoWall(photoWall, context: context)
             if context.hasChanges {
                 do {
-                try context.save()
+                    try context.save()
                     completion(photoWall, nil)
                 } catch let error {
                     completion(photoWall, CoreDataStoreError.saveError(error))
@@ -84,22 +84,24 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
                 let results = try context.fetch(request)
                 if let managedPhotoWall = results.first {
                     context.delete(managedPhotoWall)
-                    try context.save()
-                    completion(photoWall, nil)
+                    do {
+                        try context.save()
+                        completion(photoWall, nil)
+                    } catch let error {
+                        completion(photoWall, CoreDataStoreError.saveError(error))
+                    }
                 }
             } catch {
-                completion(photoWall, CoreDataStoreError.deleteError(error))
+                completion(photoWall, CoreDataStoreError.readError(error))
             }
         }
     }
-        
+    
 }
 
 protocol PhotoWallStorable {
-        
     func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void)
     func fetchPhotoWall(completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void)
-    func updatePhotoWall(to photoWall: PhotoWall, completion: @escaping () -> Void)
+    func updatePhotoWall(to photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void)
     func deletePhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void)
-    
 }
