@@ -25,7 +25,20 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
         return container
     }()
     
-    func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping () -> Void) {
+    func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void) {
+        persistentContainer.performBackgroundTask { context in
+            let managedPhotoWall = ManagedPhotoWall(context: context)
+            managedPhotoWall.fromPhotoWall(photoWall, context: context)
+            
+            if context.hasChanges {
+                do {
+                try context.save()
+                    completion(photoWall, nil)
+                } catch let error {
+                    completion(photoWall, CoreDataStoreError.saveError(error))
+                }
+            }
+        }
     }
     
     func fetchPhotoWall(completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void) {
@@ -51,7 +64,7 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
 
 protocol PhotoWallStorable {
         
-    func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping () -> Void)
+    func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void)
     func fetchPhotoWall(completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void)
     func updatePhotoWall(to photoWall: PhotoWall, completion: @escaping () -> Void)
     func deletePhotoWall(id: UUID, completion: @escaping () -> Void)

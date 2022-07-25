@@ -18,10 +18,10 @@ final class CreatePhotosWallTemplatePresenter: CreatePhotosWallTemplatePresentat
     weak var viewController: CreatePhotosWallTemplateDisplayLogic?
     
     func presentUpdatedWallView(response: PhotoFrame) {
-        let framView = FrameView(frame: response.frame)
-        framView.layer.borderWidth = response.borderWidth
-        framView.layer.borderColor = UIColor.black.cgColor
-        viewController?.displayUpdatedPhotosWallView(viewModel: framView)
+//        let framView = FrameView(frame: response.frame)
+//        framView.layer.borderWidth = response.borderWidth
+//        framView.layer.borderColor = UIColor.black.cgColor
+//        viewController?.displayUpdatedPhotosWallView(viewModel: framView)
     }
     
     func presentSuccessCreatePhotosWallTemplate() {

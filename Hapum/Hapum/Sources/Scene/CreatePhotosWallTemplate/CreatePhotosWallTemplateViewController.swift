@@ -36,13 +36,13 @@ class CreatePhotosWallTemplateViewController: UIViewController {
     }
   
     @IBAction func addFrame(_ sender: UIButton) {
-        interactor?.addPhotoFrame(PhotoFrame(id: UUID(),
-                                             frame: CGRect(x: wallBackgroundView.frame.midX,
-                                                           y: wallBackgroundView.frame.midY,
-                                                           width: wallBackgroundView.bounds.width / 5,
-                                                           height: wallBackgroundView.bounds.height / 5),
-                                             borderWidth: 1,
-                                             space: true))
+//        interactor?.addPhotoFrame(PhotoFrame(id: UUID(),
+//                                             frame: CGRect(x: wallBackgroundView.frame.midX,
+//                                                           y: wallBackgroundView.frame.midY,
+//                                                           width: wallBackgroundView.bounds.width / 5,
+//                                                           height: wallBackgroundView.bounds.height / 5),
+//                                             borderWidth: 1,
+//                                             space: true))
     }
     
     private func setUpViewController() {
