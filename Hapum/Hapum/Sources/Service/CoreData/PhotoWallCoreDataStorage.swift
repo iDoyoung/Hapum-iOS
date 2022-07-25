@@ -29,7 +29,6 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
         persistentContainer.performBackgroundTask { context in
             let managedPhotoWall = ManagedPhotoWall(context: context)
             managedPhotoWall.fromPhotoWall(photoWall, context: context)
-            
             if context.hasChanges {
                 do {
                 try context.save()
@@ -54,7 +53,27 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
         }
     }
     
-    func updatePhotoWall(to photoWall: PhotoWall, completion: @escaping () -> Void) {
+    func updatePhotoWall(to photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void) {
+        persistentContainer.performBackgroundTask { context in
+            do {
+                let request = ManagedPhotoWall.fetchRequest()
+                request.predicate = NSPredicate(format: "id==%@", photoWall.id as CVarArg)
+                let results = try context.fetch(request)
+                if let managedPhotoWall = results.first {
+                    managedPhotoWall.fromPhotoWall(photoWall, context: context)
+                    if context.hasChanges {
+                        do {
+                            try context.save()
+                            completion(photoWall, nil)
+                        } catch let error {
+                            completion(photoWall, CoreDataStoreError.saveError(error))
+                        }
+                    }
+                }
+            } catch {
+                completion(photoWall, CoreDataStoreError.readError(error))
+            }
+        }
     }
     
     func deletePhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void) {
