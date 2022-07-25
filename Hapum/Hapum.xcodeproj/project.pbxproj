@@ -37,6 +37,7 @@
 		7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F375A622805264500C6EE39 /* CreatePhotosWallRouter.swift */; };
 		7F4187CD283BD47E001DB550 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190927F087F9003CAF9E /* Main.storyboard */; };
 		7F42EB0727F6D4E600FF8FE1 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */; };
+		7F4C5083288EBEFE003D9AD5 /* PhotoWallWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C5082288EBEFE003D9AD5 /* PhotoWallWorker.swift */; };
 		7F55779E288A63D2005A9E30 /* PhotoWallCoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55779D288A63D1005A9E30 /* PhotoWallCoreDataStorage.swift */; };
 		7F59AB09283767EF008BBEFA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F59AB0B283767EF008BBEFA /* InfoPlist.strings */; };
 		7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */; };
@@ -115,6 +116,7 @@
 		7F375A60280510D700C6EE39 /* CreatePhotosWallPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallPresenterTests.swift; sourceTree = "<group>"; };
 		7F375A622805264500C6EE39 /* CreatePhotosWallRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallRouter.swift; sourceTree = "<group>"; };
 		7F42EB0627F6D4E600FF8FE1 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		7F4C5082288EBEFE003D9AD5 /* PhotoWallWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoWallWorker.swift; sourceTree = "<group>"; };
 		7F55779D288A63D1005A9E30 /* PhotoWallCoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoWallCoreDataStorage.swift; sourceTree = "<group>"; };
 		7F59AB0A283767EF008BBEFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7F59AB0C283767F1008BBEFA /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				7F739ACB27FC5E4D00253C55 /* PhotosWorker.swift */,
+				7F4C5082288EBEFE003D9AD5 /* PhotoWallWorker.swift */,
 			);
 			path = Worker;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7FA874F42830FDC8006644B3 /* AboutAppViewController.swift in Sources */,
+				7F4C5083288EBEFE003D9AD5 /* PhotoWallWorker.swift in Sources */,
 				7F2E115C282F9184006E7A30 /* UIColor+Extension.swift in Sources */,
 				7F375A5C2804F99F00C6EE39 /* CreatePhotosWallPresenter.swift in Sources */,
 				7F357D24287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift in Sources */,
