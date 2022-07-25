@@ -2,7 +2,7 @@
 //  ManagedPhotoFrame+CoreDataProperties.swift
 //  Hapum
 //
-//  Created by Doyoung on 2022/07/20.
+//  Created by Doyoung on 2022/07/24.
 //
 //
 
@@ -16,14 +16,14 @@ extension ManagedPhotoFrame {
         return NSFetchRequest<ManagedPhotoFrame>(entityName: "ManagedPhotoFrame")
     }
 
-    @NSManaged public var border: Bool
-    @NSManaged public var borderWidth: Float
-    @NSManaged public var height: Double
-    @NSManaged public var space: Bool
-    @NSManaged public var width: Double
+    @NSManaged public var id: UUID
     @NSManaged public var x: Double
     @NSManaged public var y: Double
-    @NSManaged public var parent: ManagedPhotoWall?
+    @NSManaged public var borderWidth: Float
+    @NSManaged public var width: Double
+    @NSManaged public var height: Double
+    @NSManaged public var space: Bool
+    @NSManaged public var wall: ManagedPhotoWall
 
 }
 

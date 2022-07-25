@@ -28,7 +28,7 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
     func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping () -> Void) {
     }
     
-    func fetchPhotoWall(_ photoWall: PhotoWall, completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void) {
+    func fetchPhotoWall(completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void) {
         persistentContainer.performBackgroundTask { context in
             do {
                 let request = ManagedPhotoWall.fetchRequest()
@@ -52,7 +52,7 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
 protocol PhotoWallStorable {
         
     func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping () -> Void)
-    func fetchPhotoWall(_ photoWall: PhotoWall, completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void)
+    func fetchPhotoWall(completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void)
     func updatePhotoWall(to photoWall: PhotoWall, completion: @escaping () -> Void)
     func deletePhotoWall(id: UUID, completion: @escaping () -> Void)
     

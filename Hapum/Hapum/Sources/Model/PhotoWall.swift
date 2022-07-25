@@ -8,20 +8,18 @@
 import UIKit
 
 struct PhotoWall {
-    
     let id: UUID
     var createdDate: Date
     var photoFrames: [PhotoFrame]
-    
 }
 
 struct PhotoFrame {
+    var id: UUID
     var x: Double
     var y: Double
     var width: Double
     var height: Double
-    var border: Bool
-    var borderWidth: Float?
+    var borderWidth: Float
     var space: Bool
 }
 
