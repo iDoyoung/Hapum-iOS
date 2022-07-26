@@ -110,6 +110,7 @@
                         <outlet property="managePhotosAccessButton" destination="10I-BD-N0Z" id="2F5-2p-iCN"/>
                         <outlet property="photosWallView" destination="2nm-V5-xsv" id="3lI-iQ-ULw"/>
                         <outlet property="statusMessageLabel" destination="K3u-A0-wBJ" id="fIq-jx-GTM"/>
+                        <segue destination="Eif-Mq-uAt" kind="show" id="ejp-2q-smq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -125,7 +126,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfA-Eg-DjH">
-                                <rect key="frame" x="0.0" y="44" width="390" height="520"/>
+                                <rect key="frame" x="0.0" y="88" width="390" height="520"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="HfA-Eg-DjH" secondAttribute="height" multiplier="3:4" id="yV3-17-Fgw"/>
@@ -149,6 +150,7 @@
                             <constraint firstItem="HfA-Eg-DjH" firstAttribute="top" secondItem="SV4-R5-9Ie" secondAttribute="top" id="fiV-aW-4Vh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="oY5-Lc-bHx"/>
                     <connections>
                         <outlet property="wallBackgroundView" destination="HfA-Eg-DjH" id="8pN-9q-TOC"/>
                     </connections>

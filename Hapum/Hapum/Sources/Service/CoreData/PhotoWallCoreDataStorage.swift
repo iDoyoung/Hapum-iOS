@@ -25,7 +25,7 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
         return container
     }()
     
-    func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void) {
+    func createPhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
         persistentContainer.performBackgroundTask { context in
             let managedPhotoWall = ManagedPhotoWall(context: context)
             managedPhotoWall.fromPhotoWall(photoWall, context: context)
@@ -40,7 +40,7 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
         }
     }
     
-    func fetchPhotoWall(completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void) {
+    func fetchPhotoWall(completion: @escaping ([PhotosWall], CoreDataStoreError?) -> Void) {
         persistentContainer.performBackgroundTask { context in
             do {
                 let request = ManagedPhotoWall.fetchRequest()
@@ -53,7 +53,7 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
         }
     }
     
-    func updatePhotoWall(to photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void) {
+    func updatePhotoWall(to photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
         persistentContainer.performBackgroundTask { context in
             do {
                 let request = ManagedPhotoWall.fetchRequest()
@@ -76,7 +76,7 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
         }
     }
     
-    func deletePhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void) {
+    func deletePhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
         persistentContainer.performBackgroundTask { context in
             do {
                 let request = ManagedPhotoWall.fetchRequest()
@@ -100,8 +100,8 @@ final class PhotoWallCoreDataStorage: PhotoWallStorable {
 }
 
 protocol PhotoWallStorable {
-    func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void)
-    func fetchPhotoWall(completion: @escaping ([PhotoWall], CoreDataStoreError?) -> Void)
-    func updatePhotoWall(to photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void)
-    func deletePhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall, CoreDataStoreError?) -> Void)
+    func createPhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void)
+    func fetchPhotoWall(completion: @escaping ([PhotosWall], CoreDataStoreError?) -> Void)
+    func updatePhotoWall(to photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void)
+    func deletePhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void)
 }

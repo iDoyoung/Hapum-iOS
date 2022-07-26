@@ -50,7 +50,7 @@ class CreatePhotosWallTemplatePresenterTests: XCTestCase {
         let createPhotosWallTemplateDisplayLogicSpy = CreatePhotosWallTemplateDisplayLogicSpy()
         sut.viewController = createPhotosWallTemplateDisplayLogicSpy
         //when
-        sut.presentUpdatedWallView(response: Seeds.photoFrame)
+        sut.presentUpdatedWallView(response: Seeds.photoFrameMock)
         //then
         XCTAssert(createPhotosWallTemplateDisplayLogicSpy.displayUpdatedPhotosWallViewCalled, "Should call displayUpdatedPhotosWallView in View Controller")
     }

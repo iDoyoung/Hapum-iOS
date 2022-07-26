@@ -7,10 +7,14 @@
 
 import UIKit
 
-struct PhotoWall {
+struct PhotosWall: Equatable {
     let id: UUID
     var createdDate: Date
     var photoFrames: [PhotoFrame]
+    
+    static func == (lhs: PhotosWall, rhs: PhotosWall) -> Bool {
+        lhs.id == rhs.id
+    }
 }
 
 struct PhotoFrame {

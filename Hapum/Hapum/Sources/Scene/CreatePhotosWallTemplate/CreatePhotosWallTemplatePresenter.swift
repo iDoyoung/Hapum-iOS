@@ -9,7 +9,7 @@ import UIKit
 
 protocol CreatePhotosWallTemplatePresentationLogic {
     func presentUpdatedWallView(response: PhotoFrame)
-    func presentSuccessCreatePhotosWallTemplate()
+    func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall)
     func presentFailureCreatePhotosWallTemplate()
 }
 
@@ -24,7 +24,7 @@ final class CreatePhotosWallTemplatePresenter: CreatePhotosWallTemplatePresentat
 //        viewController?.displayUpdatedPhotosWallView(viewModel: framView)
     }
     
-    func presentSuccessCreatePhotosWallTemplate() {
+    func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall) {
     }
     
     func presentFailureCreatePhotosWallTemplate() {

@@ -15,7 +15,7 @@ class PhotoWallWorker {
         self.photoWallStorage = photoWallStorage
     }
    
-    func createPhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall) -> Void) {
+    func createPhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall) -> Void) {
         photoWallStorage.createPhotoWall(photoWall) { createdPhotoWall, error in
             if error != nil {
                 completion(createdPhotoWall)
@@ -23,7 +23,7 @@ class PhotoWallWorker {
         }
     }
     
-    func fetchPhotoWalls(completion: @escaping ([PhotoWall]) -> Void) {
+    func fetchPhotoWalls(completion: @escaping ([PhotosWall]) -> Void) {
         photoWallStorage.fetchPhotoWall { fetchedPhotoWalls, error in
             if error != nil {
                 completion(fetchedPhotoWalls)
@@ -31,7 +31,7 @@ class PhotoWallWorker {
         }
     }
     
-    func updatePhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall) -> Void) {
+    func updatePhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall) -> Void) {
         photoWallStorage.updatePhotoWall(to: photoWall) { updatedPhotoWall, error in
             if error != nil {
                 completion(updatedPhotoWall)
@@ -39,7 +39,7 @@ class PhotoWallWorker {
         }
     }
     
-    func deletePhotoWall(_ photoWall: PhotoWall, completion: @escaping (PhotoWall) -> Void) {
+    func deletePhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall) -> Void) {
         photoWallStorage.deletePhotoWall(photoWall) { deletedPhotoWall, error in
             if error != nil {
                 completion(deletedPhotoWall)

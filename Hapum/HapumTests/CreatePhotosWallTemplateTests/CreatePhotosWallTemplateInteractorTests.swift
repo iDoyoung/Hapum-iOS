@@ -27,6 +27,8 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
     //MARK: - Test doubles
     private class CreatePhotosWallTemplatePresentationLogicSpy: CreatePhotosWallTemplatePresentationLogic {
        
+        var photosWallMock: PhotosWall?
+        
         var presentUpdatedWallViewCalled = false
         var presentSuccessCreatePhotosWallTemplateCalled = false
         var presentFailureCreatePhotosWallTemplaterCalled = false
@@ -35,8 +37,9 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
             presentUpdatedWallViewCalled = true
         }
         
-        func presentSuccessCreatePhotosWallTemplate() {
+        func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall) {
             presentSuccessCreatePhotosWallTemplateCalled = true
+            photosWallMock = photoWall
         }
         
         func presentFailureCreatePhotosWallTemplate() {
@@ -45,14 +48,42 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
         
     }
     
+    private class PhotoWallWorkerSpy: PhotoWallWorker {
+        
+        var createPhotoWallCalled = false
+        
+        override func createPhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall) -> Void) {
+            createPhotoWallCalled = true
+            completion(photoWall)
+        }
+        
+    }
+   
     //MARK: - Tests
     func test_shouldCalledPresentUpdatedWallView_whenAddPhotoFrame() {
         //given
         let createPhotosWallTemplatePresentationLogicSpy = CreatePhotosWallTemplatePresentationLogicSpy()
         sut.presenter = createPhotosWallTemplatePresentationLogicSpy
         //when
-        sut.addPhotoFrame(Seeds.photoFrame)
+        sut.addPhotoFrame(Seeds.photoFrameMock)
         //then
         XCTAssert(createPhotosWallTemplatePresentationLogicSpy.presentUpdatedWallViewCalled, "Should call presentUpdatedWallView() in Presenter")
     }
+    
+    func test_shouldCalledPresentSuccessCreatePhotoWallTemplate_askWorkerToCallCreatePhotoWall_presenterGetPhotosWall_whenCreatPhotosWallTemplate() {
+        //given
+        let photosWallWorkerSpy = PhotoWallWorkerSpy(photoWallStorage: PhotoWallCoreDataStorage())
+        let createPhotosWallTemplatePresentationLogicSpy = CreatePhotosWallTemplatePresentationLogicSpy()
+        let testPhotosWall = Seeds.PhotosWallDummy.photosWallMock
+        sut.photoWallWorker = photosWallWorkerSpy
+        sut.presenter = createPhotosWallTemplatePresentationLogicSpy
+        //when
+        sut.createPhotosWallTemplate(testPhotosWall)
+        //then
+        XCTAssert(photosWallWorkerSpy.createPhotoWallCalled)
+        XCTAssert(createPhotosWallTemplatePresentationLogicSpy.presentSuccessCreatePhotosWallTemplateCalled)
+        XCTAssertEqual(createPhotosWallTemplatePresentationLogicSpy.photosWallMock, testPhotosWall)
+    }
+    
+    
 }

@@ -12,15 +12,15 @@ import CoreData
 
 public class ManagedPhotoWall: NSManagedObject {
 
-    func toPhotoWall() -> PhotoWall {
+    func toPhotoWall() -> PhotosWall {
         let photoFrames = frames
             .compactMap {
                 ($0 as? ManagedPhotoFrame)?.toPhotoFrame()
             }
-        return PhotoWall(id: id, createdDate: createdDate, photoFrames: photoFrames)
+        return PhotosWall(id: id, createdDate: createdDate, photoFrames: photoFrames)
     }
     
-    func fromPhotoWall(_ photoWall: PhotoWall, context: NSManagedObjectContext) {
+    func fromPhotoWall(_ photoWall: PhotosWall, context: NSManagedObjectContext) {
         id = photoWall.id
         createdDate = photoWall.createdDate
         photoWall.photoFrames.forEach {
