@@ -32,17 +32,7 @@ class CreatePhotosWallTemplateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-  
-    @IBAction func addFrame(_ sender: UIButton) {
-//        interactor?.addPhotoFrame(PhotoFrame(id: UUID(),
-//                                             frame: CGRect(x: wallBackgroundView.frame.midX,
-//                                                           y: wallBackgroundView.frame.midY,
-//                                                           width: wallBackgroundView.bounds.width / 5,
-//                                                           height: wallBackgroundView.bounds.height / 5),
-//                                             borderWidth: 1,
-//                                             space: true))
+        setupNavigationBar()
     }
     
     private func setUpViewController() {
@@ -52,6 +42,23 @@ class CreatePhotosWallTemplateViewController: UIViewController {
         viewController.interactor = interactor
         interactor.presenter = presenter
         presenter.viewController = viewController
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"),
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(createPhotoWallTemplate))
+    }
+    
+    var photosFrameWallTemplate: PhotosWall?
+    //MARK: - Action
+    @objc
+    func createPhotoWallTemplate() {
+        guard let photosFrameWallTemplate = photosFrameWallTemplate else {
+            return
+        }
+        interactor?.createPhotosWallTemplate(photosFrameWallTemplate)
     }
 }
 
