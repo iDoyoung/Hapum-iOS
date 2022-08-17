@@ -7,18 +7,6 @@
 
 import Foundation
 
-enum StoryboardName {
-    static let main = "Main"
-    static let about = "About"
-    static let createPhotosWall = "Create"
-}
-
-enum ViewControllerID {
-    static let main = "MainViewController"
-    static let about = "AboutAppViewController"
-    static let createPhotosWall = "CreatePhotosWallViewController"
-}
-
 enum NibName {
     static let photosViewCell = "PhotosViewCell"
     static let frameViewCell = "FrameViewCell"

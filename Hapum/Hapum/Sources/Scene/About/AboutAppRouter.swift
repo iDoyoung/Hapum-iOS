@@ -22,8 +22,8 @@ final class AboutAppRouter: NSObject, AboutAppRoutingLogic {
         guard let viewController = viewController else { return }
         
         if segue == nil {
-            let storyboard = UIStoryboard(name: StoryboardName.about, bundle: Bundle.main)
-            let destinationVC = storyboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController") as! PrivacyPolicyViewController
+            let storyboard = Storyboard.about
+            let destinationVC = ViewController.privacyPolicy(storyboard: storyboard) as! PrivacyPolicyViewController
             navigateToPrivacyPolicy(source: viewController, destination: destinationVC)
         }
     }

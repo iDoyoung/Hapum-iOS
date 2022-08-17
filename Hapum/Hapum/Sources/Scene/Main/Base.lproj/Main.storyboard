@@ -132,15 +132,6 @@
                                     <constraint firstAttribute="width" secondItem="HfA-Eg-DjH" secondAttribute="height" multiplier="3:4" id="yV3-17-Fgw"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Khe-yW-4gn">
-                                <rect key="frame" x="106" y="652" width="67" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                <connections>
-                                    <action selector="addFrame:" destination="Eif-Mq-uAt" eventType="touchUpInside" id="fQ4-ji-4Sm"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SV4-R5-9Ie"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
