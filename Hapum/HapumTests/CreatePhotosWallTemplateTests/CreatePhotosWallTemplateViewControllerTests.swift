@@ -8,7 +8,7 @@
 import XCTest
 @testable import Hapum
 
-class CreatePhotosWallTemplateTests: XCTestCase {
+class CreatePhotosWallTemplateViewControllerTests: XCTestCase {
     //MARK: System under test
     var sut: CreatePhotosWallTemplateViewController!
     
@@ -49,7 +49,6 @@ class CreatePhotosWallTemplateTests: XCTestCase {
         //then
         XCTAssert(createPhotosWallTemplateBusinessLogicSpy.createPhotosWallTemplateCalled)
     }
-    
     func test_createPhotoWallTemplate_whenPhotosFrameWallTemplateIsNil_shouldBeNotCallInteractor() {
         //given
         let createPhotosWallTemplateBusinessLogicSpy = CreatePhotosWallTemplateBusinessLogicSpy()
@@ -58,5 +57,14 @@ class CreatePhotosWallTemplateTests: XCTestCase {
         sut.createPhotoWallTemplate()
         //then
         XCTAssert(!createPhotosWallTemplateBusinessLogicSpy.createPhotosWallTemplateCalled)
+    }
+    func test_addPhotoFrame_shouldBeCallInteractor() {
+        //given
+        let createPhotosWallTemplateBusinessLogicSpy = CreatePhotosWallTemplateBusinessLogicSpy()
+        sut.interactor = createPhotosWallTemplateBusinessLogicSpy
+        //when
+        sut.addPhotoFrame(UIBarButtonItem())
+        //then
+        XCTAssert(createPhotosWallTemplateBusinessLogicSpy.addPhotoFrameCalled)
     }
 }

@@ -17,8 +17,8 @@ class CreatePhotosWallViewControllerTests: XCTestCase {
     override func setUpWithError() throws {
         try super.setUpWithError()
         window = UIWindow()
-        let storyboad = UIStoryboard(name: StoryboardName.createPhotosWall, bundle: Bundle.main)
-        sut = storyboad.instantiateViewController(withIdentifier: ViewControllerID.createPhotosWall) as? CreatePhotosWallViewController
+        let storyboard = Storyboard.createPhotosWall
+        sut = ViewController.createPhotosWall(storyboard: storyboard) as? CreatePhotosWallViewController
     }
 
     override func tearDownWithError() throws {

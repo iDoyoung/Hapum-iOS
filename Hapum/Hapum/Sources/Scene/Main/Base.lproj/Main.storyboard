@@ -120,25 +120,46 @@
         <!--Create Photos Wall Template View Controller-->
         <scene sceneID="AXD-Zr-MFc">
             <objects>
-                <viewController id="Eif-Mq-uAt" customClass="CreatePhotosWallTemplateViewController" customModule="Hapum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreatePhotosWallTemplateViewController" id="Eif-Mq-uAt" customClass="CreatePhotosWallTemplateViewController" customModule="Hapum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pIP-rf-629">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfA-Eg-DjH">
-                                <rect key="frame" x="0.0" y="88" width="390" height="520"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="HfA-Eg-DjH" secondAttribute="height" multiplier="3:4" id="yV3-17-Fgw"/>
-                                </constraints>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yVb-37-0CD">
+                                <rect key="frame" x="0.0" y="88" width="390" height="722"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfA-Eg-DjH">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="HfA-Eg-DjH" secondAttribute="height" multiplier="3:4" id="yV3-17-Fgw"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GJK-A8-BDL">
+                                        <rect key="frame" x="0.0" y="520" width="390" height="202"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0D-QX-DFH">
+                                <rect key="frame" x="0.0" y="792" width="390" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="2Dq-9H-nyN">
+                                        <connections>
+                                            <action selector="addPhotoFrame:" destination="Eif-Mq-uAt" id="2Cs-Qd-2fS"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SV4-R5-9Ie"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="SV4-R5-9Ie" firstAttribute="trailing" secondItem="HfA-Eg-DjH" secondAttribute="trailing" id="BAW-74-6bd"/>
-                            <constraint firstItem="HfA-Eg-DjH" firstAttribute="leading" secondItem="SV4-R5-9Ie" secondAttribute="leading" id="DC1-jX-Y3Q"/>
-                            <constraint firstItem="HfA-Eg-DjH" firstAttribute="top" secondItem="SV4-R5-9Ie" secondAttribute="top" id="fiV-aW-4Vh"/>
+                            <constraint firstItem="yVb-37-0CD" firstAttribute="leading" secondItem="SV4-R5-9Ie" secondAttribute="leading" id="BbW-7l-wRu"/>
+                            <constraint firstItem="SV4-R5-9Ie" firstAttribute="bottom" secondItem="yVb-37-0CD" secondAttribute="bottom" id="TWU-Ds-PtW"/>
+                            <constraint firstItem="yVb-37-0CD" firstAttribute="trailing" secondItem="SV4-R5-9Ie" secondAttribute="trailing" id="tT6-kd-kiI"/>
+                            <constraint firstItem="yVb-37-0CD" firstAttribute="top" secondItem="SV4-R5-9Ie" secondAttribute="top" id="vBy-yj-nJ7"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oY5-Lc-bHx"/>

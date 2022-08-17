@@ -12,7 +12,7 @@
 		7F0010B0288CE44E00D6FDFD /* ManagedPhotoFrame+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0010AC288CE44E00D6FDFD /* ManagedPhotoFrame+CoreDataProperties.swift */; };
 		7F0010B1288CE44E00D6FDFD /* ManagedPhotoWall+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0010AD288CE44E00D6FDFD /* ManagedPhotoWall+CoreDataClass.swift */; };
 		7F0010B2288CE44E00D6FDFD /* ManagedPhotoWall+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0010AE288CE44E00D6FDFD /* ManagedPhotoWall+CoreDataProperties.swift */; };
-		7F00787A28AB7DA500C4CA39 /* CreatePhotosWallTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00787928AB7DA500C4CA39 /* CreatePhotosWallTemplateTests.swift */; };
+		7F00787A28AB7DA500C4CA39 /* CreatePhotosWallTemplateViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00787928AB7DA500C4CA39 /* CreatePhotosWallTemplateViewControllerTests.swift */; };
 		7F00787F28ACAE1700C4CA39 /* Stroyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00787E28ACAE1700C4CA39 /* Stroyboard.swift */; };
 		7F00788128ACB34600C4CA39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00788028ACB34600C4CA39 /* ViewController.swift */; };
 		7F1A410327FE8CC9002BC9E0 /* PhotosWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */; };
@@ -95,7 +95,7 @@
 		7F0010AC288CE44E00D6FDFD /* ManagedPhotoFrame+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedPhotoFrame+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7F0010AD288CE44E00D6FDFD /* ManagedPhotoWall+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedPhotoWall+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7F0010AE288CE44E00D6FDFD /* ManagedPhotoWall+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ManagedPhotoWall+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		7F00787928AB7DA500C4CA39 /* CreatePhotosWallTemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplateTests.swift; sourceTree = "<group>"; };
+		7F00787928AB7DA500C4CA39 /* CreatePhotosWallTemplateViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePhotosWallTemplateViewControllerTests.swift; sourceTree = "<group>"; };
 		7F00787E28ACAE1700C4CA39 /* Stroyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stroyboard.swift; sourceTree = "<group>"; };
 		7F00788028ACB34600C4CA39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosWorkerTests.swift; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 			children = (
 				7F357D30287AE6880063E5E6 /* CreatePhotosWallTemplateInteractorTests.swift */,
 				7F357D32287AEDE30063E5E6 /* CreatePhotosWallTemplatePresenterTests.swift */,
-				7F00787928AB7DA500C4CA39 /* CreatePhotosWallTemplateTests.swift */,
+				7F00787928AB7DA500C4CA39 /* CreatePhotosWallTemplateViewControllerTests.swift */,
 			);
 			path = CreatePhotosWallTemplateTests;
 			sourceTree = "<group>";
@@ -661,7 +661,7 @@
 				7F375A5F2804FB5100C6EE39 /* CreatePhotosWallInteractor.swift in Sources */,
 				7F3759E127FF016D00C6EE39 /* Seeds.swift in Sources */,
 				7F3759E9280044BA00C6EE39 /* MainPresenterTests.swift in Sources */,
-				7F00787A28AB7DA500C4CA39 /* CreatePhotosWallTemplateTests.swift in Sources */,
+				7F00787A28AB7DA500C4CA39 /* CreatePhotosWallTemplateViewControllerTests.swift in Sources */,
 				7F375A422803C3C200C6EE39 /* MainViewControllerTests.swift in Sources */,
 				7FD8D385283B103D003229BE /* String+Extension.swift in Sources */,
 				7FD1F8BA28083E7F0078849C /* CreatePhotosWallViewControllerTests.swift in Sources */,
