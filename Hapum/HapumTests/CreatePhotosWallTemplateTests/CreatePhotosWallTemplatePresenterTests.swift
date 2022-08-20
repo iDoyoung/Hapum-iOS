@@ -10,7 +10,6 @@ import XCTest
 @testable import Hapum
 
 class CreatePhotosWallTemplatePresenterTests: XCTestCase {
-
     //MARK: - System under test
     var sut: CreatePhotosWallTemplatePresenter!
     
@@ -18,30 +17,25 @@ class CreatePhotosWallTemplatePresenterTests: XCTestCase {
         try super.setUpWithError()
         sut = CreatePhotosWallTemplatePresenter()
     }
-
     override func tearDownWithError() throws {
         sut = nil
     }
 
     //MARK: - Test doubles
     private class CreatePhotosWallTemplateDisplayLogicSpy: CreatePhotosWallTemplateDisplayLogic {
-        
         var displayUpdatedPhotosWallViewCalled = false
         var displaySuccessAddPhotosWallTemplateCalled = false
         var displayFailureAddPhotosWallTemplateCalled = false
         
-        func displayUpdatedPhotosWallView(viewModel: FrameView) {
+        func displayUpdatedPhotosWallView(viewModel: PhotoFrame.ViewModel) {
             displayUpdatedPhotosWallViewCalled = true
         }
-        
         func displaySuccessAddPhotosWallTemplate() {
             displaySuccessAddPhotosWallTemplateCalled = true
         }
-        
-        func displayFailureAddPhotosWallTemplate() {
+                func displayFailureAddPhotosWallTemplate() {
             displayFailureAddPhotosWallTemplateCalled = true
         }
-        
     }
     
     //MARK: - Tests

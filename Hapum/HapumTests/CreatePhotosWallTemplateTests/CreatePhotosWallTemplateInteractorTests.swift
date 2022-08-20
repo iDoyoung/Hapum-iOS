@@ -10,7 +10,6 @@ import XCTest
 @testable import Hapum
 
 class CreatePhotosWallTemplateInteractorTests: XCTestCase {
-
     //MARK: - System under test
     var sut: CreatePhotosWallTemplateInteractor!
     
@@ -18,7 +17,6 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
         try super.setUpWithError()
         sut = CreatePhotosWallTemplateInteractor()
     }
-
     override func tearDownWithError() throws {
         sut = nil
         try super.tearDownWithError()
@@ -26,37 +24,30 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
 
     //MARK: - Test doubles
     private class CreatePhotosWallTemplatePresentationLogicSpy: CreatePhotosWallTemplatePresentationLogic {
-       
         var photosWallMock: PhotosWall?
-        
         var presentUpdatedWallViewCalled = false
         var presentSuccessCreatePhotosWallTemplateCalled = false
         var presentFailureCreatePhotosWallTemplaterCalled = false
         
-        func presentUpdatedWallView(response: PhotoFrame) {
+        func presentUpdatedWallView(response: PhotoFrame.Response) {
             presentUpdatedWallViewCalled = true
         }
-        
         func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall) {
             presentSuccessCreatePhotosWallTemplateCalled = true
             photosWallMock = photoWall
         }
-        
         func presentFailureCreatePhotosWallTemplate() {
             presentFailureCreatePhotosWallTemplaterCalled = true
         }
-        
     }
     
     private class PhotoWallWorkerSpy: PhotoWallWorker {
-        
         var createPhotoWallCalled = false
         
         override func createPhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall) -> Void) {
             createPhotoWallCalled = true
             completion(photoWall)
         }
-        
     }
    
     //MARK: - Tests
@@ -65,7 +56,7 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
         let createPhotosWallTemplatePresentationLogicSpy = CreatePhotosWallTemplatePresentationLogicSpy()
         sut.presenter = createPhotosWallTemplatePresentationLogicSpy
         //when
-        sut.addPhotoFrame(Seeds.photoFrameMock)
+        sut.addPhotoFrame()
         //then
         XCTAssert(createPhotosWallTemplatePresentationLogicSpy.presentUpdatedWallViewCalled, "Should call presentUpdatedWallView() in Presenter")
     }

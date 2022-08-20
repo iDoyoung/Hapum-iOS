@@ -8,7 +8,6 @@
 import UIKit
 
 protocol CreatePhotosWallTemplateDisplayLogic: AnyObject {
-    func displayUpdatedPhotosWallView(viewModel: FrameView)
     func displaySuccessAddPhotosWallTemplate()
     func displayFailureAddPhotosWallTemplate()
 }
@@ -17,24 +16,23 @@ class CreatePhotosWallTemplateViewController: UIViewController {
     var interactor: CreatePhotosWallTemplateBusinessLogic?
     //MARK: UI Property
     @IBOutlet weak var wallBackgroundView: UIView!
-    private lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(panPhotoFrame))
+    @IBOutlet weak var setupPhotoFrameView: UIView!
     //MARK: - Action Method
     @IBAction func addPhotoFrame(_ sender: UIBarButtonItem) {
-        let photoFrame = PhotoFrame(id: UUID(),
-                                    x: 0.5,
-                                    y: 0.5,
-                                    width: 0.25,
-                                    height: 0.25,
-                                    borderWidth: 0,
-                                    space: false)
-        interactor?.addPhotoFrame(photoFrame)
+        let frame = CGRect(x: wallBackgroundView.bounds.minX,
+                           y: wallBackgroundView.bounds.minY,
+                           width: 120,
+                           height: 160)
+        let frameView = FrameView(frame: frame)
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panPhotoFrame))
+        frameView.isUserInteractionEnabled = true
+        frameView.addGestureRecognizer(panGesture)
+        wallBackgroundView.addSubview(frameView)
     }
     @objc
     func createPhotoWallTemplate() {
-        guard let photosFrameWallTemplate = photosFrameWallTemplate else {
-            return
-        }
-        interactor?.createPhotosWallTemplate(photosFrameWallTemplate)
+        guard let frameViews = wallBackgroundView.subviews as? [FrameView] else { return }
+        interactor?.createPhotosWallTemplate(frameViews)
     }
     @objc
     func panPhotoFrame(_ sender: UIPanGestureRecognizer) {
@@ -45,6 +43,16 @@ class CreatePhotosWallTemplateViewController: UIViewController {
         let translation = sender.translation(in: piece.superview)
         piece.center = CGPoint(x: piece.center.x + translation.x, y: piece.center.y + translation.y)
         sender.setTranslation(.zero, in: piece.superview)
+    }
+    ///Photo Frame 터치시 상단
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first,
+              let touchView = touch.view,
+              wallBackgroundView.subviews.contains(touchView) else {
+            return
+        }
+        selectedPhotoFrame = touchView
+        wallBackgroundView.bringSubviewToFront(touchView)
     }
     //MARK: - Life cycle
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -74,19 +82,17 @@ class CreatePhotosWallTemplateViewController: UIViewController {
                                                             target: self,
                                                             action: #selector(createPhotoWallTemplate))
     }
-    var photosFrameWallTemplate: PhotosWall?
+    
+    private var selectedPhotoFrame: UIView? = nil {
+        didSet {
+            selectedPhotoFrame?.isHidden = selectedPhotoFrame != nil ? false : true
+        }
+    }
 }
 
 extension CreatePhotosWallTemplateViewController: CreatePhotosWallTemplateDisplayLogic {
-    
-    func displayUpdatedPhotosWallView(viewModel: FrameView) {
-        wallBackgroundView.addSubview(viewModel)
-    }
-    
     func displaySuccessAddPhotosWallTemplate() {
     }
-    
     func displayFailureAddPhotosWallTemplate() {
     }
-    
 }

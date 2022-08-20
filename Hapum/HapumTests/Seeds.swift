@@ -31,6 +31,6 @@ struct Seeds {
                                               photoFrames: [])
     }
     
-    static let photoFrameMock = PhotoFrame(id: UUID(), x: 0, y: 0, width: 0, height: 0, borderWidth: 0, space: false)
+    static let photoFrameMock = PhotoFrame.Response(id: UUID(), x: 0, y: 0, width: 0, height: 0, borderWidth: 0, space: false)
     
 }

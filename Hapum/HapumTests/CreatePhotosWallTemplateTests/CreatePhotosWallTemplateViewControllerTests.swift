@@ -26,14 +26,12 @@ class CreatePhotosWallTemplateViewControllerTests: XCTestCase {
         var updatePhotoFrameCalled = false
         var createPhotosWallTemplateCalled = false
         
-        func addPhotoFrame(_ photoFrame: PhotoFrame) {
+        func addPhotoFrame() {
             addPhotoFrameCalled = true
         }
-        
-        func updatePhotoFrame(_ photoFrame: PhotoFrame) {
+        func updatePhotoFrame(_ photoFrame: PhotoFrame.Response) {
             updatePhotoFrameCalled = true
         }
-        
         func createPhotosWallTemplate(_ photoWall: PhotosWall) {
             createPhotosWallTemplateCalled = true
         }

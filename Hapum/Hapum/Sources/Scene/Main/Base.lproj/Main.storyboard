@@ -164,6 +164,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="oY5-Lc-bHx"/>
                     <connections>
+                        <outlet property="setupPhotoFrameView" destination="GJK-A8-BDL" id="XTW-32-P06"/>
                         <outlet property="wallBackgroundView" destination="HfA-Eg-DjH" id="8pN-9q-TOC"/>
                     </connections>
                 </viewController>

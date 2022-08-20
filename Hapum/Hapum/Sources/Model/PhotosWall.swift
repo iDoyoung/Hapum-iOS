@@ -10,21 +10,11 @@ import UIKit
 struct PhotosWall: Equatable {
     let id: UUID
     var createdDate: Date
-    var photoFrames: [PhotoFrame]
+    var photoFrames: [PhotoFrame.Response]
     
     static func == (lhs: PhotosWall, rhs: PhotosWall) -> Bool {
         lhs.id == rhs.id
     }
-}
-
-struct PhotoFrame {
-    var id: UUID
-    var x: Double
-    var y: Double
-    var width: Double
-    var height: Double
-    var borderWidth: Float
-    var space: Bool
 }
 
 //struct ViewModel {
