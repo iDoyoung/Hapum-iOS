@@ -12,6 +12,7 @@ import PhotosUI
 protocol MainRoutingLogic {
     func routeToAboutApp(segue: UIStoryboardSegue?)
     func routeToCreatePhotosWall(segue: UIStoryboardSegue?)
+    func routeToCreatePhotoWallTemplate(segue: UIStoryboardSegue?)
     func showManageAccessLimitedStatus()
     func openSetting()
 }
@@ -21,7 +22,6 @@ protocol MainDataPassing {
 }
 
 final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
-    
     weak var viewController: MainViewController?
     var dataStore: MainDataStore?
     
@@ -35,7 +35,14 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
             presentAboutApp(source: viewController, destination: destinationNVC)
         }
     }
-    
+    func routeToCreatePhotoWallTemplate(segue: UIStoryboardSegue?) {
+        guard let viewController = viewController else { return }
+        if segue == nil {
+            let storyboard = Storyboard.main
+            let destinationVC = ViewController.createPhotosWallTemplate(storyboard: storyboard) as! CreatePhotosWallTemplateViewController
+            navigateToCreatePhotosWallTemplate(source: viewController, destination: destinationVC)
+        }
+    }
     func routeToCreatePhotosWall(segue: UIStoryboardSegue?) {
         guard let viewController = viewController else { return }
         if let segue = segue {
@@ -50,7 +57,6 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
             navigateToCreatePhotosWall(source: viewController, destination: destinationVC)
         }
     }
-    
     func showManageAccessLimitedStatus() {
         guard let viewController = viewController else {
             return
@@ -89,7 +95,6 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
         
         viewController.present(alert, animated: true)
     }
-    
     func openSetting() {
         guard let url = URL(string: UIApplication.openSettingsURLString) else {
            return
@@ -102,17 +107,13 @@ final class MainRouter: NSObject, MainRoutingLogic, MainDataPassing {
     func navigateToCreatePhotosWall(source: MainViewController, destination: CreatePhotosWallViewController) {
         source.show(destination, sender: nil)
     }
-    
     func navigateToCreatePhotosWallTemplate(source: MainViewController, destination: CreatePhotosWallTemplateViewController) {
         source.show(destination, sender: nil)
     }
-    
     func passDataToCreatePhotosWall(source: MainDataStore, destination: inout CreatePhotosDataStore) {
         destination.fetchResult = source.fetchAllResult
     }
-    
     func presentAboutApp(source: MainViewController, destination: UIViewController) {
         source.present(destination, animated: true)
     }
-    
 }

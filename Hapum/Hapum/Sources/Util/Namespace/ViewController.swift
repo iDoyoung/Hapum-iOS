@@ -18,6 +18,9 @@ struct ViewController {
     static func createPhotosWall(storyboard: UIStoryboard) -> UIViewController {
         return storyboard.instantiateViewController(withIdentifier: "CreatePhotosWallViewController")
     }
+    static func createPhotosWallTemplate(storyboard: UIStoryboard) -> UIViewController {
+        return storyboard.instantiateViewController(withIdentifier: "CreatePhotosWallTemplateViewController")
+    }
     static func privacyPolicy(storyboard: UIStoryboard) -> UIViewController {
         return storyboard.instantiateViewController(withIdentifier: "PrivacyPolicyViewController")
     }
