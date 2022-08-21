@@ -54,37 +54,18 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is sample preview created by today photos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmC-Ru-keQ">
-                                        <rect key="frame" x="10" y="608.66666666666663" width="370" height="19.333333333333371"/>
+                                        <rect key="frame" x="10" y="692.66666666666663" width="370" height="19.333333333333371"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MD9-9E-xTo">
-                                        <rect key="frame" x="10" y="668" width="370" height="44"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="iqt-Kg-h3z"/>
-                                        </constraints>
-                                        <color key="tintColor" systemColor="labelColor"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Create Photos Wall">
-                                            <fontDescription key="titleFontDescription" type="italicSystem" pointSize="16"/>
-                                        </buttonConfiguration>
-                                        <connections>
-                                            <action selector="tapCreateButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d0E-sI-VOO"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2nm-V5-xsv" firstAttribute="top" secondItem="D7B-M1-9en" secondAttribute="bottom" priority="750" constant="20" id="62c-T9-cQu"/>
-                                    <constraint firstAttribute="bottom" secondItem="MD9-9E-xTo" secondAttribute="bottom" id="DpK-O8-p1a"/>
                                     <constraint firstAttribute="trailing" secondItem="nmC-Ru-keQ" secondAttribute="trailing" constant="10" id="ITU-rM-6fN"/>
                                     <constraint firstAttribute="trailing" secondItem="D7B-M1-9en" secondAttribute="trailing" constant="20" id="QuQ-Uf-uF4"/>
-                                    <constraint firstItem="MD9-9E-xTo" firstAttribute="top" secondItem="nmC-Ru-keQ" secondAttribute="bottom" constant="40" id="UjG-Ff-zUm"/>
                                     <constraint firstItem="nmC-Ru-keQ" firstAttribute="leading" secondItem="uKU-oH-Ey0" secondAttribute="leading" constant="10" id="XUq-0v-3Tu"/>
                                     <constraint firstItem="D7B-M1-9en" firstAttribute="leading" secondItem="uKU-oH-Ey0" secondAttribute="leading" constant="20" id="ZGC-Vq-WDG"/>
-                                    <constraint firstItem="MD9-9E-xTo" firstAttribute="leading" secondItem="uKU-oH-Ey0" secondAttribute="leading" constant="10" id="g0d-gI-mQX"/>
-                                    <constraint firstAttribute="trailing" secondItem="MD9-9E-xTo" secondAttribute="trailing" constant="10" id="tc4-YH-R6T"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -103,10 +84,14 @@
                                 <action selector="tapRighBarItem:" destination="BYZ-38-t0r" id="GNW-qX-rlF"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0VL-E8-zes">
+                            <connections>
+                                <action selector="tapLeftBarItem:" destination="BYZ-38-t0r" id="wgA-jC-BOq"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="accessStatusView" destination="D7B-M1-9en" id="WMv-Md-Hdc"/>
-                        <outlet property="createButton" destination="MD9-9E-xTo" id="cD6-XP-RDt"/>
                         <outlet property="managePhotosAccessButton" destination="10I-BD-N0Z" id="2F5-2p-iCN"/>
                         <outlet property="photosWallView" destination="2nm-V5-xsv" id="3lI-iQ-ULw"/>
                         <outlet property="statusMessageLabel" destination="K3u-A0-wBJ" id="fIq-jx-GTM"/>

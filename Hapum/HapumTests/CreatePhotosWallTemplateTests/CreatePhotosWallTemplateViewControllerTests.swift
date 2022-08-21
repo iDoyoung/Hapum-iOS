@@ -22,17 +22,9 @@ class CreatePhotosWallTemplateViewControllerTests: XCTestCase {
     }
     //MARK: - Test doubles
     class CreatePhotosWallTemplateBusinessLogicSpy: CreatePhotosWallTemplateBusinessLogic {
-        var addPhotoFrameCalled = false
-        var updatePhotoFrameCalled = false
         var createPhotosWallTemplateCalled = false
         
-        func addPhotoFrame() {
-            addPhotoFrameCalled = true
-        }
-        func updatePhotoFrame(_ photoFrame: PhotoFrame.Response) {
-            updatePhotoFrameCalled = true
-        }
-        func createPhotosWallTemplate(_ photoWall: PhotosWall) {
+        func createPhotosWallTemplate(_ photos: [FrameView]) {
             createPhotosWallTemplateCalled = true
         }
     }
@@ -41,7 +33,6 @@ class CreatePhotosWallTemplateViewControllerTests: XCTestCase {
         //given
         let createPhotosWallTemplateBusinessLogicSpy = CreatePhotosWallTemplateBusinessLogicSpy()
         sut.interactor = createPhotosWallTemplateBusinessLogicSpy
-        sut.photosFrameWallTemplate = Seeds.PhotosWallDummy.photosWallMock
         //when
         sut.createPhotoWallTemplate()
         //then
@@ -55,14 +46,5 @@ class CreatePhotosWallTemplateViewControllerTests: XCTestCase {
         sut.createPhotoWallTemplate()
         //then
         XCTAssert(!createPhotosWallTemplateBusinessLogicSpy.createPhotosWallTemplateCalled)
-    }
-    func test_addPhotoFrame_shouldBeCallInteractor() {
-        //given
-        let createPhotosWallTemplateBusinessLogicSpy = CreatePhotosWallTemplateBusinessLogicSpy()
-        sut.interactor = createPhotosWallTemplateBusinessLogicSpy
-        //when
-        sut.addPhotoFrame(UIBarButtonItem())
-        //then
-        XCTAssert(createPhotosWallTemplateBusinessLogicSpy.addPhotoFrameCalled)
     }
 }

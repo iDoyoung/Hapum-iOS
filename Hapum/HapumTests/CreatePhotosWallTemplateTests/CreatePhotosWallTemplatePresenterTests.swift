@@ -39,13 +39,14 @@ class CreatePhotosWallTemplatePresenterTests: XCTestCase {
     }
     
     //MARK: - Tests
-    func test_shouldCallDisplayUpdatedPhotosWallView_whenPresentUpdatedWallView() {
-        //given
-        let createPhotosWallTemplateDisplayLogicSpy = CreatePhotosWallTemplateDisplayLogicSpy()
-        sut.viewController = createPhotosWallTemplateDisplayLogicSpy
-        //when
-        sut.presentUpdatedWallView(response: Seeds.photoFrameMock)
-        //then
-        XCTAssert(createPhotosWallTemplateDisplayLogicSpy.displayUpdatedPhotosWallViewCalled, "Should call displayUpdatedPhotosWallView in View Controller")
-    }
+//    func test_shouldCallDisplayUpdatedPhotosWallView_whenPresentUpdatedWallView() {
+//        //given
+//        let createPhotosWallTemplateDisplayLogicSpy = CreatePhotosWallTemplateDisplayLogicSpy()
+//        sut.viewController = createPhotosWallTemplateDisplayLogicSpy
+//        //when
+//        sut.pre
+//        sut.presentUpdatedWallView(response: Seeds.photoFrameMock)
+//        //then
+//        XCTAssert(createPhotosWallTemplateDisplayLogicSpy.displayUpdatedPhotosWallViewCalled, "Should call displayUpdatedPhotosWallView in View Controller")
+//    }
 }

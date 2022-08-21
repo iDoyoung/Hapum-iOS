@@ -40,7 +40,6 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
             presentFailureCreatePhotosWallTemplaterCalled = true
         }
     }
-    
     private class PhotoWallWorkerSpy: PhotoWallWorker {
         var createPhotoWallCalled = false
         
@@ -51,16 +50,6 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
     }
    
     //MARK: - Tests
-    func test_shouldCalledPresentUpdatedWallView_whenAddPhotoFrame() {
-        //given
-        let createPhotosWallTemplatePresentationLogicSpy = CreatePhotosWallTemplatePresentationLogicSpy()
-        sut.presenter = createPhotosWallTemplatePresentationLogicSpy
-        //when
-        sut.addPhotoFrame()
-        //then
-        XCTAssert(createPhotosWallTemplatePresentationLogicSpy.presentUpdatedWallViewCalled, "Should call presentUpdatedWallView() in Presenter")
-    }
-    
     func test_shouldCalledPresentSuccessCreatePhotoWallTemplate_askWorkerToCallCreatePhotoWall_presenterGetPhotosWall_whenCreatPhotosWallTemplate() {
         //given
         let photosWallWorkerSpy = PhotoWallWorkerSpy(photoWallStorage: PhotoWallCoreDataStorage())
@@ -69,12 +58,10 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
         sut.photoWallWorker = photosWallWorkerSpy
         sut.presenter = createPhotosWallTemplatePresentationLogicSpy
         //when
-        sut.createPhotosWallTemplate(testPhotosWall)
+        sut.createPhotosWallTemplate([])
         //then
         XCTAssert(photosWallWorkerSpy.createPhotoWallCalled)
         XCTAssert(createPhotosWallTemplatePresentationLogicSpy.presentSuccessCreatePhotosWallTemplateCalled)
         XCTAssertEqual(createPhotosWallTemplatePresentationLogicSpy.photosWallMock, testPhotosWall)
     }
-    
-    
 }
