@@ -16,6 +16,7 @@
 		7F00787F28ACAE1700C4CA39 /* Stroyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00787E28ACAE1700C4CA39 /* Stroyboard.swift */; };
 		7F00788128ACB34600C4CA39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00788028ACB34600C4CA39 /* ViewController.swift */; };
 		7F00788328AF52B700C4CA39 /* PhotoFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F00788228AF52B700C4CA39 /* PhotoFrame.swift */; };
+		7F0078C528B4E4EA00C4CA39 /* CustomPhotosWallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0078C428B4E4EA00C4CA39 /* CustomPhotosWallView.swift */; };
 		7F1A410327FE8CC9002BC9E0 /* PhotosWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */; };
 		7F25722B28178E130092499D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F25722A28178E130092499D /* UIView+Extension.swift */; };
 		7F2749852837805100DDDA91 /* Namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2749842837805100DDDA91 /* Namespace.swift */; };
@@ -100,6 +101,7 @@
 		7F00787E28ACAE1700C4CA39 /* Stroyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stroyboard.swift; sourceTree = "<group>"; };
 		7F00788028ACB34600C4CA39 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7F00788228AF52B700C4CA39 /* PhotoFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrame.swift; sourceTree = "<group>"; };
+		7F0078C428B4E4EA00C4CA39 /* CustomPhotosWallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPhotosWallView.swift; sourceTree = "<group>"; };
 		7F1A410227FE8CC9002BC9E0 /* PhotosWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosWorkerTests.swift; sourceTree = "<group>"; };
 		7F25722A28178E130092499D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		7F2749842837805100DDDA91 /* Namespace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Namespace.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				7F3759F32802C90900C6EE39 /* FrameView.swift */,
 				7F3759F72802E92E00C6EE39 /* PhotosWallView.xib */,
 				7F3759F52802E91100C6EE39 /* PhotosWallView.swift */,
+				7F0078C428B4E4EA00C4CA39 /* CustomPhotosWallView.swift */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				7F357D24287ACD0D0063E5E6 /* CreatePhotosWallTemplateViewController.swift in Sources */,
 				7F3759F42802C90900C6EE39 /* FrameView.swift in Sources */,
 				7FA874F828310C40006644B3 /* AboutAppTableViewCell.swift in Sources */,
+				7F0078C528B4E4EA00C4CA39 /* CustomPhotosWallView.swift in Sources */,
 				7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */,
 				7FA874F62831046E006644B3 /* AppInfoTableViewCell.swift in Sources */,
 				7F357D28287AD2570063E5E6 /* PhotosWall.swift in Sources */,
