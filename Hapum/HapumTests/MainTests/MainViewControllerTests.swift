@@ -34,11 +34,14 @@ class MainViewControllerTests: XCTestCase {
     
     //MARK: - Test doubles
     class MainBusinessLogicSpy: MainBusinessLogic {
-        
         var fetchPhotosCalled = false
         var fetchAlbumsPhotosCalled = false
         var fetchPhotosAccessStatusCalled = false
+        var fetchPhotosWallTemplateCalled = false
         
+        func fetchPhotosWallTemplate() {
+            fetchPhotosWallTemplateCalled = true
+        }
         func fetchPhotos() {
             fetchPhotosCalled = true
         }

@@ -27,7 +27,6 @@ class MainInteractorTests: XCTestCase {
 
     //MARK: - Test doubles
     class MainPresentationLogicSpy: MainPresentationLogic {
-        
         var presentFetchedAllPhotosCalled = false
         var presentFetchedAlbumsCalled = false
         var presentAuthorizedPhotosAccessStatusCalled = false
@@ -37,27 +36,20 @@ class MainInteractorTests: XCTestCase {
         func presentFetchedAllPhotos(resource: PHFetchResult<PHAsset>?) {
             presentFetchedAllPhotosCalled = true
         }
-        
         func presentFetchedAlbums(resource: PHFetchResult<PHAsset>?) {
             presentFetchedAlbumsCalled = true
         }
-        
         func presentAuthorizedPhotosAccessStatus() {
             presentAuthorizedPhotosAccessStatusCalled = true
         }
-        
         func presentLimitedPhotosAccessStatus() {
             presentLimitedPhotosAccessStatusCalled = true
         }
-        
         func presentRestrictedPhotosAccessStatus() {
             presentRestrictedPhotosAccessStatusCalled = true
         }
-        
     }
-    
     class PhotosWorkerSpy: PhotosWorker {
-        
         var fetchAllPhotosCalled = false
         var fetchAlbumsPhotosCalled = false
         var fetchAccessStatusCalled = false
@@ -65,13 +57,11 @@ class MainInteractorTests: XCTestCase {
         
         var fetchedResult: Result<PHFetchResult<PHAsset>, PhotosError>?
         var authorizationStatus: PHAuthorizationStatus?
-        
        
         override func fetchAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
             fetchAccessStatusCalled = true
             completion(authorizationStatus!)
         }
-        
         override func fetchAllPhotos(completion: @escaping PhotosWorker.CompletionHandler) {
             fetchAllPhotosCalled = true
             completion(fetchedResult!)
@@ -80,15 +70,12 @@ class MainInteractorTests: XCTestCase {
             fetchAlbumsPhotosCalled = true
             completion(fetchedResult!)
         }
-        
         override func addPhotoAsset(_ photo: UIImage, completion: @escaping () -> Void) {
             addPhotoAssetCalled = true
         }
-        
     }
     
     class PhotosServiceSpy: PhotoServicing {
-       
         var fetchReulst: Result<PHFetchResult<PHAsset>, PhotosError>?
         
         var fetchAllPhotosCalled = false
@@ -99,19 +86,32 @@ class MainInteractorTests: XCTestCase {
         func fetchAllPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
             fetchAllPhotosCalled = true
         }
-        
         func fetchAlbumPhotos(completion: @escaping (Result<PHFetchResult<PHAsset>, PhotosError>) -> Void) {
             fetchAlbumPhotosCalled = true
         }
-        
         func addAsset(of image: UIImage, completion: @escaping () -> Void) {
             addAssetCalled = true
         }
-        
         func requestAccessStatus(completion: @escaping (PHAuthorizationStatus) -> Void) {
             requestAccessStatusCalled = true
         }
-
+    }
+    class PhotosWallWorkerSpy: PhotoWallWorker {
+        var fetchPhotoWallsCalled = false
+        override func fetchPhotoWalls(completion: @escaping ([PhotosWall]) -> Void) {
+            completion([Seeds.PhotosWallDummy.photosWallMock])
+            fetchPhotoWallsCalled = true
+        }
+    }
+    class PhotosWallStroableSpy: PhotoWallStorable {
+        func createPhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
+        }
+        func fetchPhotoWall(completion: @escaping ([PhotosWall], CoreDataStoreError?) -> Void) {
+        }
+        func updatePhotoWall(to photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
+        }
+        func deletePhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
+        }
     }
         
     //MARK: - Test
@@ -128,7 +128,6 @@ class MainInteractorTests: XCTestCase {
         XCTAssert(mainPresentationLogicSpy.presentLimitedPhotosAccessStatusCalled)
         XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
     }
-    
     func test_shouldCallPresentAuthorizedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedAuthorizedStatus() {
         //given
         let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
@@ -142,7 +141,6 @@ class MainInteractorTests: XCTestCase {
         XCTAssert(mainPresentationLogicSpy.presentAuthorizedPhotosAccessStatusCalled)
         XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
     }
-    
     func test_shouldCallPresentRestrictedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedRestrictedStatus() {
         //given
         let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
@@ -156,7 +154,6 @@ class MainInteractorTests: XCTestCase {
         XCTAssert(mainPresentationLogicSpy.presentRestrictedPhotosAccessStatusCalled)
         XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
     }
-    
     func test_shouldCallPresentRestrictedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedDeniedStatus() {
         //given
         let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
@@ -170,7 +167,6 @@ class MainInteractorTests: XCTestCase {
         XCTAssert(mainPresentationLogicSpy.presentRestrictedPhotosAccessStatusCalled)
         XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
     }
-    
     func test_shouldCallPresentRestrictedPhotosAccessStatusAndAskPhotosWorkerWhenFetchedNotDeterminedStatus() {
         //given
         let photosWorkerSpy = PhotosWorkerSpy(service: PhotosServiceSpy())
@@ -184,7 +180,6 @@ class MainInteractorTests: XCTestCase {
         XCTAssert(mainPresentationLogicSpy.presentRestrictedPhotosAccessStatusCalled)
         XCTAssert(photosWorkerSpy.fetchAccessStatusCalled)
     }
-    
     func test_shouldAskPhotosWorkerAndCallPresentFetchedAllPhotosAndResultIsSuccessWhenSuccessToFetchResult() {
         //given
         let expectResult = Seeds.PhotoResultAssetDummy.fetched
@@ -200,7 +195,6 @@ class MainInteractorTests: XCTestCase {
         XCTAssert(photoWorkerSpy.fetchAllPhotosCalled, "FetchPhotos() should ask PhotosWorker to fetch photos")
         XCTAssert(mainPresentationLogicSpy.presentFetchedAllPhotosCalled, "FetchPhotos() should ask presenter to format photos")
     }
-    
     func test_shouldAskPhotosWorkerAndCallPresentFetchedAlbumPhotosAndResultIsSuccessWhenSuccessToFetchResult() {
         //given
         let expectResult = Seeds.PhotoResultAssetDummy.fetched
@@ -216,5 +210,14 @@ class MainInteractorTests: XCTestCase {
         XCTAssert(photoWorkerSpy.fetchAlbumsPhotosCalled, "FetchAlbumsPhotos() should ask PhotosWorker to fetch photos")
         //XCTAssert(mainPresentationLogicSpy.presentFetchedAlbumsCalled, "FetchAlbumsPhotos() should ask presenter to format photos")
     }
-    
+    func test_fetchPhotosWallTemplate_whenReceiveSomeData_shouldCallPhotoWallAndReturnData() {
+        //given
+        let photosWallWorkerSpy = PhotosWallWorkerSpy(photoWallStorage: PhotosWallStroableSpy())
+        sut.photoWallWorker = photosWallWorkerSpy
+        //when
+        sut.fetchPhotosWallTemplate()
+        //then
+        XCTAssert(photosWallWorkerSpy.fetchPhotoWallsCalled)
+        XCTAssertEqual(sut.photosWallTemplates, [Seeds.PhotosWallDummy.photosWallMock])
+    }
 }
