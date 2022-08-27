@@ -24,7 +24,7 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
 
     //MARK: - Test doubles
     private class CreatePhotosWallTemplatePresentationLogicSpy: CreatePhotosWallTemplatePresentationLogic {
-        var photosWallMock: PhotosWall?
+        var photosWallMock: PhotosWall.Response?
         var presentUpdatedWallViewCalled = false
         var presentSuccessCreatePhotosWallTemplateCalled = false
         var presentFailureCreatePhotosWallTemplaterCalled = false
@@ -32,7 +32,7 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
         func presentUpdatedWallView(response: PhotoFrame.Response) {
             presentUpdatedWallViewCalled = true
         }
-        func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall) {
+        func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall.Response) {
             presentSuccessCreatePhotosWallTemplateCalled = true
             photosWallMock = photoWall
         }
@@ -43,7 +43,7 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
     private class PhotoWallWorkerSpy: PhotoWallWorker {
         var createPhotoWallCalled = false
         
-        override func createPhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall) -> Void) {
+        override func createPhotoWall(_ photoWall: PhotosWall.Response, completion: @escaping (PhotosWall.Response) -> Void) {
             createPhotoWallCalled = true
             completion(photoWall)
         }

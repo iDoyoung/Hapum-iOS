@@ -15,7 +15,7 @@ protocol MainBusinessLogic {
 }
 
 protocol MainDataStore {
-    var photosWallTemplates: [PhotosWall] { get }
+    var photosWallTemplates: [PhotosWall.Response] { get }
     var fetchAllResult: PHFetchResult<PHAsset>? { get }
     var fetchAlbumsResult: PHFetchResult<PHAsset>? { get }
 }
@@ -26,13 +26,15 @@ final class MainInteractor: MainBusinessLogic, MainDataStore {
     var photosWorker = PhotosWorker(service: PhotosService(album: AlbumName.hapum))
     var photoWallWorker = PhotoWallWorker(photoWallStorage: PhotoWallCoreDataStorage())
     //MARK: - Data Store
-    var photosWallTemplates = [PhotosWall]()
+    var photosWallTemplates = [PhotosWall.Response]()
     var fetchAllResult: PHFetchResult<PHAsset>?
     var fetchAlbumsResult: PHFetchResult<PHAsset>?
     
     func fetchPhotosWallTemplate() {
         photoWallWorker.fetchPhotoWalls { [weak self] photoWalls in
-            self?.photosWallTemplates += photoWalls
+            guard let self = self else { return }
+            self.photosWallTemplates += photoWalls
+            self.presenter?.presentFetchedPhotosWallTemplates(resource: self.photosWallTemplates)
         }
     }
     func fetchPhotosAccessStatus() {
@@ -70,5 +72,4 @@ final class MainInteractor: MainBusinessLogic, MainDataStore {
             }
         }
     }
-
 }

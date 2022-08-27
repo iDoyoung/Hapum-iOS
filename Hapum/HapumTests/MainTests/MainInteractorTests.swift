@@ -27,12 +27,16 @@ class MainInteractorTests: XCTestCase {
 
     //MARK: - Test doubles
     class MainPresentationLogicSpy: MainPresentationLogic {
+        var presentFetchedPhotosWallTemplatesCalled = false
         var presentFetchedAllPhotosCalled = false
         var presentFetchedAlbumsCalled = false
         var presentAuthorizedPhotosAccessStatusCalled = false
         var presentLimitedPhotosAccessStatusCalled = false
         var presentRestrictedPhotosAccessStatusCalled = false
         
+        func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response]) {
+            presentFetchedPhotosWallTemplatesCalled = true
+        }
         func presentFetchedAllPhotos(resource: PHFetchResult<PHAsset>?) {
             presentFetchedAllPhotosCalled = true
         }
@@ -98,19 +102,22 @@ class MainInteractorTests: XCTestCase {
     }
     class PhotosWallWorkerSpy: PhotoWallWorker {
         var fetchPhotoWallsCalled = false
-        override func fetchPhotoWalls(completion: @escaping ([PhotosWall]) -> Void) {
+        override func fetchPhotoWalls(completion: @escaping ([PhotosWall.Response]) -> Void) {
             completion([Seeds.PhotosWallDummy.photosWallMock])
             fetchPhotoWallsCalled = true
         }
     }
     class PhotosWallStroableSpy: PhotoWallStorable {
-        func createPhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
+        func createPhotoWall(_ photoWall: PhotosWall.Response, completion: @escaping (PhotosWall.Response, CoreDataStoreError?) -> Void) {
         }
-        func fetchPhotoWall(completion: @escaping ([PhotosWall], CoreDataStoreError?) -> Void) {
+        
+        func fetchPhotoWall(completion: @escaping ([PhotosWall.Response], CoreDataStoreError?) -> Void) {
         }
-        func updatePhotoWall(to photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
+        
+        func updatePhotoWall(to photoWall: PhotosWall.Response, completion: @escaping (PhotosWall.Response, CoreDataStoreError?) -> Void) {
         }
-        func deletePhotoWall(_ photoWall: PhotosWall, completion: @escaping (PhotosWall, CoreDataStoreError?) -> Void) {
+        
+        func deletePhotoWall(_ photoWall: PhotosWall.Response, completion: @escaping (PhotosWall.Response, CoreDataStoreError?) -> Void) {
         }
     }
         
@@ -210,14 +217,17 @@ class MainInteractorTests: XCTestCase {
         XCTAssert(photoWorkerSpy.fetchAlbumsPhotosCalled, "FetchAlbumsPhotos() should ask PhotosWorker to fetch photos")
         //XCTAssert(mainPresentationLogicSpy.presentFetchedAlbumsCalled, "FetchAlbumsPhotos() should ask presenter to format photos")
     }
-    func test_fetchPhotosWallTemplate_whenReceiveSomeData_shouldCallPhotoWallAndReturnData() {
+    func test_fetchPhotosWallTemplate_whenReceiveSomeData_shouldReturnDataAndThenCallPresentationAndPhotoWall() {
         //given
         let photosWallWorkerSpy = PhotosWallWorkerSpy(photoWallStorage: PhotosWallStroableSpy())
+        let mainPresentationLogicSpy = MainPresentationLogicSpy()
         sut.photoWallWorker = photosWallWorkerSpy
+        sut.presenter = mainPresentationLogicSpy
         //when
         sut.fetchPhotosWallTemplate()
         //then
         XCTAssert(photosWallWorkerSpy.fetchPhotoWallsCalled)
+        XCTAssert(mainPresentationLogicSpy.presentFetchedPhotosWallTemplatesCalled)
         XCTAssertEqual(sut.photosWallTemplates, [Seeds.PhotosWallDummy.photosWallMock])
     }
 }

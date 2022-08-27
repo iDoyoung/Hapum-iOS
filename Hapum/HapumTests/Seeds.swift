@@ -26,7 +26,7 @@ struct Seeds {
     
     struct PhotosWallDummy {
         private init() { }
-        static let photosWallMock = PhotosWall(id: UUID(),
+        static let photosWallMock = PhotosWall.Response(id: UUID(),
                                               createdDate: Date(),
                                               photoFrames: [])
     }

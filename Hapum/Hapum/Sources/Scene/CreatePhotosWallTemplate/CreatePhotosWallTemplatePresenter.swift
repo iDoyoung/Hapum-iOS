@@ -8,14 +8,14 @@
 import UIKit
 
 protocol CreatePhotosWallTemplatePresentationLogic {
-    func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall)
+    func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall.Response)
     func presentFailureCreatePhotosWallTemplate()
 }
 
 final class CreatePhotosWallTemplatePresenter: CreatePhotosWallTemplatePresentationLogic {
     weak var viewController: CreatePhotosWallTemplateDisplayLogic?
     
-    func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall) {
+    func presentSuccessCreatePhotosWallTemplate(_ photoWall: PhotosWall.Response) {
         viewController?.displaySuccessAddPhotosWallTemplate()
     }
     func presentFailureCreatePhotosWallTemplate() {

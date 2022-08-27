@@ -28,9 +28,9 @@ final class CreatePhotosWallTemplateInteractor: CreatePhotosWallTemplateBusiness
                                                            height: $0.bounds.height,
                                                            borderWidth: Float($0.layer.borderWidth),
                                                            space: false)}
-        let photoWall = PhotosWall(id: UUID(),
-                                   createdDate: Date(),
-                                   photoFrames: photoFrames)
+        let photoWall = PhotosWall.Response(id: UUID(),
+                                            createdDate: Date(),
+                                            photoFrames: photoFrames)
         photoWallWorker.createPhotoWall(photoWall) { [weak self] createdPhotoWall in
             self?.presenter?.presentSuccessCreatePhotosWallTemplate(createdPhotoWall)
         }

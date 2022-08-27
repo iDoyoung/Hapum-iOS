@@ -9,16 +9,15 @@ import UIKit
 import Photos
 
 protocol MainPresentationLogic {
+    func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response])
     func presentFetchedAllPhotos(resource: PHFetchResult<PHAsset>?)
     func presentFetchedAlbums(resource: PHFetchResult<PHAsset>?)
     func presentAuthorizedPhotosAccessStatus()
     func presentLimitedPhotosAccessStatus()
     func presentRestrictedPhotosAccessStatus()
-    
 }
 
 final class MainPresenter: MainPresentationLogic {
-    
     weak var viewController: MainDisplayLogic?
     
     private let imageManager = PHImageManager.default()
@@ -36,10 +35,12 @@ final class MainPresenter: MainPresentationLogic {
                 }
             }
         }
-        
         return images
     }
     
+    //MARK: - Present Logic
+    func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response]) {
+    }
     func presentFetchedAllPhotos(resource: PHFetchResult<PHAsset>?) {
         guard let resource = resource else {
             return
@@ -49,7 +50,6 @@ final class MainPresenter: MainPresentationLogic {
             self.viewController?.displayFetchedPhotos(viewModel: images)
         }
     }
-    
     func presentFetchedAlbums(resource: PHFetchResult<PHAsset>?) {
         guard let resource = resource else {
             return
@@ -59,19 +59,16 @@ final class MainPresenter: MainPresentationLogic {
             self.viewController?.displayFetchedAlbum(viewModel: images)
         }
     }
-    
     func presentAuthorizedPhotosAccessStatus() {
         DispatchQueue.main.async {
             self.viewController?.displayAuthorizedPhotosAccessStatusMessage()
         }
     }
-   
     func presentLimitedPhotosAccessStatus() {
         DispatchQueue.main.async {
             self.viewController?.displayLimitedPhotosAccessStatusMessage()
         }
     }
-    
     func presentRestrictedPhotosAccessStatus() {
         DispatchQueue.main.async {
             self.viewController?.displayRestrictedPhotosAccessStatusMessage()
