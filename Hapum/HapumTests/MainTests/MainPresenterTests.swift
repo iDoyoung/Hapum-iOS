@@ -26,13 +26,13 @@ class MainPresenterTests: XCTestCase {
     
     //MARK: - Test doubles
     class MainDisplayLogicSpy: MainDisplayLogic {
-       
-        var displayFetchedPhotosCalled = true
-        var displayFetchedAlbumCalled = true
+        var displayFetchedPhotosCalled = false
+        var displayFetchedAlbumCalled = false
         var displayAuthorizedPhotosAccessStatusMessageCalled = false
         var displayRestrictedPhotosAccessStatusMessageCalled = false
         var displayLimitedPhotosAccessStatusMessageCalled = false
-       
+        var displayFetchedPhotosWallTemplatesCalled = false
+        
         func displayFetchedPhotos(viewModel: [UIImage]) {
             displayFetchedPhotosCalled = true
         }
@@ -53,6 +53,9 @@ class MainPresenterTests: XCTestCase {
             displayLimitedPhotosAccessStatusMessageCalled = true
         }
         
+        func displayFetchedPhotosWallTemplates(viewModel: [PhotosWall.ViewModel]) {
+            displayFetchedPhotosWallTemplatesCalled = true
+        }
     }
     //MARK: - Test
     func test_shouldCallDisplayFetchedPhotosInViewControllerWhenPresentFetchedAllPhotos() {
@@ -74,10 +77,6 @@ class MainPresenterTests: XCTestCase {
         //then
         XCTAssert(mainDisplayLogicSpy.displayFetchedAlbumCalled, "Call view controller to display fetched photos")
     }
-    
-    var displayAuthorizedPhotosAccessStatusMessageCalled = false
-    var displayRestrictedPhotosAccessStatusMessageCalled = false
-    var displayLimitedPhotosAccessStatusMessageCalled = false
     
     func test_shouldCallDisplayAuthorizedPhotosAccessStatusMessageInViewController_whenPresentAuthorizedPhotosAccessStatus() {
         //given
@@ -109,4 +108,25 @@ class MainPresenterTests: XCTestCase {
         XCTAssert(mainDisplayLogicSpy.displayRestrictedPhotosAccessStatusMessageCalled, "Call suitable display method by access status in Main View controlelr")
     }
     
+    func test_presentFetchedPhotosWallTemplates_shouldCallViewControllerToDispalyFetchedPhotosWallTemplates() {
+        //given
+        let mainDisplayLogicSpy = MainDisplayLogicSpy()
+        sut.viewController = mainDisplayLogicSpy
+        //when
+        sut.presentFetchedPhotosWallTemplates(resource: [])
+        //then
+        XCTAssert(mainDisplayLogicSpy.displayFetchedPhotosWallTemplatesCalled)
+    }
+    
+    func test_presentFetchdPhotosWallTemplates_shouldBeViewModel() {
+        //given
+        let mainDisplayLogicSpy = MainDisplayLogicSpy()
+        sut.viewController = mainDisplayLogicSpy
+        //when
+        let viewModel = sut.presentFetchedPhotosWallTemplates(resource: [Seeds.PhotosWallDummy.responseMock])
+        //then
+        viewModel.forEach {
+            XCTAssertEqual($0.id, Seeds.PhotosWallDummy.viewModelMock.id)
+        }
+    }
 }

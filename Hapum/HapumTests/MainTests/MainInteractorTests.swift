@@ -34,9 +34,11 @@ class MainInteractorTests: XCTestCase {
         var presentLimitedPhotosAccessStatusCalled = false
         var presentRestrictedPhotosAccessStatusCalled = false
         
-        func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response]) {
+        func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response]) -> [PhotosWall.ViewModel] {
             presentFetchedPhotosWallTemplatesCalled = true
+            return []
         }
+        
         func presentFetchedAllPhotos(resource: PHFetchResult<PHAsset>?) {
             presentFetchedAllPhotosCalled = true
         }
@@ -103,7 +105,7 @@ class MainInteractorTests: XCTestCase {
     class PhotosWallWorkerSpy: PhotoWallWorker {
         var fetchPhotoWallsCalled = false
         override func fetchPhotoWalls(completion: @escaping ([PhotosWall.Response]) -> Void) {
-            completion([Seeds.PhotosWallDummy.photosWallMock])
+            completion([Seeds.PhotosWallDummy.responseMock])
             fetchPhotoWallsCalled = true
         }
     }
@@ -228,6 +230,6 @@ class MainInteractorTests: XCTestCase {
         //then
         XCTAssert(photosWallWorkerSpy.fetchPhotoWallsCalled)
         XCTAssert(mainPresentationLogicSpy.presentFetchedPhotosWallTemplatesCalled)
-        XCTAssertEqual(sut.photosWallTemplates, [Seeds.PhotosWallDummy.photosWallMock])
+        XCTAssertEqual(sut.photosWallTemplates, [Seeds.PhotosWallDummy.responseMock])
     }
 }

@@ -9,7 +9,8 @@ import UIKit
 import Photos
 
 protocol MainPresentationLogic {
-    func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response])
+    @discardableResult
+    func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response]) -> [PhotosWall.ViewModel]
     func presentFetchedAllPhotos(resource: PHFetchResult<PHAsset>?)
     func presentFetchedAlbums(resource: PHFetchResult<PHAsset>?)
     func presentAuthorizedPhotosAccessStatus()
@@ -39,39 +40,49 @@ final class MainPresenter: MainPresentationLogic {
     }
     
     //MARK: - Present Logic
-    func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response]) {
+    @discardableResult
+    func presentFetchedPhotosWallTemplates(resource: [PhotosWall.Response]) -> [PhotosWall.ViewModel] {
+        let viewModel = resource.compactMap {
+            PhotosWall.ViewModel(
+                id: $0.id,
+                displayedView: CustomPhotosWallView(photosFrameViews: $0.photoFrames.compactMap {
+                    FrameView(frame: CGRect(
+                        x: $0.x,
+                        y: $0.y,
+                        width: $0.width,
+                        height: $0.height))
+                })
+            )
+        }
+        self.viewController?.displayFetchedPhotosWallTemplates(viewModel: viewModel)
+        return viewModel
     }
+    
     func presentFetchedAllPhotos(resource: PHFetchResult<PHAsset>?) {
         guard let resource = resource else {
             return
         }
         let images = requestImages(for: resource)
-        DispatchQueue.main.async {
-            self.viewController?.displayFetchedPhotos(viewModel: images)
-        }
+        self.viewController?.displayFetchedPhotos(viewModel: images)
     }
+    
     func presentFetchedAlbums(resource: PHFetchResult<PHAsset>?) {
         guard let resource = resource else {
             return
         }
         let images = requestImages(for: resource)
-        DispatchQueue.main.async {
-            self.viewController?.displayFetchedAlbum(viewModel: images)
-        }
+        self.viewController?.displayFetchedAlbum(viewModel: images)
     }
+    
     func presentAuthorizedPhotosAccessStatus() {
-        DispatchQueue.main.async {
-            self.viewController?.displayAuthorizedPhotosAccessStatusMessage()
-        }
+        self.viewController?.displayAuthorizedPhotosAccessStatusMessage()
     }
+    
     func presentLimitedPhotosAccessStatus() {
-        DispatchQueue.main.async {
-            self.viewController?.displayLimitedPhotosAccessStatusMessage()
-        }
+        self.viewController?.displayLimitedPhotosAccessStatusMessage()
     }
+    
     func presentRestrictedPhotosAccessStatus() {
-        DispatchQueue.main.async {
-            self.viewController?.displayRestrictedPhotosAccessStatusMessage()
-        }
+        self.viewController?.displayRestrictedPhotosAccessStatusMessage()
     }
 }

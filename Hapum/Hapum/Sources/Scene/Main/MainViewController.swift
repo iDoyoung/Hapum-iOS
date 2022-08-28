@@ -7,6 +7,15 @@
 
 import UIKit
 
+protocol MainDisplayLogic: AnyObject {
+    func displayFetchedPhotos(viewModel: [UIImage])
+    func displayFetchedAlbum(viewModel: [UIImage])
+    func displayAuthorizedPhotosAccessStatusMessage()
+    func displayRestrictedPhotosAccessStatusMessage()
+    func displayLimitedPhotosAccessStatusMessage()
+    func displayFetchedPhotosWallTemplates(viewModel: [PhotosWall.ViewModel])
+}
+
 final class MainViewController: UIViewController {
     
     var interactor: MainBusinessLogic?
@@ -93,7 +102,6 @@ final class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainDisplayLogic {
-    
     func loadWallPhotosImages() {
         for (index, photo) in displayedPhotos.enumerated() {
             photosWallView.photosFrameView[index].photoImageView.image = photo
@@ -128,12 +136,6 @@ extension MainViewController: MainDisplayLogic {
         managePhotosAccessButton.addTarget(self, action: #selector(showManagePhotosAccessAlert), for: .touchUpInside)
     }
     
-}
-
-protocol MainDisplayLogic: AnyObject {
-    func displayFetchedPhotos(viewModel: [UIImage])
-    func displayFetchedAlbum(viewModel: [UIImage])
-    func displayAuthorizedPhotosAccessStatusMessage()
-    func displayRestrictedPhotosAccessStatusMessage()
-    func displayLimitedPhotosAccessStatusMessage()
+    func displayFetchedPhotosWallTemplates(viewModel: [PhotosWall.ViewModel]) {
+    }
 }

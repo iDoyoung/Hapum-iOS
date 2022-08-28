@@ -54,7 +54,7 @@ class CreatePhotosWallTemplateInteractorTests: XCTestCase {
         //given
         let photosWallWorkerSpy = PhotoWallWorkerSpy(photoWallStorage: PhotoWallCoreDataStorage())
         let createPhotosWallTemplatePresentationLogicSpy = CreatePhotosWallTemplatePresentationLogicSpy()
-        let testPhotosWall = Seeds.PhotosWallDummy.photosWallMock
+        let testPhotosWall = Seeds.PhotosWallDummy.responseMock
         sut.photoWallWorker = photosWallWorkerSpy
         sut.presenter = createPhotosWallTemplatePresentationLogicSpy
         //when
