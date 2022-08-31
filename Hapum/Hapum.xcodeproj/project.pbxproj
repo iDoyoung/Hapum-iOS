@@ -45,8 +45,9 @@
 		7F4C5083288EBEFE003D9AD5 /* PhotoWallWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4C5082288EBEFE003D9AD5 /* PhotoWallWorker.swift */; };
 		7F55779E288A63D2005A9E30 /* PhotoWallCoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F55779D288A63D1005A9E30 /* PhotoWallCoreDataStorage.swift */; };
 		7F59AB09283767EF008BBEFA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7F59AB0B283767EF008BBEFA /* InfoPlist.strings */; };
+		7F5A2B2528BF295B00DF212A /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A2B2428BF295B00DF212A /* ButtonCell.swift */; };
+		7F5A2B2928BF510200DF212A /* MainButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A2B2828BF510200DF212A /* MainButtonViewModel.swift */; };
 		7F70C9E927F9A1D8001DEB43 /* PhotosViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */; };
-		7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */; };
 		7F70C9ED27F9D3C0001DEB43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FA3190C27F087F9003CAF9E /* Assets.xcassets */; };
 		7F739ABB27FA9AAC00253C55 /* FrameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */; };
 		7F739ABD27FA9AC900253C55 /* FrameViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */; };
@@ -130,8 +131,9 @@
 		7F55779D288A63D1005A9E30 /* PhotoWallCoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoWallCoreDataStorage.swift; sourceTree = "<group>"; };
 		7F59AB0A283767EF008BBEFA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7F59AB0C283767F1008BBEFA /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7F5A2B2428BF295B00DF212A /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
+		7F5A2B2828BF510200DF212A /* MainButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainButtonViewModel.swift; sourceTree = "<group>"; };
 		7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewCell.swift; sourceTree = "<group>"; };
-		7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotosViewCell.xib; sourceTree = "<group>"; };
 		7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameViewCell.swift; sourceTree = "<group>"; };
 		7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FrameViewCell.xib; sourceTree = "<group>"; };
 		7F739AC227FBDE4B00253C55 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				7F739AC227FBDE4B00253C55 /* MainInteractor.swift */,
 				7F739AC627FBED6E00253C55 /* MainPresenter.swift */,
 				7F739AC827FBED9200253C55 /* MainRouter.swift */,
+				7F5A2B2828BF510200DF212A /* MainButtonViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -377,10 +380,10 @@
 		7F70C9EB27F9A1E5001DEB43 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				7F70C9E827F9A1D8001DEB43 /* PhotosViewCell.xib */,
-				7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */,
 				7F739ABC27FA9AC900253C55 /* FrameViewCell.xib */,
 				7F739ABA27FA9AAC00253C55 /* FrameViewCell.swift */,
+				7F70C9E727F9A1D8001DEB43 /* PhotosViewCell.swift */,
+				7F5A2B2428BF295B00DF212A /* ButtonCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -588,7 +591,6 @@
 				7FEA944B2835F29F00EC872F /* Localizable.strings in Resources */,
 				7FAA243C2833AC180014B8E5 /* Create.storyboard in Resources */,
 				7F59AB09283767EF008BBEFA /* InfoPlist.strings in Resources */,
-				7F70C9EA27F9A1D8001DEB43 /* PhotosViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,11 +651,13 @@
 				7FA874FA2833516E006644B3 /* AboutAppRouter.swift in Sources */,
 				7F375A632805264500C6EE39 /* CreatePhotosWallRouter.swift in Sources */,
 				7F0010B1288CE44E00D6FDFD /* ManagedPhotoWall+CoreDataClass.swift in Sources */,
+				7F5A2B2928BF510200DF212A /* MainButtonViewModel.swift in Sources */,
 				7F0010B0288CE44E00D6FDFD /* ManagedPhotoFrame+CoreDataProperties.swift in Sources */,
 				7F00787F28ACAE1700C4CA39 /* Stroyboard.swift in Sources */,
 				7FA3190627F087F9003CAF9E /* SceneDelegate.swift in Sources */,
 				7F25722B28178E130092499D /* UIView+Extension.swift in Sources */,
 				7F739AC327FBDE4B00253C55 /* MainInteractor.swift in Sources */,
+				7F5A2B2528BF295B00DF212A /* ButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

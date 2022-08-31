@@ -17,16 +17,31 @@ protocol MainDisplayLogic: AnyObject {
 }
 
 final class MainViewController: UIViewController {
-    
     var interactor: MainBusinessLogic?
     var router: (NSObjectProtocol&MainRoutingLogic)?
     
-    //MARK: - UI Properties
-    @IBOutlet weak var accessStatusView: UIStackView!
-    @IBOutlet var statusMessageLabel: UILabel!
-    @IBOutlet weak var managePhotosAccessButton: UIButton!
-    @IBOutlet weak var photosWallView: PhotosWallView!
-    //private var dataSource: UICollectionViewDiffableDataSource<Int, Photos.Asset>! = nil
+    //MARK: - Properties for UI
+    ///Section for Main Collection View
+    enum Section: Int, CaseIterable {
+        case templates, buttons, recents
+     
+        var description: String {
+            switch self {
+            case .templates: return "Templates"
+            case .buttons: return ""
+            case .recents: return "Recently Add"
+            }
+        }
+    }
+    ///Item for Main Collection View
+   
+//    @IBOutlet private weak var accessStatusView: UIStackView!
+//    @IBOutlet private var statusMessageLabel: UILabel!
+//    @IBOutlet private weak var managePhotosAccessButton: UIButton!
+//    @IBOutlet private weak var photosWallView: PhotosWallView!
+    private var mainCollectionView: UICollectionView!
+    private var dataSource: UICollectionViewDiffableDataSource<Section, AnyHashable>!
+    
     //MARK: - Action method
     @IBAction func tapRighBarItem(_ sender: UIBarButtonItem) {
         routeScene("AboutApp", segue: nil)
@@ -57,8 +72,12 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         fetchPhotos()
         fetchAlbum()
+        configureCollectionView()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyInitialSnapShot()
+    }
     //MARK: - Setup
     private func setUpViewController() {
         let interactor = MainInteractor()
@@ -72,8 +91,8 @@ final class MainViewController: UIViewController {
         router.dataStore = interactor
     }
     private func setStatusMessageLabelUI(text: String?, textColor: UIColor) {
-        statusMessageLabel.text = text
-        statusMessageLabel.textColor = textColor
+//        statusMessageLabel.text = text
+//        statusMessageLabel.textColor = textColor
     }
     
     //MARK: - Routing
@@ -88,9 +107,10 @@ final class MainViewController: UIViewController {
         }
     }
     
-    //MARK: - Fetch Photos
-    var displayedPhotos: [UIImage] = []
-    var displayedAlbumsPhotos: [UIImage] = []
+    //MARK: - Fetched
+    var displayedPhotosWallTemplates = [PhotosWall.ViewModel]()
+    var displayedPhotos = [UIImage]()
+    var displayedAlbumsPhotos = [UIImage]()
 
     func fetchPhotos() {
         interactor?.fetchPhotos()
@@ -100,14 +120,153 @@ final class MainViewController: UIViewController {
         interactor?.fetchAlbumsPhotos()
     }
 }
+//MARK: - Extention for CollectionView
+extension MainViewController {
+    private func configureCollectionView() {
+        mainCollectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createCollectionViewLayout())
+        mainCollectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(mainCollectionView)
+        configureDataSource()
+    }
+    
+    private func createCollectionViewLayout() -> UICollectionViewCompositionalLayout {
+        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
+            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil}
+            let section: NSCollectionLayoutSection
+            
+            switch sectionKind {
+            case .templates:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                      heightDimension: .fractionalHeight(1))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .fractionalHeight(1.0))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                               subitems: [item])
+                section = NSCollectionLayoutSection(group: group)
+                let itemWidth = (self?.mainCollectionView.bounds.width ?? 1) * 0.7
+                let horizontalSectionInset = ((self?.mainCollectionView.bounds.width ?? 1) - itemWidth) / 2
+                section.orthogonalScrollingBehavior = .groupPaging
+                section.contentInsets = NSDirectionalEdgeInsets(top: 20,
+                                                                leading: horizontalSectionInset,
+                                                                bottom: 0,
+                                                                trailing: horizontalSectionInset)
+                section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+                    items.forEach { item in
+                        let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
+                        let minScale: CGFloat = 0.8
+                        let maxScale: CGFloat = 1.0
+                        let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
+                        item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                    }
+                }
+            case .buttons:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                      heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                       heightDimension: .absolute(44))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+                let spacing = CGFloat(10)
+                group.interItemSpacing = .fixed(spacing)
+                
+                section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = spacing
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+            case .recents:
+                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                      heightDimension: .fractionalHeight(1.0))
+                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+                item.contentInsets = NSDirectionalEdgeInsets(top: 5,
+                                                             leading: 5,
+                                                             bottom: 5,
+                                                             trailing: 5)
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28),
+                                                       heightDimension: .fractionalWidth(0.2))
+                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                               subitems: [item])
+                section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = 10
+                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+                section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+            }
+            return section
+        }
+        return layout
+    }
+    
+    private func configureDataSource() {
+        let photosWallCellRegistration = createPhotosWallCellRegistration()
+        let buttonCellRegistration = createButtonCellRegistration()
+        let photosCellRegistration = createPhotosCellRegistration()
+
+        dataSource = UICollectionViewDiffableDataSource<Section, AnyHashable>(collectionView: mainCollectionView) { (collectionView, indexPath, item) -> UICollectionViewCell in
+            guard let section = Section(rawValue: indexPath.section) else { return UICollectionViewCell() }
+            switch section {
+            case .templates:
+                return collectionView.dequeueConfiguredReusableCell(using: photosWallCellRegistration, for: indexPath, item: item as? PhotosWall.ViewModel)
+            case .buttons:
+                return collectionView.dequeueConfiguredReusableCell(using: buttonCellRegistration, for: indexPath, item: item as? String)
+            case .recents:
+                return collectionView.dequeueConfiguredReusableCell(using: photosCellRegistration, for: indexPath, item: item as? UIImage)
+            }
+        }
+    }
+    //MARK: Create Cell
+    private func createPhotosWallCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewCell, PhotosWall.ViewModel> {
+        return UICollectionView.CellRegistration<UICollectionViewCell, PhotosWall.ViewModel> { (cell, indexPath, item) in
+            let displayedView = item.displayedView
+            displayedView.bounds = cell.contentView.bounds
+            displayedView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            cell.contentView.addSubview(displayedView)
+        }
+    }
+    private func createButtonCellRegistration() -> UICollectionView.CellRegistration<ButtonCell, String> {
+        return UICollectionView.CellRegistration<ButtonCell, String> { (cell, indexPath, item) in
+            cell.label.text = item
+        }
+    }
+    private func createPhotosCellRegistration() -> UICollectionView.CellRegistration<PhotosViewCell, UIImage> {
+        return UICollectionView.CellRegistration<PhotosViewCell, UIImage> { (cell, indexPath, item) in
+            cell.imageView.image = item
+        }
+    }
+    
+    //MARK: - Apply Snapshot
+    private func applyInitialSnapShot() {
+        //Set section
+        let sections = Section.allCases
+        var snapshot = NSDiffableDataSourceSnapshot<Section, AnyHashable>()
+        snapshot.appendSections(sections)
+        dataSource.apply(snapshot)
+        
+        applyPhotosWallTemplatesSnapshot()
+        applyButtonsSnapshot()
+        applyRecentlyPhotosSnapshot()
+    }
+    private func applyPhotosWallTemplatesSnapshot() {
+        var templatesSnapshot = NSDiffableDataSourceSectionSnapshot<AnyHashable>()
+        templatesSnapshot.append(displayedPhotosWallTemplates)
+        dataSource.apply(templatesSnapshot, to: .templates)
+    }
+    private func applyButtonsSnapshot() {
+        var buttonsSnapshot = NSDiffableDataSourceSectionSnapshot<AnyHashable>()
+        dataSource.apply(buttonsSnapshot, to: .buttons)
+    }
+    private func applyRecentlyPhotosSnapshot() {
+        var resentlySnapshot = NSDiffableDataSourceSectionSnapshot<AnyHashable>()
+        resentlySnapshot.append(displayedAlbumsPhotos)
+        dataSource.apply(resentlySnapshot, to: .recents)
+    }
+}
 
 extension MainViewController: MainDisplayLogic {
     func loadWallPhotosImages() {
         DispatchQueue.main.async { [weak self] in
-            for (index, photo) in (self?.displayedPhotos ?? []).enumerated() {
-                self?.photosWallView.photosFrameView[index].photoImageView.image = photo
-            }
-            self?.photosWallView.hideEmptyFrameViews()
+//            for (index, photo) in (self?.displayedPhotos ?? []).enumerated() {
+//                self?.photosWallView.photosFrameView[index].photoImageView.image = photo
+//            }
+//            self?.photosWallView.hideEmptyFrameViews()
         }
     }
     
@@ -126,23 +285,23 @@ extension MainViewController: MainDisplayLogic {
     
     func displayAuthorizedPhotosAccessStatusMessage() {
         DispatchQueue.main.async { [weak self] in
-            self?.accessStatusView.isHidden = true
+            //self?.accessStatusView.isHidden = true
         }
     }
     
     func displayRestrictedPhotosAccessStatusMessage() {
         DispatchQueue.main.async { [weak self] in
-            self?.accessStatusView.isHidden = false
-            self?.setStatusMessageLabelUI(text: PhotosAccessStatusMessage.restricted, textColor: .systemPink)
-            self?.managePhotosAccessButton.addTarget(self, action: #selector(self?.showPhotosAccessSetting), for: .touchUpInside)
+//            self?.accessStatusView.isHidden = false
+//            self?.setStatusMessageLabelUI(text: PhotosAccessStatusMessage.restricted, textColor: .systemPink)
+//            self?.managePhotosAccessButton.addTarget(self, action: #selector(self?.showPhotosAccessSetting), for: .touchUpInside)
         }
     }
     
     func displayLimitedPhotosAccessStatusMessage() {
         DispatchQueue.main.async { [weak self] in
-            self?.accessStatusView.isHidden = false
-            self?.setStatusMessageLabelUI(text: PhotosAccessStatusMessage.limited, textColor: .secondaryLabel)
-            self?.managePhotosAccessButton.addTarget(self, action: #selector(self?.showManagePhotosAccessAlert), for: .touchUpInside)
+//            self?.accessStatusView.isHidden = false
+//            self?.setStatusMessageLabelUI(text: PhotosAccessStatusMessage.limited, textColor: .secondaryLabel)
+//            self?.managePhotosAccessButton.addTarget(self, action: #selector(self?.showManagePhotosAccessAlert), for: .touchUpInside)
         }
     }
     

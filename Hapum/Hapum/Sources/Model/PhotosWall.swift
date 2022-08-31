@@ -17,7 +17,7 @@ enum PhotosWall {
             lhs.id == rhs.id
         }
     }
-    struct ViewModel: Equatable {
+    struct ViewModel: Equatable, Hashable {
         var id: UUID
         var displayedView: CustomPhotosWallView
     }
